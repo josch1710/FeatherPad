@@ -257,12 +257,12 @@ void FPsingleton::firstWin (const QStringList &info)
     long d = -1;
     bool openNewWin;
     const QStringList filesList = processInfo (info, d, lineNum, posInLine, &openNewWin);
-    if (config_.getOpenInWindows() && !filesList.isEmpty())
+    /*if (config_.getOpenInWindows() && !filesList.isEmpty())
     {
         for (const auto &file : filesList)
           newWin (QStringList() << file, lineNum, posInLine);
     }
-    else
+    else*/
         newWin (filesList, lineNum, posInLine);
     lastFiles_ = QStringList(); // they should be called only with the session start
 }
@@ -305,7 +305,7 @@ void FPsingleton::handleInfo (const QStringList &info)
     long d = -1;
     bool openNewWin;
     const QStringList filesList = processInfo (info, d, lineNum, posInLine, &openNewWin);
-    if (openNewWin && !config_.getOpenInWindows())
+    if (openNewWin/* && !config_.getOpenInWindows()*/)
     {
         newWin (filesList, lineNum, posInLine);
         return;
@@ -382,12 +382,12 @@ void FPsingleton::handleInfo (const QStringList &info)
     if (!found)
     {
         /* ... otherwise, open a new window */
-        if (config_.getOpenInWindows() && !filesList.isEmpty())
+        /*if (config_.getOpenInWindows() && !filesList.isEmpty())
         {
             for (const auto &file : filesList)
                 newWin (QStringList() << file, lineNum, posInLine);
         }
-        else
+        else*/
             newWin (filesList, lineNum, posInLine);
     }
 }

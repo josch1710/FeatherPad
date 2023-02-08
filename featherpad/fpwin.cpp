@@ -33,6 +33,7 @@
 #include "warningbar.h"
 #include "svgicons.h"
 
+#include <QMimeDatabase>
 #include <QPrintDialog>
 #include <QToolTip>
 #include <QScreen>
@@ -101,7 +102,7 @@ FPwin::FPwin (QWidget *parent):QMainWindow (parent), dummyWidget (nullptr), ui (
     wordButton->setToolTip ("<p style='white-space:pre'>"
                             + tr ("Calculate number of words\n(For huge texts, this may be CPU-intensive.)")
                             + "</p>");
-    connect (wordButton, &QAbstractButton::clicked, [=]{updateWordInfo();});
+    connect (wordButton, &QAbstractButton::clicked, [this] {updateWordInfo();});
     ui->statusBar->addWidget (statusLabel);
     ui->statusBar->addWidget (wordButton);
 
@@ -201,13 +202,8 @@ FPwin::FPwin (QWidget *parent):QMainWindow (parent), dummyWidget (nullptr), ui (
     ui->actionWindows_Arabic->setVisible (false);
 #endif
 
-    if (static_cast<FPsingleton*>(qApp)->isStandAlone()
-        /* since Wayland has a serious issue related to QDrag that interferes with
-           dropping tabs outside all windows, we don't enable tab DND without X11 */
-        || !static_cast<FPsingleton*>(qApp)->isX11())
-    {
+    if (static_cast<FPsingleton*>(qApp)->isStandAlone())
         ui->tabWidget->noTabDND();
-    }
 
     connect (ui->actionQuit, &QAction::triggered, this, &QWidget::close);
     connect (ui->actionNew, &QAction::triggered, this, &FPwin::newTab);
@@ -221,10 +217,10 @@ FPwin::FPwin (QWidget *parent):QMainWindow (parent), dummyWidget (nullptr), ui (
     connect (ui->actionOpen, &QAction::triggered, this, &FPwin::fileOpen);
     connect (ui->actionReload, &QAction::triggered, this, &FPwin::reload);
     connect (aGroup_, &QActionGroup::triggered, this, &FPwin::enforceEncoding);
-    connect (ui->actionSave, &QAction::triggered, this, [=]{saveFile (false);});
-    connect (ui->actionSaveAs, &QAction::triggered, this, [=]{saveFile (false);});
-    connect (ui->actionSaveCodec, &QAction::triggered, this, [=]{saveFile (false);});
-    connect (ui->actionSaveAllFiles, &QAction::triggered, this, [=]{saveAllFiles (true);});
+    connect (ui->actionSave, &QAction::triggered, this, [this] {saveFile (false);});
+    connect (ui->actionSaveAs, &QAction::triggered, this, [this] {saveFile (false);});
+    connect (ui->actionSaveCodec, &QAction::triggered, this, [this] {saveFile (false);});
+    connect (ui->actionSaveAllFiles, &QAction::triggered, this, [this] {saveAllFiles (true);});
 
     connect (ui->actionCut, &QAction::triggered, this, &FPwin::cutText);
     connect (ui->actionCopy, &QAction::triggered, this, &FPwin::copyText);
@@ -238,9 +234,9 @@ FPwin::FPwin (QWidget *parent):QMainWindow (parent), dummyWidget (nullptr), ui (
     connect (ui->actionLowerCase, &QAction::triggered, this, &FPwin::lowerCase);
     connect (ui->actionStartCase, &QAction::triggered, this, &FPwin::startCase);
 
-    /* because sort line actions don't have shortcuts,
-       their state can be set when their menu is going to be shown */
-    connect (ui->menuEdit, &QMenu::aboutToShow, this, &FPwin::enableSortLines);
+    connect (ui->menuEdit, &QMenu::aboutToShow, this, &FPwin::showingEditMenu);
+    connect (ui->menuEdit, &QMenu::aboutToHide, this, &FPwin::hidngEditMenu);
+
     connect (ui->actionSortLines, &QAction::triggered, this, &FPwin::sortLines);
     connect (ui->actionRSortLines, &QAction::triggered, this, &FPwin::sortLines);
 
@@ -258,7 +254,10 @@ FPwin::FPwin (QWidget *parent):QMainWindow (parent), dummyWidget (nullptr), ui (
     connect (ui->tabWidget, &TabWidget::hasLastActiveTab, [this] (bool hasLastActive) {
         ui->actionLastActiveTab->setEnabled (hasLastActive);
     });
-    connect (ui->tabWidget->tabBar(), &TabBar::tabDetached, this, &FPwin::detachTab);
+
+    /* the tab will be detached after the DND is finished */
+    connect (ui->tabWidget->tabBar(), &TabBar::tabDetached, this, &FPwin::detachTab, Qt::QueuedConnection);
+
     connect (ui->tabWidget->tabBar(), &TabBar::hideTabBar, this, &FPwin::toggleSidePane);
     ui->tabWidget->tabBar()->setContextMenuPolicy (Qt::CustomContextMenu);
     connect (ui->tabWidget->tabBar(), &QWidget::customContextMenuRequested, this, &FPwin::tabContextMenu);
@@ -429,7 +428,7 @@ void FPwin::cleanUpOnTerminating (Config &config, bool isLastWin)
 void FPwin::toggleSidePane()
 {
     Config& config = static_cast<FPsingleton*>(qApp)->getConfig();
-    if (!sidePane_)
+    if (sidePane_ == nullptr)
     {
         ui->tabWidget->tabBar()->hide();
         ui->tabWidget->tabBar()->hideSingle (false); // prevent tabs from reappearing
@@ -447,9 +446,9 @@ void FPwin::toggleSidePane()
         }
         else
         {
-            /* set the side pane width to 1/5 of the window width */
-            int mult = qMax (size().width(), 100) / 100; // for more precision
-            sizes << 20 * mult << 80 * mult;
+            /* don't let the side pane be wider than 1/5 of the window width */
+            int s = qMin (size().width() / 5, 40 * sidePane_->fontMetrics().horizontalAdvance(' '));
+            sizes << s << size().width() - s;
         }
         ui->splitter->setSizes (sizes);
         connect (sidePane_->listWidget(), &QWidget::customContextMenuRequested, this, &FPwin::listContextMenu);
@@ -531,8 +530,8 @@ void FPwin::toggleSidePane()
                 }
                 else
                 {
-                    int mult = qMax (size().width(), 100) / 100;
-                    sizes << 20 * mult << 80 * mult;
+                    int s = qMin (size().width() / 5, 40 * sidePane_->fontMetrics().horizontalAdvance(' '));
+                    sizes << s << size().width() - s;
                 }
                 ui->splitter->setSizes (sizes);
             }
@@ -666,6 +665,7 @@ void FPwin::applyConfigOnStarting()
     {
         ui->actionNew->setIcon (QIcon::fromTheme ("document-new"));
         ui->actionOpen->setIcon (QIcon::fromTheme ("document-open"));
+        ui->actionSession->setIcon (QIcon::fromTheme ("bookmark-new"));
         ui->menuOpenRecently->setIcon (QIcon::fromTheme ("document-open-recent"));
         ui->actionClearRecent->setIcon (QIcon::fromTheme ("edit-clear"));
         ui->actionSave->setIcon (QIcon::fromTheme ("document-save"));
@@ -692,6 +692,10 @@ void FPwin::applyConfigOnStarting()
         ui->actionHelp->setIcon (QIcon::fromTheme ("help-contents"));
         ui->actionAbout->setIcon (QIcon::fromTheme ("help-about"));
         ui->actionJump->setIcon (QIcon::fromTheme ("go-jump"));
+        QIcon sideIcn = QIcon::fromTheme ("sidebar-expand-left");
+        if (sideIcn.isNull())
+            sideIcn = symbolicIcon::icon (":icons/side-pane.svg");
+        ui->actionSidePane->setIcon (sideIcn);
         ui->actionEdit->setIcon (QIcon::fromTheme ("document-edit"));
         ui->actionRun->setIcon (QIcon::fromTheme ("system-run"));
         ui->actionCopyName->setIcon (QIcon::fromTheme ("edit-copy"));
@@ -719,6 +723,7 @@ void FPwin::applyConfigOnStarting()
     {
         ui->actionNew->setIcon (symbolicIcon::icon (":icons/document-new.svg"));
         ui->actionOpen->setIcon (symbolicIcon::icon (":icons/document-open.svg"));
+        ui->actionSession->setIcon (symbolicIcon::icon (":icons/session.svg"));
         ui->menuOpenRecently->setIcon (symbolicIcon::icon (":icons/document-open-recent.svg"));
         ui->actionClearRecent->setIcon (symbolicIcon::icon (":icons/edit-clear.svg"));
         ui->actionSave->setIcon (symbolicIcon::icon (":icons/document-save.svg"));
@@ -745,6 +750,7 @@ void FPwin::applyConfigOnStarting()
         ui->actionHelp->setIcon (symbolicIcon::icon (":icons/help-contents.svg"));
         ui->actionAbout->setIcon (symbolicIcon::icon (":icons/help-about.svg"));
         ui->actionJump->setIcon (symbolicIcon::icon (":icons/go-jump.svg"));
+        ui->actionSidePane->setIcon (symbolicIcon::icon (":icons/side-pane.svg"));
         ui->actionEdit->setIcon (symbolicIcon::icon (":icons/document-edit.svg"));
         ui->actionRun->setIcon (symbolicIcon::icon (":icons/system-run.svg"));
         ui->actionCopyName->setIcon (symbolicIcon::icon (":icons/edit-copy.svg"));
@@ -1283,8 +1289,16 @@ void FPwin::dropEvent (QDropEvent *event)
     if (locked_) return;
     if (event->mimeData()->hasFormat ("application/featherpad-tab"))
     {
-        dropTab (QString::fromUtf8 (event->mimeData()->data ("application/featherpad-tab").constData()),
-                 event->source());
+        if (QObject *sourseObject = event->source())
+        {
+            /* announce that the drop is accepted by us (see "TabBar::mouseMoveEvent") */
+            sourseObject->setProperty (TabBar::tabDropped, true);
+            /* the tab will be dropped after the DND is finished */
+            auto data = event->mimeData()->data ("application/featherpad-tab");
+            QTimer::singleShot (0, sourseObject, [this, sourseObject, data]() {
+                dropTab (QString::fromUtf8 (data.constData()), sourseObject);
+            });
+        }
     }
     else
     {
@@ -1773,23 +1787,29 @@ void FPwin::updateRecenMenu()
 {
     Config config = static_cast<FPsingleton*>(qApp)->getConfig();
     QStringList recentFiles = config.getRecentFiles();
-    int recentNumber = config.getCurRecentFilesNumber();
-
-    QList<QAction *> actions = ui->menuOpenRecently->actions();
     int recentSize = recentFiles.count();
+    int recentNumber = config.getCurRecentFilesNumber();
+    QList<QAction*> actions = ui->menuOpenRecently->actions();
     QFontMetrics metrics (ui->menuOpenRecently->font());
     int w = 150 * metrics.horizontalAdvance (' ');
+    QMimeDatabase mimeDatabase;
     for (int i = 0; i < recentNumber; ++i)
     {
         if (i < recentSize)
         {
             actions.at (i)->setText (metrics.elidedText (recentFiles.at (i), Qt::ElideMiddle, w));
+            QIcon icon;
+            auto mimes = mimeDatabase.mimeTypesForFileName (recentFiles.at (i).section ("/", -1));
+            if (!mimes.isEmpty())
+                icon = QIcon::fromTheme (mimes.at (0).iconName());
+            actions.at (i)->setIcon (icon);
             actions.at (i)->setData (recentFiles.at (i));
             actions.at (i)->setVisible (true);
         }
         else
         {
             actions.at (i)->setText (QString());
+            actions.at (i)->setIcon (QIcon());
             actions.at (i)->setData (QVariant());
             actions.at (i)->setVisible (false);
         }
@@ -2872,8 +2892,8 @@ bool FPwin::alreadyOpen (TabPage *tabPage) const
 /*************************/
 void FPwin::enforceEncoding (QAction *a)
 {
-    /* here, we don't need to check if some files are loading
-       because encoding has no keyboard shortcut or tool button */
+    /* not needed because encoding has no keyboard shortcut or tool button */
+    if (isLoading()) return;
 
     int index = ui->tabWidget->currentIndex();
     TabPage *tabPage = qobject_cast< TabPage *>(ui->tabWidget->widget (index));
@@ -2912,7 +2932,7 @@ void FPwin::enforceEncoding (QAction *a)
             QString lineStr = "</i>&nbsp;&nbsp;&nbsp;<b>" + tr ("Lines");
             int i = str.indexOf (encodStr);
             int j = str.indexOf (lineStr);
-            int offset = encodStr.count() + 9; // size of ":</b> <i>"
+            int offset = encodStr.size() + 9; // size of ":</b> <i>"
             str.replace (i + offset, j - i - offset, checkToEncoding());
             statusLabel->setText (str);
         }
@@ -3652,7 +3672,7 @@ void FPwin::reloadSyntaxHighlighter (TextEdit *textEdit)
             {
                 QString lineStr = "</i>&nbsp;&nbsp;&nbsp;<b>" + tr ("Lines");
                 int j = str.indexOf (lineStr);
-                int offset = syntaxStr.count() + 9; // size of ":</b> <i>"
+                int offset = syntaxStr.size() + 9; // size of ":</b> <i>"
                 str.replace (i + offset, j - i - offset, textEdit->getProg());
             }
         }
@@ -3839,21 +3859,41 @@ void FPwin::startCase()
     }
 }
 /*************************/
-void FPwin::enableSortLines()
+// Because sort line actions don't have shortcuts, their state can be set when
+// their menu is going to be shown. Also, the state of the paste action is set.
+void FPwin::showingEditMenu()
 {
     if (TabPage *tabPage = qobject_cast<TabPage*>(ui->tabWidget->currentWidget()))
     {
         TextEdit *textEdit = tabPage->textEdit();
-        if (!textEdit->isReadOnly()
-            && textEdit->textCursor().selectedText().contains (QChar (QChar::ParagraphSeparator)))
+        if (!textEdit->isReadOnly())
         {
-            ui->actionSortLines->setEnabled (true);
-            ui->actionRSortLines->setEnabled (true);
-            return;
+            ui->actionPaste->setEnabled (textEdit->canPaste());
+            if (textEdit->textCursor().selectedText().contains (QChar (QChar::ParagraphSeparator)))
+            {
+                ui->actionSortLines->setEnabled (true);
+                ui->actionRSortLines->setEnabled (true);
+                return;
+            }
         }
+        else
+            ui->actionPaste->setEnabled (false);
     }
+    else
+        ui->actionPaste->setEnabled (false);
     ui->actionSortLines->setEnabled (false);
     ui->actionRSortLines->setEnabled (false);
+}
+/*************************/
+void FPwin::hidngEditMenu()
+{
+    if (TabPage *tabPage = qobject_cast<TabPage*>(ui->tabWidget->currentWidget()))
+    {
+        /* QPlainTextEdit::canPaste() isn't consulted because it might change later */
+        ui->actionPaste->setEnabled (!tabPage->textEdit()->isReadOnly());
+    }
+    else
+        ui->actionPaste->setEnabled (false);
 }
 /*************************/
 void FPwin::sortLines()
@@ -3890,7 +3930,7 @@ void FPwin::makeEditable()
     }
     ui->actionEdit->setVisible (false);
 
-    ui->actionPaste->setEnabled (true);
+    ui->actionPaste->setEnabled (true); // it might change temporarily in showingEditMenu()
     ui->actionSoftTab->setEnabled (true);
     ui->actionDate->setEnabled (true);
     ui->actionCopy->setEnabled (textIsSelected);
@@ -4013,7 +4053,7 @@ void FPwin::tabSwitch (int index)
         ui->actionSaveAs->setEnabled (!textEdit->isUneditable());
         ui->actionSaveCodec->setEnabled (!textEdit->isUneditable());
     }
-    ui->actionPaste->setEnabled (!readOnly);
+    ui->actionPaste->setEnabled (!readOnly); // it might change temporarily in showingEditMenu()
     ui->actionSoftTab->setEnabled (!readOnly);
     ui->actionDate->setEnabled (!readOnly);
     bool textIsSelected = textEdit->textCursor().hasSelection();
@@ -4549,7 +4589,7 @@ void FPwin::statusMsg()
     QString str = statusLabel->text();
     QString selStr = tr ("Sel. Chars");
     QString wordStr = "&nbsp;&nbsp;&nbsp;<b>" + tr ("Words");
-    int i = str.indexOf (selStr) + selStr.count();
+    int i = str.indexOf (selStr) + selStr.size();
     int j = str.indexOf (wordStr);
     if (sel == 0)
     {
@@ -4574,8 +4614,8 @@ void FPwin::showCursorPos()
     charN.setNum (pos); charN = "<i> " + charN + "</i>";
     QString str = posLabel->text();
     QString scursorStr = "<b>" + tr ("Position:") + "</b>";
-    int i = scursorStr.count();
-    str.replace (i, str.count() - i, charN);
+    int i = scursorStr.size();
+    str.replace (i, str.size() - i, charN);
     posLabel->setText (str);
 }
 /*************************/
@@ -5310,7 +5350,6 @@ void FPwin::dropTab (const QString& str, QObject *source)
     { // there's no connction to the drag target yet
         textEdit->setDrawIndetLines (false);
         Highlighter *highlighter = qobject_cast< Highlighter *>(textEdit->getHighlighter());
-        textEdit->setHighlighter (nullptr);
         delete highlighter; highlighter = nullptr;
     }
     if (ui->spinBox->isVisible())
@@ -5392,7 +5431,7 @@ void FPwin::tabContextMenu (const QPoint& p)
 
     QString fname = qobject_cast< TabPage *>(ui->tabWidget->widget (rightClicked_))
                     ->textEdit()->getFileName();
-    QMenu menu;
+    QMenu menu (this); // "this" is for Wayland, when the window isn't active
     bool showMenu = false;
     if (tabNum > 1)
     {
@@ -5516,7 +5555,7 @@ void FPwin::listContextMenu (const QPoint& p)
     rightClicked_ = lw->row (item);
     QString fname = sideItems_.value (item)->textEdit()->getFileName();
 
-    QMenu menu;
+    QMenu menu (this); // "this" is for Wayland, when the window isn't active
     menu.addAction (ui->actionClose);
     if (lw->count() > 1)
     {
@@ -6143,7 +6182,7 @@ void FPwin::saveAllFiles (bool showWarning)
                         {
                             QString lineStr = "</i>&nbsp;&nbsp;&nbsp;<b>" + tr ("Lines");
                             int j = str.indexOf (lineStr);
-                            int offset = syntaxStr.count() + 9; // size of ":</b> <i>"
+                            int offset = syntaxStr.size() + 9; // size of ":</b> <i>"
                             str.replace (i + offset, j - i - offset, thisTextEdit->getProg());
                         }
                     }

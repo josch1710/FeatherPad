@@ -124,7 +124,8 @@ private slots:
     void upperCase();
     void lowerCase();
     void startCase();
-    void enableSortLines();
+    void showingEditMenu();
+    void hidngEditMenu();
     void sortLines();
     void makeEditable();
     void undoing();

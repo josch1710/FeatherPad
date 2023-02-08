@@ -96,6 +96,7 @@ ListWidget::ListWidget (QWidget *parent) : QListWidget (parent)
 // To prevent deselection by Ctrl + left click; see "qabstractitemview.cpp".
 QItemSelectionModel::SelectionFlags ListWidget::selectionCommand (const QModelIndex &index, const QEvent *event) const
 {
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
     Qt::KeyboardModifiers keyModifiers = Qt::NoModifier;
     if (event)
     {
@@ -112,10 +113,23 @@ QItemSelectionModel::SelectionFlags ListWidget::selectionCommand (const QModelIn
                 keyModifiers = QApplication::keyboardModifiers();
         }
     }
-    if (selectionMode() == QAbstractItemView::SingleSelection && (keyModifiers & Qt::ControlModifier) && selectionModel()->isSelected (index))
-        return QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows;
-    else
-        return QListWidget::selectionCommand (index, event);
+#else
+    Qt::KeyboardModifiers keyModifiers = event != nullptr && event->isInputEvent()
+                                             ? (static_cast<const QInputEvent*>(event))->modifiers()
+                                             : Qt::NoModifier;
+
+#endif
+    if (selectionMode() == QAbstractItemView::SingleSelection)
+    {
+        if (!index.isValid())
+            return QItemSelectionModel::NoUpdate;
+        if ((keyModifiers & Qt::ControlModifier)
+            && selectionModel()->isSelected (index))
+        {
+            return QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows;
+        }
+    }
+    return QListWidget::selectionCommand (index, event);
 }
 /*************************/
 // QListView::scrollTo() doesn't work correctly when the scroll mode is per item
@@ -170,12 +184,12 @@ void ListWidget::mouseMoveEvent (QMouseEvent *event)
 {
     QListWidget::mouseMoveEvent (event);
     if (event->button() == Qt::NoButton && !(event->buttons() & Qt::LeftButton))
-    {
+    { // "this" is for Wayland, when the window isn't active
         if (QListWidgetItem *item = itemAt (event->pos()))
 #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-            QToolTip::showText (event->globalPos(), item->toolTip());
+            QToolTip::showText (event->globalPos(), item->toolTip(), this);
 #else
-            QToolTip::showText (event->globalPosition().toPoint(), item->toolTip());
+            QToolTip::showText (event->globalPosition().toPoint(), item->toolTip(), this);
 #endif
         else
             QToolTip::hideText();

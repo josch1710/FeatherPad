@@ -12,18 +12,18 @@
 <context>
     <name>FeatherPad::FPwin</name>
     <message>
-        <location filename="../../fpwin.cpp" line="481"/>
-        <location filename="../../fpwin.cpp" line="1565"/>
-        <location filename="../../fpwin.cpp" line="1627"/>
-        <location filename="../../fpwin.cpp" line="2185"/>
-        <location filename="../../fpwin.cpp" line="2247"/>
-        <location filename="../../fpwin.cpp" line="3012"/>
+        <location filename="../../fpwin.cpp" line="480"/>
+        <location filename="../../fpwin.cpp" line="1579"/>
+        <location filename="../../fpwin.cpp" line="1641"/>
+        <location filename="../../fpwin.cpp" line="2205"/>
+        <location filename="../../fpwin.cpp" line="2267"/>
         <location filename="../../fpwin.cpp" line="3032"/>
-        <location filename="../../fpwin.cpp" line="3035"/>
-        <location filename="../../fpwin.cpp" line="3966"/>
-        <location filename="../../fpwin.cpp" line="4719"/>
-        <location filename="../../fpwin.cpp" line="5013"/>
-        <location filename="../../fpwin.cpp" line="5272"/>
+        <location filename="../../fpwin.cpp" line="3052"/>
+        <location filename="../../fpwin.cpp" line="3055"/>
+        <location filename="../../fpwin.cpp" line="4006"/>
+        <location filename="../../fpwin.cpp" line="4759"/>
+        <location filename="../../fpwin.cpp" line="5053"/>
+        <location filename="../../fpwin.cpp" line="5312"/>
         <source>Untitled</source>
         <translation>未命名</translation>
     </message>
@@ -56,7 +56,7 @@
     </message>
     <message>
         <location filename="../../fp.ui" line="189"/>
-        <location filename="../../fp.ui" line="980"/>
+        <location filename="../../fp.ui" line="983"/>
         <source>&amp;Edit</source>
         <translation>編輯(&amp;E)</translation>
     </message>
@@ -66,9 +66,9 @@
         <translation>選項(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1588"/>
-        <location filename="../../fpwin.cpp" line="2910"/>
-        <location filename="../../fpwin.cpp" line="4529"/>
+        <location filename="../../fpwin.cpp" line="1602"/>
+        <location filename="../../fpwin.cpp" line="2930"/>
+        <location filename="../../fpwin.cpp" line="4569"/>
         <source>Encoding</source>
         <translation>字元編碼</translation>
     </message>
@@ -79,354 +79,354 @@
     </message>
     <message>
         <location filename="../../fp.ui" line="290"/>
-        <location filename="../../fp.ui" line="746"/>
+        <location filename="../../fp.ui" line="749"/>
         <source>&amp;Help</source>
         <translation>尋求幫助(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="390"/>
+        <location filename="../../fp.ui" line="393"/>
         <source>Find:</source>
         <translation>尋找：</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="406"/>
+        <location filename="../../fp.ui" line="409"/>
         <source>To be replaced</source>
         <translation>要取代的文字</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="419"/>
+        <location filename="../../fp.ui" line="422"/>
         <source>Replace with:</source>
         <translation>取代為：</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="435"/>
+        <location filename="../../fp.ui" line="438"/>
         <source>Replacing text</source>
         <translation>取代文字</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="494"/>
+        <location filename="../../fp.ui" line="497"/>
         <source>&amp;New</source>
         <translation>新建(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="497"/>
+        <location filename="../../fp.ui" line="500"/>
         <source>New tab</source>
         <translation>新分頁</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="500"/>
+        <location filename="../../fp.ui" line="503"/>
         <source>Ctrl+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="505"/>
+        <location filename="../../fp.ui" line="508"/>
         <source>&amp;Open</source>
         <translation>開啟(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="508"/>
+        <location filename="../../fp.ui" line="511"/>
         <source>Open a file</source>
         <translation>開啟檔案</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="511"/>
+        <location filename="../../fp.ui" line="514"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="519"/>
-        <location filename="../../fpwin.cpp" line="1363"/>
+        <location filename="../../fp.ui" line="522"/>
+        <location filename="../../fpwin.cpp" line="1377"/>
         <source>&amp;Save</source>
         <translation>儲存(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="522"/>
+        <location filename="../../fp.ui" line="525"/>
         <source>Save the current tab</source>
         <translation>儲存目前的分頁</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="525"/>
+        <location filename="../../fp.ui" line="528"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="533"/>
+        <location filename="../../fp.ui" line="536"/>
         <source>&amp;Undo</source>
         <translation>復原(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="536"/>
+        <location filename="../../fp.ui" line="539"/>
         <source>Undo</source>
         <translation>復原</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="539"/>
+        <location filename="../../fp.ui" line="542"/>
         <source>Ctrl+Z</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="547"/>
+        <location filename="../../fp.ui" line="550"/>
         <source>&amp;Redo</source>
         <translation>重做(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="550"/>
+        <location filename="../../fp.ui" line="553"/>
         <source>Redo</source>
         <translation>重做</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="553"/>
+        <location filename="../../fp.ui" line="556"/>
         <source>Ctrl+Shift+Z</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="561"/>
         <location filename="../../fp.ui" line="564"/>
+        <location filename="../../fp.ui" line="567"/>
         <source>Reload</source>
         <translation>重新載入</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="567"/>
+        <location filename="../../fp.ui" line="570"/>
         <source>Ctrl+Shift+R</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="572"/>
+        <location filename="../../fp.ui" line="575"/>
         <source>&amp;Find</source>
         <translation>尋找(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="578"/>
+        <location filename="../../fp.ui" line="581"/>
         <source>Ctrl+F</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="586"/>
+        <location filename="../../fp.ui" line="589"/>
         <source>Show/hide replacement dock</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="589"/>
+        <location filename="../../fp.ui" line="592"/>
         <source>Ctrl+R</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="594"/>
+        <location filename="../../fp.ui" line="597"/>
         <source>Save &amp;As</source>
         <translation>儲存為(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="597"/>
+        <location filename="../../fp.ui" line="600"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="602"/>
+        <location filename="../../fp.ui" line="605"/>
         <source>&amp;Print</source>
         <translation>列印(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="605"/>
+        <location filename="../../fp.ui" line="608"/>
         <source>Ctrl+P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="610"/>
+        <location filename="../../fp.ui" line="613"/>
         <source>Documen&amp;t Properties</source>
         <translation>文件屬性(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="613"/>
+        <location filename="../../fp.ui" line="616"/>
         <source>Ctrl+Shift+D</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="618"/>
+        <location filename="../../fp.ui" line="621"/>
         <source>&amp;Close</source>
         <translation>關閉(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="621"/>
+        <location filename="../../fp.ui" line="624"/>
         <source>Ctrl+Shift+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="626"/>
+        <location filename="../../fp.ui" line="629"/>
         <source>&amp;Quit</source>
         <translation>退出(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="629"/>
+        <location filename="../../fp.ui" line="632"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="637"/>
+        <location filename="../../fp.ui" line="640"/>
         <source>&amp;Cut</source>
         <translation>剪下(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="640"/>
+        <location filename="../../fp.ui" line="643"/>
         <source>Ctrl+X</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="648"/>
+        <location filename="../../fp.ui" line="651"/>
         <source>C&amp;opy</source>
         <translation>複製(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="651"/>
+        <location filename="../../fp.ui" line="654"/>
         <source>Ctrl+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="656"/>
+        <location filename="../../fp.ui" line="659"/>
         <source>&amp;Paste</source>
         <translation>貼上(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="659"/>
+        <location filename="../../fp.ui" line="662"/>
         <source>Ctrl+V</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="667"/>
+        <location filename="../../fp.ui" line="670"/>
         <source>&amp;Delete</source>
         <translation>刪除(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="672"/>
+        <location filename="../../fp.ui" line="675"/>
         <source>&amp;Select All</source>
         <translation>全選(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="675"/>
+        <location filename="../../fp.ui" line="678"/>
         <source>Ctrl+A</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="680"/>
+        <location filename="../../fp.ui" line="683"/>
         <source>&amp;Font</source>
         <translation>字型(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="688"/>
+        <location filename="../../fp.ui" line="691"/>
         <source>&amp;Line Numbers</source>
         <translation>列號(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="691"/>
+        <location filename="../../fp.ui" line="694"/>
         <source>Ctrl+L</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="702"/>
+        <location filename="../../fp.ui" line="705"/>
         <source>&amp;Wrap Lines</source>
         <translation>自動換列(&amp;W)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="705"/>
+        <location filename="../../fp.ui" line="708"/>
         <source>Ctrl+W</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="716"/>
+        <location filename="../../fp.ui" line="719"/>
         <source>&amp;Auto-Indentation</source>
         <translation>自動縮排(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="719"/>
+        <location filename="../../fp.ui" line="722"/>
         <source>Ctrl+I</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="730"/>
+        <location filename="../../fp.ui" line="733"/>
         <source>&amp;Syntax Highlighting</source>
         <translation>語法標示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="733"/>
+        <location filename="../../fp.ui" line="736"/>
         <source>Ctrl+Shift+H</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="738"/>
+        <location filename="../../fp.ui" line="741"/>
         <source>&amp;Preferences</source>
         <translation>偏好設定(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="741"/>
+        <location filename="../../fp.ui" line="744"/>
         <source>Ctrl+Shift+P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="749"/>
+        <location filename="../../fp.ui" line="752"/>
         <source>Ctrl+H</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="754"/>
+        <location filename="../../fp.ui" line="757"/>
         <source>&amp;About</source>
         <translation>關於(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="781"/>
+        <location filename="../../fp.ui" line="784"/>
         <source>Enforce UTF-8</source>
         <translation>強制 UTF-8</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="964"/>
+        <location filename="../../fp.ui" line="967"/>
         <source>Save with &amp;Encoding</source>
         <translation>使用編碼儲存(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="969"/>
+        <location filename="../../fp.ui" line="972"/>
         <source>&amp;Jump to</source>
         <translation>跳到(&amp;J)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="972"/>
+        <location filename="../../fp.ui" line="975"/>
         <source>Show/hide jump bar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="975"/>
+        <location filename="../../fp.ui" line="978"/>
         <source>Ctrl+J</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="983"/>
+        <location filename="../../fp.ui" line="986"/>
         <source>Edit text</source>
         <translation>編輯文字</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="986"/>
+        <location filename="../../fp.ui" line="989"/>
         <source>Ctrl+Shift+E</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1089"/>
+        <location filename="../../fp.ui" line="1092"/>
         <source>&amp;Run</source>
         <translation>執行(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1095"/>
+        <location filename="../../fp.ui" line="1098"/>
         <source>Ctrl+E</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1100"/>
+        <location filename="../../fp.ui" line="1103"/>
         <source>&amp;Clear</source>
         <translation>清除(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1103"/>
+        <location filename="../../fp.ui" line="1106"/>
         <source>Clear the list of recently modified files</source>
         <translation>清除最近修改的檔案清單</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1108"/>
+        <location filename="../../fp.ui" line="1114"/>
         <source>Save/Restore Session</source>
         <translation>儲存/還原工作階段</translation>
     </message>
@@ -436,145 +436,145 @@
         <translation>儲存/還原工作階段(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1114"/>
+        <location filename="../../fp.ui" line="1117"/>
         <source>Ctrl+M</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1119"/>
+        <location filename="../../fp.ui" line="1122"/>
         <source>Side-Pane</source>
         <translation>側邊窗格</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1122"/>
+        <location filename="../../fp.ui" line="1125"/>
         <source>Ctrl+Alt+P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1127"/>
+        <location filename="../../fp.ui" line="1130"/>
         <source>Paste Date and Time</source>
         <translation>貼上日期和時間</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1130"/>
+        <location filename="../../fp.ui" line="1133"/>
         <source>Ctrl+Shift+V</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1135"/>
         <location filename="../../fp.ui" line="1138"/>
+        <location filename="../../fp.ui" line="1141"/>
         <source>To Upper Case</source>
         <translation>轉換為大寫</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1141"/>
+        <location filename="../../fp.ui" line="1144"/>
         <source>Ctrl+Shift+U</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1146"/>
         <location filename="../../fp.ui" line="1149"/>
+        <location filename="../../fp.ui" line="1152"/>
         <source>To Lower Case</source>
         <translation>轉換為小寫</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1152"/>
+        <location filename="../../fp.ui" line="1155"/>
         <source>Ctrl+Shift+L</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1157"/>
         <location filename="../../fp.ui" line="1160"/>
+        <location filename="../../fp.ui" line="1163"/>
         <source>To Start Case</source>
         <translation>首字母大寫</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1168"/>
         <location filename="../../fp.ui" line="1171"/>
+        <location filename="../../fp.ui" line="1174"/>
         <source>Last Active Tab</source>
         <translation>上次使用的分頁</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1174"/>
+        <location filename="../../fp.ui" line="1177"/>
         <source>F1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1179"/>
         <location filename="../../fp.ui" line="1182"/>
+        <location filename="../../fp.ui" line="1185"/>
         <source>Sort Lines</source>
         <translation>排序列</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1187"/>
         <location filename="../../fp.ui" line="1190"/>
+        <location filename="../../fp.ui" line="1193"/>
         <source>Sort Lines Reversely</source>
         <translation>反向排序列</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1195"/>
+        <location filename="../../fp.ui" line="1198"/>
         <source>Check Spelling</source>
         <translation>檢查拼字</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1198"/>
+        <location filename="../../fp.ui" line="1201"/>
         <source>F2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1203"/>
         <location filename="../../fp.ui" line="1206"/>
+        <location filename="../../fp.ui" line="1209"/>
         <source>Save All Files</source>
         <translation>儲存所有檔案</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1211"/>
         <location filename="../../fp.ui" line="1214"/>
+        <location filename="../../fp.ui" line="1217"/>
         <source>User Dictionary</source>
         <translation>使用者字典</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1219"/>
+        <location filename="../../fp.ui" line="1222"/>
         <source>Text Tabs to Spaces</source>
         <translation>縮排字元轉空白</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="994"/>
+        <location filename="../../fp.ui" line="997"/>
         <source>&amp;Detach Tab</source>
         <translation>分離分頁(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="997"/>
+        <location filename="../../fp.ui" line="1000"/>
         <source>Ctrl+T</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1010"/>
+        <location filename="../../fp.ui" line="1013"/>
         <source>Close Ne&amp;xt Tabs</source>
         <translation>關閉下一個分頁(&amp;X)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1015"/>
+        <location filename="../../fp.ui" line="1018"/>
         <source>Close &amp;Previous Tabs</source>
         <translation>關閉上一個分頁(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1043"/>
+        <location filename="../../fp.ui" line="1046"/>
         <source>Ne&amp;xt Tab</source>
         <translation>下一個分頁(&amp;X)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1054"/>
+        <location filename="../../fp.ui" line="1057"/>
         <source>Previous Ta&amp;b</source>
         <translation>上一個分頁(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1092"/>
+        <location filename="../../fp.ui" line="1095"/>
         <source>Execute</source>
         <translation>執行</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1020"/>
+        <location filename="../../fp.ui" line="1023"/>
         <source>Close &amp;All Tabs</source>
         <translation>關閉所有分頁(&amp;A)</translation>
     </message>
@@ -609,626 +609,626 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="342"/>
-        <location filename="../../fpwin.cpp" line="4069"/>
+        <location filename="../../fp.ui" line="345"/>
+        <location filename="../../fpwin.cpp" line="4109"/>
         <location filename="../../replace.cpp" line="61"/>
         <location filename="../../replace.cpp" line="113"/>
         <source>Replacement</source>
         <translation>取代</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="575"/>
+        <location filename="../../fp.ui" line="578"/>
         <source>Focus/hide search bar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="583"/>
+        <location filename="../../fp.ui" line="586"/>
         <source>&amp;Replace</source>
         <translation>取代(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="765"/>
+        <location filename="../../fp.ui" line="768"/>
         <source>Windows Arabic (&amp;CP1256)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="773"/>
+        <location filename="../../fp.ui" line="776"/>
         <source>&amp;Other</source>
         <translation>其他(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="792"/>
+        <location filename="../../fp.ui" line="795"/>
         <source>&amp;UTF-8</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="803"/>
+        <location filename="../../fp.ui" line="806"/>
         <source>UTF-&amp;16</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="814"/>
+        <location filename="../../fp.ui" line="817"/>
         <source>&amp;ISO-8859-1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="825"/>
+        <location filename="../../fp.ui" line="828"/>
         <source>&amp;Windows-1252</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="836"/>
+        <location filename="../../fp.ui" line="839"/>
         <source>&amp;Cyrillic (CP1251)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="847"/>
+        <location filename="../../fp.ui" line="850"/>
         <source>Cyrillic (&amp;KOI8-U)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="858"/>
+        <location filename="../../fp.ui" line="861"/>
         <source>Cyrillic (&amp;ISO-8859-5)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="869"/>
+        <location filename="../../fp.ui" line="872"/>
         <source>&amp;Chinese (BIG5)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="880"/>
+        <location filename="../../fp.ui" line="883"/>
         <source>Chinese (&amp;GB18030)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="891"/>
+        <location filename="../../fp.ui" line="894"/>
         <source>&amp;Japanese (ISO-2022-JP)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="902"/>
+        <location filename="../../fp.ui" line="905"/>
         <source>Japanese (&amp;ISO-2022-JP-2)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="913"/>
+        <location filename="../../fp.ui" line="916"/>
         <source>Japanese (ISO-&amp;2022-KR)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="924"/>
+        <location filename="../../fp.ui" line="927"/>
         <source>Ja&amp;panese (CP932)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="935"/>
+        <location filename="../../fp.ui" line="938"/>
         <source>Japa&amp;nese (EUC-JP)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="943"/>
+        <location filename="../../fp.ui" line="946"/>
         <source>&amp;Korean (CP949)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="951"/>
+        <location filename="../../fp.ui" line="954"/>
         <source>K&amp;orean (CP1361)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="959"/>
+        <location filename="../../fp.ui" line="962"/>
         <source>Korean (&amp;EUC-KR)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1005"/>
+        <location filename="../../fp.ui" line="1008"/>
         <source>ISO-&amp;8859-15</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1025"/>
+        <location filename="../../fp.ui" line="1028"/>
         <source>Close &amp;Other Tabs</source>
         <translation>關閉其他分頁(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1030"/>
+        <location filename="../../fp.ui" line="1033"/>
         <source>&amp;Copy File Name</source>
         <translation>複製檔案名稱(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1035"/>
+        <location filename="../../fp.ui" line="1038"/>
         <source>Copy File &amp;Path</source>
         <translation>複製檔案路徑(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1046"/>
+        <location filename="../../fp.ui" line="1049"/>
         <source>Alt+Right</source>
         <translation>Alt+右</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1057"/>
+        <location filename="../../fp.ui" line="1060"/>
         <source>Alt+Left</source>
         <translation>Alt+左</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1065"/>
+        <location filename="../../fp.ui" line="1068"/>
         <source>&amp;First Tab</source>
         <translation>第一個分頁(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1068"/>
+        <location filename="../../fp.ui" line="1071"/>
         <source>Alt+Down</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1076"/>
+        <location filename="../../fp.ui" line="1079"/>
         <source>&amp;Last Tab</source>
         <translation>最後一個分頁(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1079"/>
+        <location filename="../../fp.ui" line="1082"/>
         <source>Alt+Up</source>
         <translation>Alt+上</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1084"/>
+        <location filename="../../fp.ui" line="1087"/>
         <source>Menu</source>
         <translation>選單</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="102"/>
+        <location filename="../../fpwin.cpp" line="103"/>
         <source>Calculate number of words
 (For huge texts, this may be CPU-intensive.)</source>
         <translation>計算字數
 （如果文字量大，這可能需要大量 CPU。）</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="117"/>
+        <location filename="../../fpwin.cpp" line="118"/>
         <source>Next</source>
         <translation>下一個</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="118"/>
+        <location filename="../../fpwin.cpp" line="119"/>
         <source>Previous</source>
         <translation>上一個</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="119"/>
+        <location filename="../../fpwin.cpp" line="120"/>
         <source>Replace all</source>
         <translation>全部取代</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="643"/>
+        <location filename="../../fpwin.cpp" line="642"/>
         <source>&amp;Recently Opened</source>
         <translation>最近開啟(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2025"/>
+        <location filename="../../fpwin.cpp" line="2045"/>
         <source>Close</source>
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1349"/>
+        <location filename="../../fpwin.cpp" line="1363"/>
         <source>Save changes?</source>
         <translation>要儲存變更嗎？</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1001"/>
+        <location filename="../../fpwin.cpp" line="1007"/>
         <source>Please attend to that window or just close its dialog!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1353"/>
+        <location filename="../../fpwin.cpp" line="1367"/>
         <source>The document has been modified.</source>
         <translation>文件已修改。</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1364"/>
+        <location filename="../../fpwin.cpp" line="1378"/>
         <source>&amp;Discard changes</source>
         <translation>捨棄變更(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1365"/>
+        <location filename="../../fpwin.cpp" line="1379"/>
         <source>&amp;Cancel</source>
         <translation>取消(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1367"/>
+        <location filename="../../fpwin.cpp" line="1381"/>
         <source>&amp;No to all</source>
         <translation>全部皆否(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1570"/>
-        <location filename="../../fpwin.cpp" line="1628"/>
+        <location filename="../../fpwin.cpp" line="1584"/>
+        <location filename="../../fpwin.cpp" line="1642"/>
         <source>Unsaved</source>
         <translation>未儲存</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1589"/>
-        <location filename="../../fpwin.cpp" line="2912"/>
-        <location filename="../../fpwin.cpp" line="3635"/>
-        <location filename="../../fpwin.cpp" line="3646"/>
-        <location filename="../../fpwin.cpp" line="3653"/>
-        <location filename="../../fpwin.cpp" line="4534"/>
-        <location filename="../../fpwin.cpp" line="6126"/>
-        <location filename="../../fpwin.cpp" line="6137"/>
-        <location filename="../../fpwin.cpp" line="6144"/>
+        <location filename="../../fpwin.cpp" line="1603"/>
+        <location filename="../../fpwin.cpp" line="2932"/>
+        <location filename="../../fpwin.cpp" line="3655"/>
+        <location filename="../../fpwin.cpp" line="3666"/>
+        <location filename="../../fpwin.cpp" line="3673"/>
+        <location filename="../../fpwin.cpp" line="4574"/>
+        <location filename="../../fpwin.cpp" line="6165"/>
+        <location filename="../../fpwin.cpp" line="6176"/>
+        <location filename="../../fpwin.cpp" line="6183"/>
         <source>Lines</source>
         <translation>列</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1590"/>
-        <location filename="../../fpwin.cpp" line="4535"/>
-        <location filename="../../fpwin.cpp" line="4550"/>
+        <location filename="../../fpwin.cpp" line="1604"/>
+        <location filename="../../fpwin.cpp" line="4575"/>
+        <location filename="../../fpwin.cpp" line="4590"/>
         <source>Sel. Chars</source>
         <translation>選取字元</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1591"/>
-        <location filename="../../fpwin.cpp" line="4537"/>
-        <location filename="../../fpwin.cpp" line="4551"/>
+        <location filename="../../fpwin.cpp" line="1605"/>
+        <location filename="../../fpwin.cpp" line="4577"/>
+        <location filename="../../fpwin.cpp" line="4591"/>
         <source>Words</source>
         <translation>文字</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1918"/>
+        <location filename="../../fpwin.cpp" line="1938"/>
         <source>Another process is running in this tab!</source>
         <translation>在這個分頁中有另一個程序正在執行！</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2016"/>
+        <location filename="../../fpwin.cpp" line="2036"/>
         <source>Script File</source>
         <translation>腳本檔案</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1000"/>
+        <location filename="../../fpwin.cpp" line="1006"/>
         <source>Another FeatherPad window has a modal dialog!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="837"/>
-        <location filename="../../fpwin.cpp" line="4576"/>
+        <location filename="../../fpwin.cpp" line="843"/>
+        <location filename="../../fpwin.cpp" line="4616"/>
         <source>Position:</source>
         <translation>位置：</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="885"/>
-        <location filename="../../fpwin.cpp" line="4594"/>
-        <location filename="../../fpwin.cpp" line="4614"/>
+        <location filename="../../fpwin.cpp" line="891"/>
+        <location filename="../../fpwin.cpp" line="4634"/>
+        <location filename="../../fpwin.cpp" line="4654"/>
         <source>Normal</source>
         <translation>正常</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1351"/>
-        <location filename="../../fpwin.cpp" line="2681"/>
-        <location filename="../../fpwin.cpp" line="5936"/>
+        <location filename="../../fpwin.cpp" line="1365"/>
+        <location filename="../../fpwin.cpp" line="2701"/>
+        <location filename="../../fpwin.cpp" line="5975"/>
         <source>The file does not exist.</source>
         <translation>檔案不存在。</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1720"/>
+        <location filename="../../fpwin.cpp" line="1734"/>
         <source>Open Link</source>
         <translation>開啟連結</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1733"/>
+        <location filename="../../fpwin.cpp" line="1747"/>
         <source>Copy Link</source>
         <translation>複製連結</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1919"/>
+        <location filename="../../fpwin.cpp" line="1939"/>
         <source>Only one process is allowed per tab.</source>
         <translation>一個分頁只允許一個程序。</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2012"/>
+        <location filename="../../fpwin.cpp" line="2032"/>
         <source>Script Output</source>
         <translation>腳本輸出</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2028"/>
+        <location filename="../../fpwin.cpp" line="2048"/>
         <source>Clear</source>
         <translation>清除</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2638"/>
+        <location filename="../../fpwin.cpp" line="2658"/>
         <source>FeatherPad does not open files larger than 100 MiB.</source>
         <translation>FeatherPad 無法開啟大於 100 MiB 的檔案。</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2646"/>
+        <location filename="../../fpwin.cpp" line="2666"/>
         <source>Non-text file(s) not opened!</source>
         <translation>無法開啟非純文字檔案！</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2647"/>
+        <location filename="../../fpwin.cpp" line="2667"/>
         <source>See Preferences → Files → Do not permit opening of non-text files</source>
         <translation>請查看這個選項: 偏好設定 → 檔案 → 禁止開啟非純文字檔案</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2656"/>
+        <location filename="../../fpwin.cpp" line="2676"/>
         <source>Some file(s) could not be opened!</source>
         <translation>無法開啟一些檔案！</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2657"/>
+        <location filename="../../fpwin.cpp" line="2677"/>
         <source>You may not have the permission to read.</source>
         <translation>您可能沒有讀取權限。</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2667"/>
+        <location filename="../../fpwin.cpp" line="2687"/>
         <source>Uneditable file(s)!</source>
         <translation>無法編輯的檔案！</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2668"/>
+        <location filename="../../fpwin.cpp" line="2688"/>
         <source>Non-text files or files with huge lines cannot be edited.</source>
         <translation>無法編輯非文字檔案或具有長列的檔案。</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2732"/>
+        <location filename="../../fpwin.cpp" line="2752"/>
         <source>Root Instance</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2804"/>
-        <location filename="../../fpwin.cpp" line="2993"/>
-        <location filename="../../fpwin.cpp" line="3021"/>
+        <location filename="../../fpwin.cpp" line="2824"/>
+        <location filename="../../fpwin.cpp" line="3013"/>
+        <location filename="../../fpwin.cpp" line="3041"/>
         <source>All Files (*)</source>
         <translation>所有檔案 (*)</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2809"/>
+        <location filename="../../fpwin.cpp" line="2829"/>
         <source>All Files (*);;.%1 Files (*.%1)</source>
         <translation>所有檔案 (*);;.%1 檔案 (*.%1)</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2813"/>
+        <location filename="../../fpwin.cpp" line="2833"/>
         <source>Open file...</source>
         <translation>開啟檔案...</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2999"/>
+        <location filename="../../fpwin.cpp" line="3019"/>
         <source>.%1 Files (*.%1);;All Files (*)</source>
         <translation>.%1 檔案 (*.%1);;所有檔案 (*)</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3050"/>
-        <location filename="../../fpwin.cpp" line="3088"/>
+        <location filename="../../fpwin.cpp" line="3070"/>
+        <location filename="../../fpwin.cpp" line="3108"/>
         <source>Save as...</source>
         <translation>儲存為...</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3124"/>
+        <location filename="../../fpwin.cpp" line="3144"/>
         <source>Keep encoding and save as...</source>
         <translation>保持編碼並儲存為...</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3459"/>
+        <location filename="../../fpwin.cpp" line="3479"/>
         <source>Saving as root.</source>
         <translation>以 root 的身份儲存。</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3460"/>
+        <location filename="../../fpwin.cpp" line="3480"/>
         <source>Waiting for authentication...</source>
         <translation>等待認證中…</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3579"/>
+        <location filename="../../fpwin.cpp" line="3599"/>
         <source>&quot;pkexec&quot; is not found. Please install Polkit!</source>
         <translation>找不到 &quot;pkexec&quot;。請安裝 Polkit！</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3239"/>
+        <location filename="../../fpwin.cpp" line="3259"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3240"/>
+        <location filename="../../fpwin.cpp" line="3260"/>
         <source>No</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3241"/>
+        <location filename="../../fpwin.cpp" line="3261"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3242"/>
+        <location filename="../../fpwin.cpp" line="3262"/>
         <source>Do you want to use &lt;b&gt;MS Windows&lt;/b&gt; end-of-lines?</source>
         <translation>您要使用 &lt;b&gt;MS Windows&lt;/b&gt; 行尾嗎?</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3243"/>
+        <location filename="../../fpwin.cpp" line="3263"/>
         <source>This may be good for readability under MS Windows.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3356"/>
-        <location filename="../../fpwin.cpp" line="3474"/>
-        <location filename="../../fpwin.cpp" line="3578"/>
-        <location filename="../../fpwin.cpp" line="3590"/>
+        <location filename="../../fpwin.cpp" line="3376"/>
+        <location filename="../../fpwin.cpp" line="3494"/>
+        <location filename="../../fpwin.cpp" line="3598"/>
+        <location filename="../../fpwin.cpp" line="3610"/>
         <source>Cannot be saved!</source>
         <translation>無法儲存！</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="479"/>
-        <location filename="../../fpwin.cpp" line="3964"/>
-        <location filename="../../fpwin.cpp" line="5011"/>
-        <location filename="../../fpwin.cpp" line="5270"/>
-        <location filename="../../fpwin.cpp" line="6342"/>
+        <location filename="../../fpwin.cpp" line="478"/>
+        <location filename="../../fpwin.cpp" line="4004"/>
+        <location filename="../../fpwin.cpp" line="5051"/>
+        <location filename="../../fpwin.cpp" line="5310"/>
+        <location filename="../../fpwin.cpp" line="6381"/>
         <source>Help</source>
         <translation>說明</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3631"/>
-        <location filename="../../fpwin.cpp" line="3637"/>
-        <location filename="../../fpwin.cpp" line="3645"/>
-        <location filename="../../fpwin.cpp" line="4532"/>
-        <location filename="../../fpwin.cpp" line="6122"/>
-        <location filename="../../fpwin.cpp" line="6128"/>
-        <location filename="../../fpwin.cpp" line="6136"/>
+        <location filename="../../fpwin.cpp" line="3651"/>
+        <location filename="../../fpwin.cpp" line="3657"/>
+        <location filename="../../fpwin.cpp" line="3665"/>
+        <location filename="../../fpwin.cpp" line="4572"/>
+        <location filename="../../fpwin.cpp" line="6161"/>
+        <location filename="../../fpwin.cpp" line="6167"/>
+        <location filename="../../fpwin.cpp" line="6175"/>
         <source>Syntax</source>
         <translation>語法</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2637"/>
+        <location filename="../../fpwin.cpp" line="2657"/>
         <source>Huge file(s) not opened!</source>
         <translation>未開啟大檔案！</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3734"/>
+        <location filename="../../fpwin.cpp" line="3754"/>
         <source>Text tabs are converted to spaces.</source>
         <translation>已將文字中的縮排字元轉為空白。</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3836"/>
+        <location filename="../../fpwin.cpp" line="3856"/>
         <source>The selected text was too long.</source>
         <translation>選取了過多的文字。</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3837"/>
+        <location filename="../../fpwin.cpp" line="3857"/>
         <source>It is not fully processed.</source>
         <translation>並未處理全部文字。</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3976"/>
-        <location filename="../../fpwin.cpp" line="4209"/>
+        <location filename="../../fpwin.cpp" line="4016"/>
+        <location filename="../../fpwin.cpp" line="4249"/>
         <source>This file has been modified elsewhere or in another way!</source>
         <translation>這個檔案已在其他地方或以另一種方式修改！</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3977"/>
-        <location filename="../../fpwin.cpp" line="4210"/>
+        <location filename="../../fpwin.cpp" line="4017"/>
+        <location filename="../../fpwin.cpp" line="4250"/>
         <source>Please be careful about reloading or saving this document!</source>
         <translation>在重新載入或儲存這個文件時請小心！</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="4685"/>
+        <location filename="../../fpwin.cpp" line="4725"/>
         <source>Printing in progress...</source>
         <translation>列印中…</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="4736"/>
+        <location filename="../../fpwin.cpp" line="4776"/>
         <source>Print Document</source>
         <translation>列印文件</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="4742"/>
+        <location filename="../../fpwin.cpp" line="4782"/>
         <source>Printing completed.</source>
         <translation>列印完成。</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5400"/>
-        <location filename="../../fpwin.cpp" line="5524"/>
+        <location filename="../../fpwin.cpp" line="5439"/>
+        <location filename="../../fpwin.cpp" line="5563"/>
         <source>%1 Pages</source>
         <translation>%1 頁</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5431"/>
-        <location filename="../../fpwin.cpp" line="5560"/>
+        <location filename="../../fpwin.cpp" line="5470"/>
+        <location filename="../../fpwin.cpp" line="5599"/>
         <source>Copy Target Path</source>
         <translation>複製目標路徑</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5435"/>
-        <location filename="../../fpwin.cpp" line="5564"/>
+        <location filename="../../fpwin.cpp" line="5474"/>
+        <location filename="../../fpwin.cpp" line="5603"/>
         <source>Open Target Here</source>
         <translation>在這裡開啟目標</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5454"/>
-        <location filename="../../fpwin.cpp" line="5584"/>
+        <location filename="../../fpwin.cpp" line="5493"/>
+        <location filename="../../fpwin.cpp" line="5623"/>
         <source>Copy Final Target Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5458"/>
-        <location filename="../../fpwin.cpp" line="5588"/>
+        <location filename="../../fpwin.cpp" line="5497"/>
+        <location filename="../../fpwin.cpp" line="5627"/>
         <source>Open Final Target Here</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5478"/>
-        <location filename="../../fpwin.cpp" line="5609"/>
+        <location filename="../../fpwin.cpp" line="5517"/>
+        <location filename="../../fpwin.cpp" line="5648"/>
         <source>Open Containing Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5732"/>
+        <location filename="../../fpwin.cpp" line="5771"/>
         <source>You need to add a Hunspell dictionary.</source>
         <translation>您需要加入 Hunspell 字典。</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5733"/>
-        <location filename="../../fpwin.cpp" line="5740"/>
-        <location filename="../../fpwin.cpp" line="5750"/>
+        <location filename="../../fpwin.cpp" line="5772"/>
+        <location filename="../../fpwin.cpp" line="5779"/>
+        <location filename="../../fpwin.cpp" line="5789"/>
         <source>See Preferences → Text → Spell Checking!</source>
         <translation>檢視偏好設定 → 文字 → 拼字檢查！</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5739"/>
+        <location filename="../../fpwin.cpp" line="5778"/>
         <source>The Hunspell dictionary does not exist.</source>
         <translation>Hunspell 字典不存在。</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5749"/>
+        <location filename="../../fpwin.cpp" line="5788"/>
         <source>The Hunspell dictionary is not accompanied by an affix file.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5772"/>
-        <location filename="../../fpwin.cpp" line="5790"/>
-        <location filename="../../fpwin.cpp" line="5805"/>
+        <location filename="../../fpwin.cpp" line="5811"/>
+        <location filename="../../fpwin.cpp" line="5829"/>
+        <location filename="../../fpwin.cpp" line="5844"/>
         <source>No misspelling in document.</source>
         <translation>文件中沒有拼字錯誤。</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5774"/>
-        <location filename="../../fpwin.cpp" line="5792"/>
-        <location filename="../../fpwin.cpp" line="5807"/>
+        <location filename="../../fpwin.cpp" line="5813"/>
+        <location filename="../../fpwin.cpp" line="5831"/>
+        <location filename="../../fpwin.cpp" line="5846"/>
         <source>No misspelling from text cursor.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5823"/>
+        <location filename="../../fpwin.cpp" line="5862"/>
         <source>Spell Checking</source>
         <translation>拼字檢查</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6160"/>
+        <location filename="../../fpwin.cpp" line="6199"/>
         <source>Some files cannot be saved!</source>
         <translation>無法儲存一些檔案！</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6203"/>
+        <location filename="../../fpwin.cpp" line="6242"/>
         <source>Translators</source>
         <translation>譯者</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6199"/>
+        <location filename="../../fpwin.cpp" line="6238"/>
         <source>A lightweight, tabbed, plain-text editor</source>
         <translation>輕量、具有分頁、純文字編輯器</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6200"/>
+        <location filename="../../fpwin.cpp" line="6239"/>
         <source>based on Qt</source>
         <translation>基於 Qt</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6201"/>
+        <location filename="../../fpwin.cpp" line="6240"/>
         <source>Author</source>
         <translation>作者</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6202"/>
+        <location filename="../../fpwin.cpp" line="6241"/>
         <source>aka.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6203"/>
-        <location filename="../../fpwin.cpp" line="6204"/>
+        <location filename="../../fpwin.cpp" line="6242"/>
+        <location filename="../../fpwin.cpp" line="6243"/>
         <source>About FeatherPad</source>
         <translation>關於 FeatherPad</translation>
     </message>
@@ -1255,7 +1255,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../syntax.cpp" line="311"/>
+        <location filename="../../syntax.cpp" line="312"/>
         <source>The size limit for syntax highlighting is exceeded.</source>
         <translation>超過語法標示的大小限制。</translation>
     </message>
@@ -2197,98 +2197,98 @@ in the editing mode.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="101"/>
-        <location filename="../../sessionDialog.ui" line="270"/>
+        <location filename="../../sessionDialog.ui" line="113"/>
+        <location filename="../../sessionDialog.ui" line="294"/>
         <source>&amp;Remove</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="33"/>
+        <location filename="../../sessionDialog.ui" line="45"/>
         <source>&lt;b&gt;Save/Restore Session&lt;/b&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="56"/>
+        <location filename="../../sessionDialog.ui" line="68"/>
         <source>Filter...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="69"/>
+        <location filename="../../sessionDialog.ui" line="81"/>
         <source>Open the selected session(s).</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="72"/>
-        <location filename="../../sessionDialog.ui" line="275"/>
+        <location filename="../../sessionDialog.ui" line="84"/>
+        <location filename="../../sessionDialog.ui" line="299"/>
         <source>&amp;Open</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="98"/>
-        <location filename="../../sessionDialog.ui" line="108"/>
+        <location filename="../../sessionDialog.ui" line="110"/>
+        <location filename="../../sessionDialog.ui" line="120"/>
         <source>Del</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="115"/>
-        <location filename="../../sessionDialog.ui" line="125"/>
+        <location filename="../../sessionDialog.ui" line="127"/>
+        <location filename="../../sessionDialog.ui" line="137"/>
         <source>Ctrl+Del</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="159"/>
+        <location filename="../../sessionDialog.ui" line="171"/>
         <source>By default, all files that are opened in all
 windows will be included in the saved session.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="163"/>
+        <location filename="../../sessionDialog.ui" line="175"/>
         <source>Save only from this &amp;window</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="180"/>
+        <location filename="../../sessionDialog.ui" line="204"/>
         <source>&lt;b&gt;Warning&lt;/b&gt;</source>
         <translation>&lt;b&gt;警告&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="226"/>
+        <location filename="../../sessionDialog.ui" line="250"/>
         <location filename="../../session.cpp" line="328"/>
         <source>&amp;Yes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="233"/>
+        <location filename="../../sessionDialog.ui" line="257"/>
         <source>&amp;No</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="283"/>
+        <location filename="../../sessionDialog.ui" line="307"/>
         <source>Re&amp;name</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="118"/>
+        <location filename="../../sessionDialog.ui" line="130"/>
         <source>Remove &amp;All</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="260"/>
+        <location filename="../../sessionDialog.ui" line="284"/>
         <source>&amp;Close</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="135"/>
+        <location filename="../../sessionDialog.ui" line="147"/>
         <source>Save the current session under the given title.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="138"/>
+        <location filename="../../sessionDialog.ui" line="150"/>
         <source>&amp;Save</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../sessionDialog.ui" line="149"/>
+        <location filename="../../sessionDialog.ui" line="161"/>
         <source>Type a name to save session</source>
         <translation></translation>
     </message>
@@ -2336,7 +2336,7 @@ windows will be included in the saved session.</source>
 <context>
     <name>FeatherPad::SidePane</name>
     <message>
-        <location filename="../../sidepane.cpp" line="210"/>
+        <location filename="../../sidepane.cpp" line="224"/>
         <source>Filter...</source>
         <translation>過濾器...</translation>
     </message>

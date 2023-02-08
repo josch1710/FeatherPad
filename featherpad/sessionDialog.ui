@@ -24,6 +24,18 @@
      </property>
      <widget class="QWidget" name="page">
       <layout class="QGridLayout" name="mainGrid">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <property name="spacing">
         <number>5</number>
        </property>
@@ -171,6 +183,18 @@ windows will be included in the saved session.</string>
      </widget>
      <widget class="QWidget" name="page_2">
       <layout class="QGridLayout" name="promptGrid">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <property name="verticalSpacing">
         <number>10</number>
        </property>

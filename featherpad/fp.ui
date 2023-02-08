@@ -323,6 +323,9 @@
    <addaction name="actionReplace"/>
    <addaction name="actionJump"/>
    <addaction name="separator"/>
+   <addaction name="actionSidePane"/>
+   <addaction name="actionSession"/>
+   <addaction name="separator"/>
    <addaction name="actionEdit"/>
    <addaction name="actionRun"/>
    <addaction name="actionMenu"/>
@@ -1105,10 +1108,10 @@
   </action>
   <action name="actionSession">
    <property name="text">
-    <string>Save/Restore Session</string>
+    <string>Sa&amp;ve/Restore Session</string>
    </property>
    <property name="toolTip">
-    <string>Sa&amp;ve/Restore Session</string>
+    <string>Save/Restore Session</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+M</string>

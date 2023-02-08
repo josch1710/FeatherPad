@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2019 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2022 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -24,8 +24,6 @@
 
 namespace FeatherPad {
 
-/* The tab dropping signal (for tab detaching) should come here and not in TabWidget
-   because, otherwise, the tabMoved() signal wouldn't do its job completely. */
 class TabBar : public QTabBar
 {
     Q_OBJECT
@@ -47,6 +45,10 @@ public:
     void noTabDND() {
         noTabDND_ = true;
     }
+
+    /* An object property used for knowing whether
+       a tab is dropped into one of our windows: */
+    static const char *tabDropped;
 
 signals:
     void tabDetached();

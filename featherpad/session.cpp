@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2020 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2022 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -130,7 +130,7 @@ void SessionDialog::showContextMenu (const QPoint &p)
     if (!index.isValid()) return;
     ui->listWidget->selectionModel()->select (index, QItemSelectionModel::ClearAndSelect);
 
-    QMenu menu;
+    QMenu menu (this); // "this" is for Wayland, when the window isn't active
     menu.addAction (ui->actionOpen);
     menu.addAction (ui->actionRemove);
     menu.addSeparator();

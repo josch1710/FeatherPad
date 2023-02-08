@@ -24,8 +24,6 @@ Files can be dragged and dropped into FeatherPad windows.
 
 Also, tabs can be dragged from a window and dropped into another window or outside all FeatherPad windows. In the first case, the dropped tab will appear after the previously active tab; in the second case, a new window containing the dropped tab will be created, i.e. the tab will be detached.
 
-NOTE: Tab DND is enabled only under X11 because, at least, Wayland has a serious issue related to DND.
-
 ************
 *   Tabs   *
 ************
@@ -44,9 +42,9 @@ There are (customizable) shortcuts for switching tabs in various ways (see the F
 *   File Management   *
 ***********************
 
-If there is a FeatherPad window on the current virtual desktop or viewport, so that more than half of its width as well as its height is visible, files will be opened as new tabs in it; otherwise, a new window will be created. Also, when the window on the current desktop/viewport has a modal dialog, another window is created.
+Under X11, if there is a FeatherPad window on the current virtual desktop or viewport, so that more than half of its width as well as its height is visible, files will be opened as new tabs in it; otherwise, a new window will be created. Also, when the window on the current desktop/viewport has a modal dialog, another window is created.
 
-In this way, FeatherPad is aware of virtual desktops under most Linux desktop environments, although there are exceptions (like non-X11 environments or Enlightenment).
+In this way, FeatherPad is aware of X11 virtual desktops under most Linux desktop environments, although there are exceptions (like Enlightenment).
 
 Files are always opened after the active tab unless it is empty, in which case the first file will be opened in it. If a single file is opened, its tab will be activated but in the case of multiple files, the active tab will not change.
 
@@ -66,7 +64,7 @@ Sessions can be saved and opened by using the Session Manager dialog. As mention
 
 FeatherPad also has a side-pane mode, which can be enabled either temporarily or with startup. It is most suitable for working with sessions because its file list is alphabetically ordered and can be filtered. Each pane item has a right-click menu, which contains menu-items for various jobs when there is more than one page. Items can also be removed by middle-clicking without being selected.
 
-The side-pane mode does not have features provided by tabs — for example, tab drag-and-drop is missing from it — and conversely — for example, tabs are not sorted and cannot be filtered — but the side-pane and tab modes can be used interchangeably through the Side-Pane menu-item or its shortcut and also by middle-clicking an empty space inside the tab-bar or side-pane.
+The side-pane mode does not have features provided by tabs — for example, tab drag-and-drop is missing from it — and conversely — for example, tabs are not sorted and cannot be filtered — but the side-pane and tab modes can be used interchangeably by means of the Side-Pane menu-item, its toolbar button or its shortcut and also by middle-clicking an empty space inside the tab-bar or side-pane.
 
 The side-pane can be opened by its shortcut (Ctrl+Alt+P by default). If it is already open but does not have focus, the same shortcut focuses it and, if it has focus, the shortcut closes it.
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2022 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2023 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -59,6 +59,16 @@ TextEdit::TextEdit (QWidget *parent, int bgColorValue) : QPlainTextEdit (parent)
     prog_ = "url"; // the default language
 
     textTab_ = "    "; // the default text tab is four spaces
+
+    resizeTimerId_ = 0;
+    selectionTimerId_ = 0;
+    selectionHighlighting_ = false;
+    highlightThisSelection_ = true;
+    removeSelectionHighlights_ = false;
+    size_ = 0;
+    wordNumber_ = -1; // not calculated yet
+    encoding_= "UTF-8";
+    uneditable_ = false;
 
     setMouseTracking (true);
     //document()->setUseDesignMetrics (true);
@@ -127,16 +137,6 @@ TextEdit::TextEdit (QWidget *parent, int bgColorValue) : QPlainTextEdit (parent)
     }
     setCurLineHighlight (-1);
 
-    resizeTimerId_ = 0;
-    selectionTimerId_ = 0;
-    selectionHighlighting_ = false;
-    highlightThisSelection_ = true;
-    removeSelectionHighlights_ = false;
-    size_ = 0;
-    wordNumber_ = -1; // not calculated yet
-    encoding_= "UTF-8";
-    uneditable_ = false;
-    highlighter_ = nullptr;
     setFrameShape (QFrame::NoFrame);
     /* first we replace the widget's vertical scrollbar with ours because
        we want faster wheel scrolling when the mouse cursor is on the scrollbar */
@@ -367,8 +367,8 @@ QString TextEdit::remainingSpaces (const QString& spaceTab, const QTextCursor& c
         n += qMax (qRound (qAbs (x) / spaceL) - 1, 0); // x is negative for RTL
         ++i;
     }
-    n += txt.count();
-    n = spaceTab.count() - n % spaceTab.count();
+    n += txt.size();
+    n = spaceTab.size() - n % spaceTab.size();
     QString res;
     for (int i = 0 ; i < n; ++i)
         res += " ";
@@ -404,9 +404,9 @@ QTextCursor TextEdit::backTabCursor (const QTextCursor& cursor, bool twoSpace) c
         n += qMax (qRound (qAbs (x) / spaceL) - 1, 0);
         ++i;
     }
-    n += txt.count();
-    n = n % textTab_.count();
-    if (n == 0) n = textTab_.count();
+    n += txt.size();
+    n = n % textTab_.size();
+    if (n == 0) n = textTab_.size();
 
     if (twoSpace) n = qMin (n, 2);
 
@@ -455,8 +455,11 @@ void TextEdit::keyPressEvent (QKeyEvent *event)
                 if (highlighter_)
                 {
                     if (getUrl (cursorForPosition (viewport()->mapFromGlobal (QCursor::pos())).position()).isEmpty())
-                        viewport()->setCursor (Qt::IBeamCursor);
-                    else
+                    {
+                        if (viewport()->cursor().shape() != Qt::IBeamCursor)
+                            viewport()->setCursor (Qt::IBeamCursor);
+                    }
+                    else if (viewport()->cursor().shape() != Qt::PointingHandCursor)
                         viewport()->setCursor (Qt::PointingHandCursor);
                     QPlainTextEdit::keyPressEvent (event);
                     return;
@@ -465,7 +468,7 @@ void TextEdit::keyPressEvent (QKeyEvent *event)
         }
         if (event->key() != Qt::Key_Control) // another modifier/key is pressed
         {
-            if (highlighter_)
+            if (highlighter_ && viewport()->cursor().shape() != Qt::IBeamCursor)
                 viewport()->setCursor (Qt::IBeamCursor);
         }
     }
@@ -1281,7 +1284,7 @@ void TextEdit::paste()
 {
     keepTxtCurHPos_ = false; // txtCurHPos_ isn't reset here because there may be nothing to paste
 
-    pasting_ = true;  // see insertFromMimeData()
+    pasting_ = true; // see insertFromMimeData()
     QPlainTextEdit::paste();
     pasting_ = false;
 }
@@ -1312,15 +1315,30 @@ QMimeData* TextEdit::createMimeDataFromSelection() const
     return nullptr;
 }
 /*************************/
+static bool containsPlainText (const QStringList &list)
+{
+    for (const auto &str : list)
+    {
+        if (str.compare ("text/plain", Qt::CaseInsensitive) == 0
+            || str.startsWith ("text/plain;charset=", Qt::CaseInsensitive))
+        {
+            return true;
+        }
+    }
+    return false;
+}
 // We want to pass dropping of files to the main widget with a custom signal.
 // We also want to control whether the pasted URLs should be opened.
 bool TextEdit::canInsertFromMimeData (const QMimeData* source) const
 {
-    return source->hasUrls() || QPlainTextEdit::canInsertFromMimeData (source);
+    return source != nullptr
+           && (source->hasUrls()
+               || (containsPlainText (source->formats()) && !source->text().isEmpty()));
 }
 void TextEdit::insertFromMimeData (const QMimeData* source)
 {
     keepTxtCurHPos_ = false;
+    if (source == nullptr) return;
     if (source->hasUrls())
     {
         const QList<QUrl> urlList = source->urls();
@@ -1359,22 +1377,25 @@ void TextEdit::insertFromMimeData (const QMimeData* source)
             }
         }
     }
-    else
+    else if (containsPlainText (source->formats()) && !source->text().isEmpty())
         QPlainTextEdit::insertFromMimeData (source);
 }
 /*************************/
 void TextEdit::keyReleaseEvent (QKeyEvent *event)
 {
     /* deal with hyperlinks */
-    if (highlighter_ && event->key() == Qt::Key_Control)
+    if (highlighter_ && event->key() == Qt::Key_Control
+        && viewport()->cursor().shape() != Qt::IBeamCursor)
+    {
         viewport()->setCursor (Qt::IBeamCursor);
+    }
     QPlainTextEdit::keyReleaseEvent (event);
 }
 /*************************/
 void TextEdit::wheelEvent (QWheelEvent *event)
 {
     QPoint anglePoint = event->angleDelta();
-    if (event->modifiers() & Qt::ControlModifier)
+    if (event->modifiers() == Qt::ControlModifier)
     {
         float delta = anglePoint.y() / 120.f;
         zooming (delta);
@@ -1548,9 +1569,9 @@ void TextEdit::timerEvent (QTimerEvent *event)
         emit selChanged();
     }
 }
-/*******************************************************
-***** Workaround for the RTL bug in QPlainTextEdit *****
-********************************************************/
+/**********************
+***** Paint event *****
+***********************/
 static void fillBackground (QPainter *p, const QRectF &rect, QBrush brush, const QRectF &gradientRect = QRectF())
 {
     p->save();
@@ -1570,9 +1591,8 @@ static void fillBackground (QPainter *p, const QRectF &rect, QBrush brush, const
     p->restore();
 }
 
-// Exactly like QPlainTextEdit::paintEvent(),
-// except for setting layout text option for RTL
-// and drawing vertical indentation lines (if needed).
+// Changes are made to QPlainTextEdit::paintEvent() for setting the
+// RTL layout text option, drawing vertical indentation lines, etc.
 void TextEdit::paintEvent (QPaintEvent *event)
 {
     QPainter painter (viewport());
@@ -1607,7 +1627,7 @@ void TextEdit::paintEvent (QPaintEvent *event)
 
         if (r.bottom() >= er.top() && r.top() <= er.bottom())
         {
-            /* take care of RTL */
+            /* take care of RTL (workaround for the RTL bug in QPlainTextEdit) */
             bool rtl (block.text().isRightToLeft());
             QTextOption opt = document()->defaultTextOption();
             if (rtl)
@@ -1823,9 +1843,9 @@ void TextEdit::paintEvent (QPaintEvent *event)
         painter.fillRect (QRect (QPoint (static_cast<int>(er.left()), static_cast<int>(offset.y())), er.bottomRight()), palette().window());
     }
 }
-/************************************************
-***** End of the Workaround for the RTL bug *****
-*************************************************/
+/*********************************
+***** End of the paint event *****
+**********************************/
 
 void TextEdit::highlightCurrentLine()
 {
@@ -2104,15 +2124,19 @@ void TextEdit::mouseMoveEvent (QMouseEvent *event)
     QPlainTextEdit::mouseMoveEvent (event);
 
     if (!highlighter_) return;
-    if (!(qApp->keyboardModifiers() & Qt::ControlModifier))
+    if (event->modifiers() != Qt::ControlModifier)
     {
-        viewport()->setCursor (Qt::IBeamCursor);
+        if (viewport()->cursor().shape() != Qt::IBeamCursor)
+            viewport()->setCursor (Qt::IBeamCursor);
         return;
     }
 
     if (getUrl (cursorForPosition (event->pos()).position()).isEmpty())
-        viewport()->setCursor (Qt::IBeamCursor);
-    else
+    {
+        if (viewport()->cursor().shape() != Qt::IBeamCursor)
+            viewport()->setCursor (Qt::IBeamCursor);
+    }
+    else if (viewport()->cursor().shape() != Qt::PointingHandCursor)
         viewport()->setCursor (Qt::PointingHandCursor);
 }
 /*************************/
@@ -2133,7 +2157,7 @@ void TextEdit::mousePressEvent (QMouseEvent *event)
             && event->buttons() == Qt::LeftButton)
         {
             tripleClickTimer_.invalidate();
-            if (!(qApp->keyboardModifiers() & Qt::ControlModifier))
+            if (event->modifiers() != Qt::ControlModifier)
             {
                 QTextCursor txtCur = textCursor();
                 const QString txt = txtCur.block().text();
@@ -2179,14 +2203,20 @@ void TextEdit::mouseReleaseEvent (QMouseEvent *event)
     QPlainTextEdit::mouseReleaseEvent (event);
     pasting_ = false;
 
-    if (event->button() != Qt::LeftButton
-        || !highlighter_
-        || !(qApp->keyboardModifiers() & Qt::ControlModifier)
-        /* another key may also be pressed (-> keyPressEvent) */
-        || viewport()->cursor().shape() != Qt::PointingHandCursor)
+    if (event->button() != Qt::LeftButton || !highlighter_)
+        return;
+    if (event->modifiers() != Qt::ControlModifier)
     {
+        if (viewport()->cursor().shape() == Qt::PointingHandCursor)
+        {
+            /* this can happen if the window or viewport was inactive when
+               the left mouse button was pressed but Ctrl was released before it */
+            viewport()->setCursor (Qt::IBeamCursor);
+        }
         return;
     }
+    if (viewport()->cursor().shape() != Qt::PointingHandCursor)
+        return; // another key may also be pressed besides Ctrl (-> keyPressEvent)
 
     QTextCursor cur = cursorForPosition (event->pos());
     if (cur == cursorForPosition (pressPoint_))
@@ -2212,7 +2242,7 @@ void TextEdit::mouseDoubleClickEvent (QMouseEvent *event)
     /* Select the text between spaces with Ctrl.
        NOTE: QPlainTextEdit should process the event before this. */
     if (event->button() == Qt::LeftButton
-        && (qApp->keyboardModifiers() & Qt::ControlModifier))
+        && event->modifiers() == Qt::ControlModifier)
     {
         QTextCursor txtCur = textCursor();
         const int blockPos = txtCur.block().position();
@@ -2244,7 +2274,8 @@ bool TextEdit::event (QEvent *event)
 {
     if (highlighter_
         && ((event->type() == QEvent::WindowDeactivate && hasFocus()) // another window is activated
-            || event->type() == QEvent::FocusOut)) // another widget has been focused
+            || event->type() == QEvent::FocusOut) // another widget has been focused
+        && viewport()->cursor().shape() != Qt::IBeamCursor)
     {
         viewport()->setCursor (Qt::IBeamCursor);
     }
@@ -2600,7 +2631,7 @@ QTextCursor TextEdit::finding (const QString& str, const QTextCursor& start, QTe
                             i = 0;
                             continue;
                         }
-                        cursor.setPosition (cursor.anchor() + subStr.count());
+                        cursor.setPosition (cursor.anchor() + subStr.size());
                         break;
                     }
                     else
@@ -2648,7 +2679,7 @@ QTextCursor TextEdit::finding (const QString& str, const QTextCursor& start, QTe
                         while (cursor.anchor() > cursor.block().position())
                         {
                             /* ... move the cursor to left and search backward until a match is found */
-                            cursor.setPosition (cursor.block().position() + subStr.count());
+                            cursor.setPosition (cursor.block().position() + subStr.size());
                             if (!findBackward (document(), subStr, cursor, flags))
                                 return QTextCursor();
                         }
@@ -2694,7 +2725,7 @@ QTextCursor TextEdit::finding (const QString& str, const QTextCursor& start, QTe
                             i = 0;
                             continue;
                         }
-                        cursor.setPosition (cursor.anchor() - subStr.count());
+                        cursor.setPosition (cursor.anchor() - subStr.size());
                         break;
                     }
                     else

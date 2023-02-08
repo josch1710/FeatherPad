@@ -1,3 +1,34 @@
+V1.3.6
+---------
+ * Check the view cursor before setting it.
+ * Recognize `text/plain;charset=…` as plain text (Qt doesn't).
+ * Highlight comments inside formulas with LaTex.
+ * Use icons in the recent files menu where possible.
+ * Prevent tab DND from tab close button.
+
+V1.3.5
+---------
+ * Used QPointer for TextEdit's highlighter (for a more robust code but without behavior change).
+ * Enabled tab DND under Wayland (by detaching or dropping the tab after finishing the DND) and improved tab DND in general.
+ * Always open a group of files in a single window, even when the app is configured to open files in separate windows.
+ * Prevented total item deselection in the side-pane mode with Qt6.
+ * Added the side-pane and session actions to the toolbar.
+ * Limited the side-pane's default width to 40 times the width of the space character of the widget font.
+
+V1.3.4
+---------
+ * Enable/disable the Paste action of the Edit menu appropriately.
+ * Covered single quote as digit separator in C++(≥14) syntax highlighting.
+ * Initialize variables of "TextEdit" and "TabBar" before events are triggered.
+ * Enabled instant tooltips and corrected context menus on Wayland, by specifying their parent widgets.
+
+V1.3.3
+---------
+ * Fixed crash on pasting with empty clipboard.
+ * Covered tab-indented here-docs in Bash syntax highlighting.
+ * Covered indented here-docs in Perl syntax highlighting.
+ * Silenced the compilation warnings with Qt ≥ 6.4.
+
 V1.3.2
 ---------
  * Added a real Unix signal handler. It was needed to work around a Qt6 bug under Wayland, which reported close signals of Wayland WMs as non-spontaneous (there was no prompt on closing windows by Wayland WMs).

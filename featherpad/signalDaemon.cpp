@@ -191,7 +191,7 @@ bool signalDaemon::watchSignal (int sig) {
     sigact.sa_flags = 0;
     sigact.sa_flags |= SA_RESTART;
     if (sigaction (sig, &sigact, nullptr) != 0)
-       return false;
+        return false;
     return true;
 }
 /*************************/

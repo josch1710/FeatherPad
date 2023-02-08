@@ -86,6 +86,7 @@ void FPwin::setProgLang (TextEdit *textEdit)
         else if (fname.endsWith (".c"))
             progLan = "c";
         else if (fname.endsWith (".sh") || fname.endsWith (".bashrc") || fname.endsWith (".rules")
+                 || fname.endsWith (".zsh")
                  || baseName == ".bash_profile" || baseName == ".bash_functions"
                  || baseName == ".xprofile" || baseName == ".profile"
                  || baseName == ".bash_aliases" || baseName == ".mkshrc"
@@ -111,7 +112,7 @@ void FPwin::setProgLang (TextEdit *textEdit)
                  || fname.endsWith (".rdf") || fname.endsWith (".docbook") || fname.endsWith (".fnx")
                  || fname.endsWith (".ts") || fname.endsWith (".menu") || fname.endsWith (".kml", Qt::CaseInsensitive)
                  || fname.endsWith (".xspf", Qt::CaseInsensitive) || fname.endsWith (".asx", Qt::CaseInsensitive)
-                 || fname.endsWith (".nfo")/* || fname.endsWith (".ui") || fname.endsWith (".xul")*/)
+                 || fname.endsWith (".nfo") || fname.endsWith (".dae") /* || fname.endsWith (".ui") || fname.endsWith (".xul")*/)
             progLan = "xml";
         else if (fname.endsWith (".css") || fname.endsWith (".qss"))
             progLan = "css";
@@ -242,7 +243,7 @@ void FPwin::setProgLang (TextEdit *textEdit)
                 progLan = "desktop";
             else if (mime == "audio/x-scpls" || mime == "application/vnd.kde.kcfgc")
                 progLan = "config";
-            else if (mime == "application/javascript")
+            else if (mime == "application/javascript" || mime == "text/javascript")
                 progLan = "javascript";
             else if (mime == "text/x-java")
                 progLan = "java";
@@ -373,7 +374,6 @@ void FPwin::syntaxHighlighting (TextEdit *textEdit, bool highlight, const QStrin
         textEdit->setDrawIndetLines (false);
         textEdit->setVLineDistance (0);
 
-        textEdit->setHighlighter (nullptr);
         delete highlighter; highlighter = nullptr;
     }
 }

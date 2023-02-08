@@ -20,6 +20,7 @@
 #ifndef TEXTEDIT_H
 #define TEXTEDIT_H
 
+#include <QPointer>
 #include <QPlainTextEdit>
 #include <QUrl>
 #include <QMimeData>
@@ -213,7 +214,7 @@ public:
     }
 
     QSyntaxHighlighter *getHighlighter() const {
-        return highlighter_;
+        return highlighter_.data();
     }
     void setHighlighter (QSyntaxHighlighter *h) {
         highlighter_ = h;
@@ -388,7 +389,7 @@ private:
     bool removeSelectionHighlights_; // used only internally
     bool matchedBrackets_; // is bracket matching done (is FPwin::matchBrackets called)?
     bool uneditable_; // the doc should be made uneditable because of its contents
-    QSyntaxHighlighter *highlighter_; // syntax highlighter
+    QPointer<QSyntaxHighlighter> highlighter_; // syntax highlighter
     bool saveCursor_;
     bool pastePaths_;
     /******************************

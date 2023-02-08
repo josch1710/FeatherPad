@@ -109,7 +109,7 @@ void Highlighter::highlightReSTBlock (const QString &text)
     if (text.indexOf (codeBlockStart1, 0, &match) == 0)
     { // also overwrites commentFormat
         /* the ".. code-block::" part will be formatted later */
-        setFormat (match.capturedLength(), text.count() - match.capturedLength(), codeBlockFormat);
+        setFormat (match.capturedLength(), text.size() - match.capturedLength(), codeBlockFormat);
         setCurrentBlockState (codeBlockState);
     }
     /* perhaps the start of a code block */
@@ -124,10 +124,10 @@ void Highlighter::highlightReSTBlock (const QString &text)
                 if (TextBlockData *prevData = static_cast<TextBlockData *>(prevBlock.userData()))
                 {
                     QString prevLabel = prevData->labelInfo();
-                    if (prevLabel.startsWith ("c") && text.startsWith (prevLabel.right(prevLabel.count() - 1)))
+                    if (prevLabel.startsWith ("c") && text.startsWith (prevLabel.right(prevLabel.size() - 1)))
                     { // not a code block start but a comment
                         isCommented = true;
-                        setFormat (0, text.count(), commentFormat);
+                        setFormat (0, text.size(), commentFormat);
                         setCurrentBlockState (previousBlockState());
                         data->insertInfo (prevLabel);
                     }
@@ -139,7 +139,7 @@ void Highlighter::highlightReSTBlock (const QString &text)
         {
             QTextCharFormat blockFormat = codeBlockFormat;
             blockFormat.setFontWeight (QFont::Bold);
-            setFormat (text.count() - 2,  2, blockFormat);
+            setFormat (text.size() - 2,  2, blockFormat);
             setCurrentBlockState (codeBlockState);
         }
     }
@@ -165,7 +165,7 @@ void Highlighter::highlightReSTBlock (const QString &text)
                             setCurrentBlockState (codeBlockState);
                         else
                         { // a code line
-                            setFormat (0, text.count(), codeBlockFormat);
+                            setFormat (0, text.size(), codeBlockFormat);
                             if (spaces == 0) // a line without indent only keeps the code block
                                 setCurrentBlockState (codeBlockState);
                             else
@@ -182,7 +182,7 @@ void Highlighter::highlightReSTBlock (const QString &text)
                     }
                     else
                     {
-                        setFormat (0, text.count(), codeBlockFormat);
+                        setFormat (0, text.size(), codeBlockFormat);
                         setCurrentBlockState (previousBlockState());
                         data->insertInfo (prevLabel);
                     }
@@ -192,9 +192,9 @@ void Highlighter::highlightReSTBlock (const QString &text)
         /* definitely a comment */
         if (!isCodeLine)
         {
-            setFormat (0, text.count(), commentFormat);
+            setFormat (0, text.size(), commentFormat);
             if ((previousBlockState() >= endState || previousBlockState() < -1)
-                && prevLabel.startsWith ("c") && text.startsWith (prevLabel.right(prevLabel.count() - 1)))
+                && prevLabel.startsWith ("c") && text.startsWith (prevLabel.right(prevLabel.size() - 1)))
             {
                 setCurrentBlockState (previousBlockState());
                 data->insertInfo (prevLabel);
@@ -227,7 +227,7 @@ void Highlighter::highlightReSTBlock (const QString &text)
                 setCurrentBlockState (codeBlockState);
             else
             { // a code line
-                setFormat (0, text.count(), codeBlockFormat);
+                setFormat (0, text.size(), codeBlockFormat);
                 if (spaces == 0) // a line without indent only keeps the code block
                     setCurrentBlockState (codeBlockState);
                 else
@@ -248,15 +248,15 @@ void Highlighter::highlightReSTBlock (const QString &text)
             {
                 QString prevLabel = prevData->labelInfo();
                 if (text.isEmpty()
-                    || ((prevLabel.startsWith ("c") && text.startsWith (prevLabel.right(prevLabel.count() - 1)))
+                    || ((prevLabel.startsWith ("c") && text.startsWith (prevLabel.right(prevLabel.size() - 1)))
                         || text.startsWith (prevLabel)))
                 {
                     setCurrentBlockState (previousBlockState());
                     data->insertInfo (prevLabel);
                     if (prevLabel.startsWith ("c")) // a comment continues
-                        setFormat (0, text.count(), commentFormat);
+                        setFormat (0, text.size(), commentFormat);
                     else
-                        setFormat (0, text.count(), codeBlockFormat);
+                        setFormat (0, text.size(), codeBlockFormat);
                 }
             }
         }
