@@ -12,18 +12,18 @@
 <context>
     <name>FeatherPad::FPwin</name>
     <message>
-        <location filename="../../fpwin.cpp" line="480"/>
-        <location filename="../../fpwin.cpp" line="1579"/>
-        <location filename="../../fpwin.cpp" line="1641"/>
-        <location filename="../../fpwin.cpp" line="2205"/>
-        <location filename="../../fpwin.cpp" line="2267"/>
-        <location filename="../../fpwin.cpp" line="3032"/>
-        <location filename="../../fpwin.cpp" line="3052"/>
-        <location filename="../../fpwin.cpp" line="3055"/>
-        <location filename="../../fpwin.cpp" line="4006"/>
-        <location filename="../../fpwin.cpp" line="4759"/>
-        <location filename="../../fpwin.cpp" line="5053"/>
-        <location filename="../../fpwin.cpp" line="5312"/>
+        <location filename="../../fpwin.cpp" line="484"/>
+        <location filename="../../fpwin.cpp" line="1611"/>
+        <location filename="../../fpwin.cpp" line="1663"/>
+        <location filename="../../fpwin.cpp" line="2259"/>
+        <location filename="../../fpwin.cpp" line="2321"/>
+        <location filename="../../fpwin.cpp" line="3086"/>
+        <location filename="../../fpwin.cpp" line="3106"/>
+        <location filename="../../fpwin.cpp" line="3109"/>
+        <location filename="../../fpwin.cpp" line="4072"/>
+        <location filename="../../fpwin.cpp" line="4825"/>
+        <location filename="../../fpwin.cpp" line="5119"/>
+        <location filename="../../fpwin.cpp" line="5378"/>
         <source>Untitled</source>
         <translation>Новий</translation>
     </message>
@@ -66,9 +66,8 @@
         <translation>&amp;Опції</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1602"/>
-        <location filename="../../fpwin.cpp" line="2930"/>
-        <location filename="../../fpwin.cpp" line="4569"/>
+        <location filename="../../fpwin.cpp" line="2984"/>
+        <location filename="../../fpwin.cpp" line="4635"/>
         <source>Encoding</source>
         <translation>Кодування</translation>
     </message>
@@ -135,7 +134,7 @@
     </message>
     <message>
         <location filename="../../fp.ui" line="522"/>
-        <location filename="../../fpwin.cpp" line="1377"/>
+        <location filename="../../fpwin.cpp" line="1404"/>
         <source>&amp;Save</source>
         <translation>З&amp;берегти</translation>
     </message>
@@ -610,7 +609,7 @@
     </message>
     <message>
         <location filename="../../fp.ui" line="345"/>
-        <location filename="../../fpwin.cpp" line="4109"/>
+        <location filename="../../fpwin.cpp" line="4175"/>
         <location filename="../../replace.cpp" line="61"/>
         <location filename="../../replace.cpp" line="113"/>
         <source>Replacement</source>
@@ -777,458 +776,447 @@
         <translation>Меню</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="103"/>
+        <location filename="../../fpwin.cpp" line="104"/>
         <source>Calculate number of words
 (For huge texts, this may be CPU-intensive.)</source>
         <translation>Обчислити кількість слів
 (Для великих текстів це може сильно навантажити процесор.)</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="118"/>
+        <location filename="../../fpwin.cpp" line="119"/>
         <source>Next</source>
         <translation>Наступна</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="119"/>
+        <location filename="../../fpwin.cpp" line="120"/>
         <source>Previous</source>
         <translation>Попередня</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="120"/>
+        <location filename="../../fpwin.cpp" line="121"/>
         <source>Replace all</source>
         <translation>Замінити всі</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="642"/>
+        <location filename="../../fpwin.cpp" line="664"/>
         <source>&amp;Recently Opened</source>
         <translation>&amp;Остання відкрита</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2045"/>
+        <location filename="../../fpwin.cpp" line="2089"/>
         <source>Close</source>
         <translation>Закрити</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1363"/>
+        <location filename="../../fpwin.cpp" line="1390"/>
         <source>Save changes?</source>
         <translation>Зберегти зміни?</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1007"/>
+        <location filename="../../fpwin.cpp" line="1034"/>
         <source>Please attend to that window or just close its dialog!</source>
         <translation>Перейдіть до цього вікна або просто закрийте його діалогове вікно!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1367"/>
+        <location filename="../../fpwin.cpp" line="1394"/>
         <source>The document has been modified.</source>
         <translation>Документ було змінено.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1378"/>
+        <location filename="../../fpwin.cpp" line="1405"/>
         <source>&amp;Discard changes</source>
         <translation>&amp;Відкинути зміни</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1379"/>
+        <location filename="../../fpwin.cpp" line="1406"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Скасувати</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1381"/>
+        <location filename="../../fpwin.cpp" line="1408"/>
         <source>&amp;No to all</source>
         <translation>&amp;Не для всіх</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1584"/>
-        <location filename="../../fpwin.cpp" line="1642"/>
+        <location filename="../../fpwin.cpp" line="1616"/>
+        <location filename="../../fpwin.cpp" line="1664"/>
         <source>Unsaved</source>
         <translation>Незбережене</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1603"/>
-        <location filename="../../fpwin.cpp" line="2932"/>
-        <location filename="../../fpwin.cpp" line="3655"/>
-        <location filename="../../fpwin.cpp" line="3666"/>
-        <location filename="../../fpwin.cpp" line="3673"/>
-        <location filename="../../fpwin.cpp" line="4574"/>
-        <location filename="../../fpwin.cpp" line="6165"/>
-        <location filename="../../fpwin.cpp" line="6176"/>
-        <location filename="../../fpwin.cpp" line="6183"/>
+        <location filename="../../fpwin.cpp" line="2986"/>
+        <location filename="../../fpwin.cpp" line="3719"/>
+        <location filename="../../fpwin.cpp" line="3730"/>
+        <location filename="../../fpwin.cpp" line="3737"/>
+        <location filename="../../fpwin.cpp" line="4640"/>
+        <location filename="../../fpwin.cpp" line="6250"/>
+        <location filename="../../fpwin.cpp" line="6261"/>
+        <location filename="../../fpwin.cpp" line="6268"/>
         <source>Lines</source>
         <translation>Рядки</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1604"/>
-        <location filename="../../fpwin.cpp" line="4575"/>
-        <location filename="../../fpwin.cpp" line="4590"/>
+        <location filename="../../fpwin.cpp" line="4641"/>
+        <location filename="../../fpwin.cpp" line="4656"/>
         <source>Sel. Chars</source>
         <translation>Вибр. символи</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1605"/>
-        <location filename="../../fpwin.cpp" line="4577"/>
-        <location filename="../../fpwin.cpp" line="4591"/>
+        <location filename="../../fpwin.cpp" line="4643"/>
+        <location filename="../../fpwin.cpp" line="4657"/>
         <source>Words</source>
         <translation>Слова</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1938"/>
+        <location filename="../../fpwin.cpp" line="1982"/>
         <source>Another process is running in this tab!</source>
         <translation>Інший процес запущений у цій вкладці!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2036"/>
+        <location filename="../../fpwin.cpp" line="2080"/>
         <source>Script File</source>
         <translation>Файл скрипту</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1006"/>
+        <location filename="../../fpwin.cpp" line="1033"/>
         <source>Another FeatherPad window has a modal dialog!</source>
         <translation>Для іншого вікна FeatherPad відкрито модальне вікно!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="843"/>
-        <location filename="../../fpwin.cpp" line="4616"/>
+        <location filename="../../fpwin.cpp" line="870"/>
+        <location filename="../../fpwin.cpp" line="4682"/>
         <source>Position:</source>
         <translation>Позиція:</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="891"/>
-        <location filename="../../fpwin.cpp" line="4634"/>
-        <location filename="../../fpwin.cpp" line="4654"/>
+        <location filename="../../fpwin.cpp" line="918"/>
+        <location filename="../../fpwin.cpp" line="4700"/>
+        <location filename="../../fpwin.cpp" line="4720"/>
         <source>Normal</source>
         <translation>Звичайна</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1365"/>
-        <location filename="../../fpwin.cpp" line="2701"/>
-        <location filename="../../fpwin.cpp" line="5975"/>
+        <location filename="../../fpwin.cpp" line="1392"/>
+        <location filename="../../fpwin.cpp" line="2755"/>
+        <location filename="../../fpwin.cpp" line="6050"/>
         <source>The file does not exist.</source>
         <translation>Файлу не існує.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1734"/>
+        <location filename="../../fpwin.cpp" line="1756"/>
         <source>Open Link</source>
         <translation>Відкрити посилання</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1747"/>
+        <location filename="../../fpwin.cpp" line="1769"/>
         <source>Copy Link</source>
         <translation>Скопіювати посилання</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1939"/>
+        <location filename="../../fpwin.cpp" line="1983"/>
         <source>Only one process is allowed per tab.</source>
         <translation>Лише один процес дозволений у вкладці.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2032"/>
+        <location filename="../../fpwin.cpp" line="2076"/>
         <source>Script Output</source>
         <translation>Вивід скрипту</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2048"/>
+        <location filename="../../fpwin.cpp" line="2092"/>
         <source>Clear</source>
         <translation>Очистити</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2658"/>
+        <location filename="../../fpwin.cpp" line="2712"/>
         <source>FeatherPad does not open files larger than 100 MiB.</source>
         <translation>FeatherPad не відкриває файли більші за 100 МіБ.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2666"/>
+        <location filename="../../fpwin.cpp" line="2720"/>
         <source>Non-text file(s) not opened!</source>
         <translation>Не текстові файли не відкриваються!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2667"/>
+        <location filename="../../fpwin.cpp" line="2721"/>
         <source>See Preferences → Files → Do not permit opening of non-text files</source>
         <translation>Перегляньте Налаштування → Файли → Не дозволяти відкриття не текстових файлів</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2676"/>
+        <location filename="../../fpwin.cpp" line="2730"/>
         <source>Some file(s) could not be opened!</source>
         <translation>Не можливо відкрити деякі файли!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2677"/>
+        <location filename="../../fpwin.cpp" line="2731"/>
         <source>You may not have the permission to read.</source>
         <translation>Можливо, у вас немає дозволу на читання.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2687"/>
+        <location filename="../../fpwin.cpp" line="2741"/>
         <source>Uneditable file(s)!</source>
         <translation>Незмінювані файли!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2688"/>
+        <location filename="../../fpwin.cpp" line="2742"/>
         <source>Non-text files or files with huge lines cannot be edited.</source>
         <translation>Нетекстові файли або файли з великими рядками не можна редагувати.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2752"/>
+        <location filename="../../fpwin.cpp" line="2806"/>
         <source>Root Instance</source>
         <translation>Кореневий екземпляр</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2824"/>
-        <location filename="../../fpwin.cpp" line="3013"/>
-        <location filename="../../fpwin.cpp" line="3041"/>
-        <source>All Files (*)</source>
-        <translation>Усі файли (*)</translation>
-    </message>
-    <message>
-        <location filename="../../fpwin.cpp" line="2829"/>
-        <source>All Files (*);;.%1 Files (*.%1)</source>
-        <translation>Усі файли (*);;.%1 Файли (*.%1)</translation>
-    </message>
-    <message>
-        <location filename="../../fpwin.cpp" line="2833"/>
+        <location filename="../../fpwin.cpp" line="2887"/>
         <source>Open file...</source>
         <translation>Відкрити файл...</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3019"/>
-        <source>.%1 Files (*.%1);;All Files (*)</source>
-        <translation>.%1 Файлів (*.%1);;Усі файли (*)</translation>
-    </message>
-    <message>
-        <location filename="../../fpwin.cpp" line="3070"/>
-        <location filename="../../fpwin.cpp" line="3108"/>
+        <location filename="../../fpwin.cpp" line="3124"/>
+        <location filename="../../fpwin.cpp" line="3162"/>
         <source>Save as...</source>
         <translation>Зберегти як...</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3144"/>
+        <location filename="../../fpwin.cpp" line="3198"/>
         <source>Keep encoding and save as...</source>
         <translation>Залишити поточне кодування та зберегти як...</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3479"/>
+        <location filename="../../fpwin.cpp" line="3543"/>
         <source>Saving as root.</source>
         <translation>Збереження кореневим.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3480"/>
+        <location filename="../../fpwin.cpp" line="3544"/>
         <source>Waiting for authentication...</source>
         <translation>Очікування автентифікації...</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3599"/>
+        <location filename="../../fpwin.cpp" line="3663"/>
         <source>&quot;pkexec&quot; is not found. Please install Polkit!</source>
         <translation>«pkexec» не знайдено. Встановіть Polkit!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3259"/>
+        <location filename="../../fpwin.cpp" line="3323"/>
         <source>Yes</source>
         <translation>Так</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3260"/>
+        <location filename="../../fpwin.cpp" line="3324"/>
         <source>No</source>
         <translation>Ні</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3261"/>
+        <location filename="../../fpwin.cpp" line="3325"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3262"/>
+        <location filename="../../fpwin.cpp" line="3326"/>
         <source>Do you want to use &lt;b&gt;MS Windows&lt;/b&gt; end-of-lines?</source>
         <translation>Ви хочете використовувати кінці рядків &lt;b&gt;MS Windows&lt;/b&gt;?</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3263"/>
+        <location filename="../../fpwin.cpp" line="3327"/>
         <source>This may be good for readability under MS Windows.</source>
         <translation>Це може бути добре для читання в MS Windows.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3376"/>
-        <location filename="../../fpwin.cpp" line="3494"/>
-        <location filename="../../fpwin.cpp" line="3598"/>
-        <location filename="../../fpwin.cpp" line="3610"/>
+        <location filename="../../fpwin.cpp" line="3440"/>
+        <location filename="../../fpwin.cpp" line="3558"/>
+        <location filename="../../fpwin.cpp" line="3662"/>
+        <location filename="../../fpwin.cpp" line="3674"/>
         <source>Cannot be saved!</source>
         <translation>Неможливо зберегти!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="478"/>
-        <location filename="../../fpwin.cpp" line="4004"/>
-        <location filename="../../fpwin.cpp" line="5051"/>
-        <location filename="../../fpwin.cpp" line="5310"/>
-        <location filename="../../fpwin.cpp" line="6381"/>
+        <location filename="../../fpwin.cpp" line="482"/>
+        <location filename="../../fpwin.cpp" line="4070"/>
+        <location filename="../../fpwin.cpp" line="5117"/>
+        <location filename="../../fpwin.cpp" line="5376"/>
+        <location filename="../../fpwin.cpp" line="6466"/>
         <source>Help</source>
         <translation>Довідка</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3651"/>
-        <location filename="../../fpwin.cpp" line="3657"/>
-        <location filename="../../fpwin.cpp" line="3665"/>
-        <location filename="../../fpwin.cpp" line="4572"/>
-        <location filename="../../fpwin.cpp" line="6161"/>
-        <location filename="../../fpwin.cpp" line="6167"/>
-        <location filename="../../fpwin.cpp" line="6175"/>
+        <location filename="../../fpwin.cpp" line="3715"/>
+        <location filename="../../fpwin.cpp" line="3721"/>
+        <location filename="../../fpwin.cpp" line="3729"/>
+        <location filename="../../fpwin.cpp" line="4638"/>
+        <location filename="../../fpwin.cpp" line="6246"/>
+        <location filename="../../fpwin.cpp" line="6252"/>
+        <location filename="../../fpwin.cpp" line="6260"/>
         <source>Syntax</source>
         <translation>Синтаксис</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2657"/>
+        <location filename="../../fpwin.cpp" line="2711"/>
         <source>Huge file(s) not opened!</source>
         <translation>Великі файли не відкриваються!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3754"/>
+        <location filename="../../fpwin.cpp" line="2878"/>
+        <location filename="../../fpwin.cpp" line="2883"/>
+        <location filename="../../fpwin.cpp" line="3067"/>
+        <location filename="../../fpwin.cpp" line="3073"/>
+        <location filename="../../fpwin.cpp" line="3095"/>
+        <source>All Files</source>
+        <translation>Усі файли</translation>
+    </message>
+    <message>
+        <location filename="../../fpwin.cpp" line="3818"/>
         <source>Text tabs are converted to spaces.</source>
         <translation>Текстові табулятори змінені на пробіли.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3856"/>
+        <location filename="../../fpwin.cpp" line="3920"/>
         <source>The selected text was too long.</source>
         <translation>Вибраний текст був надто довгим.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3857"/>
+        <location filename="../../fpwin.cpp" line="3921"/>
         <source>It is not fully processed.</source>
         <translation>Не повністю оброблено.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="4016"/>
-        <location filename="../../fpwin.cpp" line="4249"/>
+        <location filename="../../fpwin.cpp" line="4082"/>
+        <location filename="../../fpwin.cpp" line="4315"/>
         <source>This file has been modified elsewhere or in another way!</source>
         <translation>Цей файл був змінений в іншому місці або іншим способом!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="4017"/>
-        <location filename="../../fpwin.cpp" line="4250"/>
+        <location filename="../../fpwin.cpp" line="4083"/>
+        <location filename="../../fpwin.cpp" line="4316"/>
         <source>Please be careful about reloading or saving this document!</source>
         <translation>Будьте обережні, перезавантажуючи або зберігаючи цей документ!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="4725"/>
+        <location filename="../../fpwin.cpp" line="4791"/>
         <source>Printing in progress...</source>
         <translation>Друкується...</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="4776"/>
+        <location filename="../../fpwin.cpp" line="4842"/>
         <source>Print Document</source>
         <translation>Друкувати документ</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="4782"/>
+        <location filename="../../fpwin.cpp" line="4848"/>
         <source>Printing completed.</source>
         <translation>Друкування виконано.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5439"/>
-        <location filename="../../fpwin.cpp" line="5563"/>
+        <location filename="../../fpwin.cpp" line="5508"/>
+        <location filename="../../fpwin.cpp" line="5638"/>
         <source>%1 Pages</source>
         <translation>%1 сторінок</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5470"/>
-        <location filename="../../fpwin.cpp" line="5599"/>
+        <location filename="../../fpwin.cpp" line="5540"/>
+        <location filename="../../fpwin.cpp" line="5674"/>
         <source>Copy Target Path</source>
         <translation>Скопіювати шлях до цілі</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5474"/>
-        <location filename="../../fpwin.cpp" line="5603"/>
+        <location filename="../../fpwin.cpp" line="5544"/>
+        <location filename="../../fpwin.cpp" line="5678"/>
         <source>Open Target Here</source>
         <translation>Відкрити ціль тут</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5493"/>
-        <location filename="../../fpwin.cpp" line="5623"/>
+        <location filename="../../fpwin.cpp" line="5563"/>
+        <location filename="../../fpwin.cpp" line="5698"/>
         <source>Copy Final Target Path</source>
         <translation>Скопіювати шлях до кінцевої цілі</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5497"/>
-        <location filename="../../fpwin.cpp" line="5627"/>
+        <location filename="../../fpwin.cpp" line="5567"/>
+        <location filename="../../fpwin.cpp" line="5702"/>
         <source>Open Final Target Here</source>
         <translation>Відкрити фінальну ціль тут</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5517"/>
-        <location filename="../../fpwin.cpp" line="5648"/>
+        <location filename="../../fpwin.cpp" line="5587"/>
+        <location filename="../../fpwin.cpp" line="5723"/>
         <source>Open Containing Folder</source>
         <translation>Відкрити теку, що містить</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5771"/>
+        <location filename="../../fpwin.cpp" line="5846"/>
         <source>You need to add a Hunspell dictionary.</source>
         <translation>Вам потрібно додати словник Hunspell.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5772"/>
-        <location filename="../../fpwin.cpp" line="5779"/>
-        <location filename="../../fpwin.cpp" line="5789"/>
+        <location filename="../../fpwin.cpp" line="5847"/>
+        <location filename="../../fpwin.cpp" line="5854"/>
+        <location filename="../../fpwin.cpp" line="5864"/>
         <source>See Preferences → Text → Spell Checking!</source>
         <translation>Перегляньте Налаштування → Текст → Перевірка правопису!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5778"/>
+        <location filename="../../fpwin.cpp" line="5853"/>
         <source>The Hunspell dictionary does not exist.</source>
         <translation>Словника Hunspell не існує.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5788"/>
+        <location filename="../../fpwin.cpp" line="5863"/>
         <source>The Hunspell dictionary is not accompanied by an affix file.</source>
         <translation>Словник Hunspell не супроводжується додатковим файлом.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5811"/>
-        <location filename="../../fpwin.cpp" line="5829"/>
-        <location filename="../../fpwin.cpp" line="5844"/>
+        <location filename="../../fpwin.cpp" line="5886"/>
+        <location filename="../../fpwin.cpp" line="5904"/>
+        <location filename="../../fpwin.cpp" line="5919"/>
         <source>No misspelling in document.</source>
         <translation>У документі немає помилок.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5813"/>
-        <location filename="../../fpwin.cpp" line="5831"/>
-        <location filename="../../fpwin.cpp" line="5846"/>
+        <location filename="../../fpwin.cpp" line="5888"/>
+        <location filename="../../fpwin.cpp" line="5906"/>
+        <location filename="../../fpwin.cpp" line="5921"/>
         <source>No misspelling from text cursor.</source>
         <translation>Немає помилок у тексті після курсора.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5862"/>
+        <location filename="../../fpwin.cpp" line="5937"/>
         <source>Spell Checking</source>
         <translation>Перевірка правопису</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6199"/>
+        <location filename="../../fpwin.cpp" line="6284"/>
         <source>Some files cannot be saved!</source>
         <translation>Деякі файли неможливо зберегти!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6242"/>
+        <location filename="../../fpwin.cpp" line="6327"/>
         <source>Translators</source>
         <translation>Перекладачі</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6238"/>
+        <location filename="../../fpwin.cpp" line="6323"/>
         <source>A lightweight, tabbed, plain-text editor</source>
         <translation>Легкий текстовий редактор з вкладками</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6239"/>
+        <location filename="../../fpwin.cpp" line="6324"/>
         <source>based on Qt</source>
         <translation>заснований на Qt</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6240"/>
+        <location filename="../../fpwin.cpp" line="6325"/>
         <source>Author</source>
         <translation>Автор</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6241"/>
+        <location filename="../../fpwin.cpp" line="6326"/>
         <source>aka.</source>
         <translation>псевдонім</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6242"/>
-        <location filename="../../fpwin.cpp" line="6243"/>
+        <location filename="../../fpwin.cpp" line="6327"/>
+        <location filename="../../fpwin.cpp" line="6328"/>
         <source>About FeatherPad</source>
         <translation>Про FeatherPad</translation>
     </message>
@@ -1438,86 +1426,98 @@ a menu button appears on the toolbar.</source>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="218"/>
+        <source>Double clicking on the title toggles the maximized state.
+The title also has a right click menu when a file is opened.</source>
+        <translation>Подвійне клацання на заголовку перемикає розгорнутий стан.
+Заголовок також має контекстне меню коли файл відкрито правою кнопкою миші.</translation>
+    </message>
+    <message>
+        <location filename="../../prefDialog.ui" line="222"/>
+        <source>Show window title on menubar</source>
+        <translation>Показувати заголовок вікна на панелі меню</translation>
+    </message>
+    <message>
+        <location filename="../../prefDialog.ui" line="229"/>
         <source>Menubar accelerators are activated by Alt
 and may interfere with customized shortcuts.</source>
         <translation>Прискорювачі панелі меню активуються клавішею
 Alt і можуть перекривати налаштовані комбінації клавіш.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="222"/>
+        <location filename="../../prefDialog.ui" line="233"/>
         <source>Disable menubar accelerators</source>
         <translation>Вимкнути прискорювачі панелі меню</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="229"/>
+        <location filename="../../prefDialog.ui" line="240"/>
         <source>Internal icons are used by default.</source>
         <translation>Усталено застосовуються внутрішні піктограми.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="232"/>
+        <location filename="../../prefDialog.ui" line="243"/>
         <source>Use system icons where possible</source>
         <translation>Використовувати системні піктограми, якщо можливо</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="239"/>
+        <location filename="../../prefDialog.ui" line="250"/>
         <source>Hide search &amp;bar by default</source>
         <translation>Типово ховати &amp;панель пошуку</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="246"/>
+        <location filename="../../prefDialog.ui" line="257"/>
         <source>By default, each search entry
 has a separate search history.</source>
         <translation>Типово кожне поле пошуку
 має окрему історію пошуку.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="250"/>
+        <location filename="../../prefDialog.ui" line="261"/>
         <source>Use a shared search history</source>
         <translation>Використовувати спільну історію пошуку</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="257"/>
+        <location filename="../../prefDialog.ui" line="268"/>
         <source>Always show st&amp;atus bar</source>
         <translation>Завжди показувати панель ст&amp;ану</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="282"/>
+        <location filename="../../prefDialog.ui" line="293"/>
         <source>Show cursor position on status bar</source>
         <translation>Показувати розташування курсора на панелі стану</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="293"/>
-        <location filename="../../prefDialog.ui" line="303"/>
+        <location filename="../../prefDialog.ui" line="304"/>
+        <location filename="../../prefDialog.ui" line="314"/>
         <source>Will take effect after closing this dialog.</source>
         <translation>Зміни наберуть чинності після закриття діалогового вікна.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="296"/>
+        <location filename="../../prefDialog.ui" line="307"/>
         <source>Tab position: </source>
         <translation>Розташування вкладки: </translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="307"/>
+        <location filename="../../prefDialog.ui" line="318"/>
         <source>North</source>
         <translation>Вгорі</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="312"/>
+        <location filename="../../prefDialog.ui" line="323"/>
         <source>South</source>
         <translation>Внизу</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="317"/>
+        <location filename="../../prefDialog.ui" line="328"/>
         <source>West</source>
         <translation>Ліворуч</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="322"/>
+        <location filename="../../prefDialog.ui" line="333"/>
         <source>East</source>
         <translation>Праворуч</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="348"/>
+        <location filename="../../prefDialog.ui" line="359"/>
         <source>This means that, for LTR, Alt+Right goes to the first tab
 after the last tab is activated, and the same for Alt+Left.
 
@@ -1528,17 +1528,17 @@ Tab navigation with mouse wheel is not affected.</source>
 Навігація вкладками за допомогою коліщатка миші не впливає на це.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="354"/>
+        <location filename="../../prefDialog.ui" line="365"/>
         <source>Tab navigation wraps &amp;around</source>
         <translation>Навігація вкладками відбувається по &amp;колу</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="374"/>
+        <location filename="../../prefDialog.ui" line="385"/>
         <source>Close window on closing its last tab</source>
         <translation>Закрити вікно після закриття останньої вкладки</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="381"/>
+        <location filename="../../prefDialog.ui" line="392"/>
         <source>By default, if a FeatherPad window exists on the
 current desktop, files will be opened in its tabs.
 
@@ -1551,12 +1551,12 @@ report that they have multiple desktops.</source>
 повідомляти, що в них є кілька стільниць.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="388"/>
+        <location filename="../../prefDialog.ui" line="399"/>
         <source>Always open in separate windows</source>
         <translation>Завжди відкривати в окремих вікнах</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="395"/>
+        <location filename="../../prefDialog.ui" line="406"/>
         <source>If this is checked, the file dialog provided by the current
 desktop environment will be used instead of the Qt file dialog.
 
@@ -1567,32 +1567,32 @@ Some desktop environments, like KDE and LXQt, provide files dialogs.</source>
 Деякі стільничні середовища, наприклад KDE та LXQt, надають діалогові вікна файлів.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="401"/>
+        <location filename="../../prefDialog.ui" line="412"/>
         <source>Native file dialog</source>
         <translation>Системні діалогові вікна</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="477"/>
+        <location filename="../../prefDialog.ui" line="488"/>
         <source>Uncheck for Monospace.</source>
         <translation>Прибрати позначку, щоб застосувати Monospace.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="480"/>
+        <location filename="../../prefDialog.ui" line="491"/>
         <source>Remember &amp;font</source>
         <translation>Запам&apos;ятати шр&amp;ифт</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="501"/>
+        <location filename="../../prefDialog.ui" line="512"/>
         <source>This covers parentheses, braces, brackets and quotes.</source>
         <translation>Це охоплює круглі, фігурні й квадратні дужки та лапки.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="504"/>
+        <location filename="../../prefDialog.ui" line="515"/>
         <source>Auto-&amp;bracket</source>
         <translation>Авт&amp;одужки</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="511"/>
+        <location filename="../../prefDialog.ui" line="522"/>
         <source>By default, a triple period is replaced with an ellipsis
 and a double hyphen with a long dash while typing,
 under proper circumstances.</source>
@@ -1601,114 +1601,114 @@ under proper circumstances.</source>
 за належних обставин.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="516"/>
+        <location filename="../../prefDialog.ui" line="527"/>
         <source>Replace triple periods and double hyphens while typing</source>
         <translation>Замінювати трикрапки та подвійні дефіси під час введення тексту</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="530"/>
+        <location filename="../../prefDialog.ui" line="541"/>
         <source>Highlight case-sensitive and whole matches
 of the selected text.</source>
         <translation>Виділяти чутливі до регістру і точні
 збіги вибраного тексту.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="534"/>
+        <location filename="../../prefDialog.ui" line="545"/>
         <source>Selection highlighting</source>
         <translation>Підсвічування вибору</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="597"/>
+        <location filename="../../prefDialog.ui" line="608"/>
         <source>Never highlight syntax for files &gt; </source>
         <translation>Не підсвічувати синтаксис для файлів &gt; </translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="566"/>
+        <location filename="../../prefDialog.ui" line="577"/>
         <source>This creates a menu button on the
 status bar for changing the syntax.</source>
         <translation>Цим створюється кнопка меню
 на панелі стану для зміни синтаксису.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="570"/>
+        <location filename="../../prefDialog.ui" line="581"/>
         <source>Support syntax override</source>
         <translation>Підтримка заміни синтаксису</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="635"/>
+        <location filename="../../prefDialog.ui" line="646"/>
         <source>Show spaces, tabs and tab lines
 when the syntax is highlighted.</source>
         <translation>Показувати пробіли, табуляцію та перенесення
 рядків, якщо увімкнено підсвічування синтаксису.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="639"/>
+        <location filename="../../prefDialog.ui" line="650"/>
         <source>Show whitespaces</source>
         <translation>Показувати пробіли</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="655"/>
         <location filename="../../prefDialog.ui" line="666"/>
+        <location filename="../../prefDialog.ui" line="677"/>
         <source>The vertical position lines will be drawn only if
 the editor font has a fixed pitch (like Monospace).</source>
         <translation>Вертикальні лінії позиціювання будуть проведені лише якщо
 шрифт редактора має фіксовану висоту (як-от Monospace).</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="659"/>
+        <location filename="../../prefDialog.ui" line="670"/>
         <source>Show vertical lines starting from this position:</source>
         <translation>Показувати вертикальні лінії, починаючи з цієї позиції:</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="646"/>
+        <location filename="../../prefDialog.ui" line="657"/>
         <source>Also show line and document ends</source>
         <translation>Також показувати лінії закінчення рядків і документів</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="785"/>
+        <location filename="../../prefDialog.ui" line="803"/>
         <source>Date and time format:</source>
         <translation>Формат дати й часу:</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="855"/>
+        <location filename="../../prefDialog.ui" line="873"/>
         <source>Some text editors cannot open a document
 whose last line is not empty.</source>
         <translation>Деякі текстові редактори не можуть відкрити
 документ останній рядок якого не порожній.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="859"/>
+        <location filename="../../prefDialog.ui" line="877"/>
         <source>Ensure an empty last line on saving</source>
         <translation>Перевіряти чи не порожній останній рядок під час збереження</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="866"/>
+        <location filename="../../prefDialog.ui" line="884"/>
         <source>Remove trailing spaces on saving</source>
         <translation>Вилучати кінцеві пробіли під час збереження</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="884"/>
+        <location filename="../../prefDialog.ui" line="902"/>
         <source>Inertial scrolling with mouse wheel</source>
         <translation>Плавне прокручування колесом миші</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="973"/>
+        <location filename="../../prefDialog.ui" line="991"/>
         <source>Files</source>
         <translation>Файли</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="979"/>
+        <location filename="../../prefDialog.ui" line="997"/>
         <source>File Management</source>
         <translation>Керування файлами</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1096"/>
+        <location filename="../../prefDialog.ui" line="1114"/>
         <source>Start with files of last window</source>
         <translation>Починати з файлами з останнього вікна</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1138"/>
-        <location filename="../../prefDialog.ui" line="1157"/>
+        <location filename="../../prefDialog.ui" line="1156"/>
+        <location filename="../../prefDialog.ui" line="1175"/>
         <source>This can be any starting command with
 arguments, for example, &quot;xterm -hold&quot;
 for running the process in XTerm.
@@ -1731,32 +1731,32 @@ will be shown by a popup dialog.</source>
 помилки буде показано у спливному вікні.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1150"/>
+        <location filename="../../prefDialog.ui" line="1168"/>
         <source>Start with this command: </source>
         <translation>Починати з команди: </translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1169"/>
+        <location filename="../../prefDialog.ui" line="1187"/>
         <source>Command + Arguments</source>
         <translation>Команда та аргументи</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1054"/>
+        <location filename="../../prefDialog.ui" line="1072"/>
         <source>Show recentl&amp;y modified files</source>
         <translation>Показувати останні змінені файли</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1084"/>
+        <location filename="../../prefDialog.ui" line="1102"/>
         <source>Show recentl&amp;y opened files</source>
         <translation>Показати останн&amp;і відкриті файли</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1183"/>
+        <location filename="../../prefDialog.ui" line="1201"/>
         <source>Save changes to opened files every:</source>
         <translation>Зберігати зміни у відкритих файлах кожні:</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1461"/>
+        <location filename="../../prefDialog.ui" line="1479"/>
         <source>Help</source>
         <translation>Довідка</translation>
     </message>
@@ -1766,7 +1766,7 @@ will be shown by a popup dialog.</source>
         <translation>Починати з боковою панеллю</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="361"/>
+        <location filename="../../prefDialog.ui" line="372"/>
         <source>If this is checked, not only you will lose the informative
 tooltip and context menu of a single tab but you could not
 merge a single tabbed window into another one by tab drag-
@@ -1777,57 +1777,57 @@ and-drop either.</source>
 вкладки.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="367"/>
+        <location filename="../../prefDialog.ui" line="378"/>
         <source>&amp;Do not show a single tab</source>
         <translation>&amp;Не показувати єдину вкладку</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="432"/>
+        <location filename="../../prefDialog.ui" line="443"/>
         <source>Text</source>
         <translation>Текст</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="471"/>
+        <location filename="../../prefDialog.ui" line="482"/>
         <source>Text Editor</source>
         <translation>Текстовий редактор</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="487"/>
+        <location filename="../../prefDialog.ui" line="498"/>
         <source>&amp;Wrap lines by default</source>
         <translation>Типово діє &amp;перенесення рядків</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="494"/>
+        <location filename="../../prefDialog.ui" line="505"/>
         <source>Auto-&amp;indent by default</source>
         <translation>Типово діє А&amp;втоабзацування</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="523"/>
+        <location filename="../../prefDialog.ui" line="534"/>
         <source>Always show line &amp;numbers</source>
         <translation>Завжди показувати &amp;нумерацію рядків</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="541"/>
+        <location filename="../../prefDialog.ui" line="552"/>
         <source>Highlight s&amp;yntax by default</source>
         <translation>Типово діє п&amp;ідсвічування синтаксису</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="701"/>
+        <location filename="../../prefDialog.ui" line="712"/>
         <source>Dark c&amp;olor scheme</source>
         <translation>Темна к&amp;олірна схема</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="736"/>
+        <location filename="../../prefDialog.ui" line="747"/>
         <source>Background color value: </source>
         <translation>Колір тла: </translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="604"/>
+        <location filename="../../prefDialog.ui" line="615"/>
         <source> MiB</source>
         <translation> МіБ</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1103"/>
+        <location filename="../../prefDialog.ui" line="1121"/>
         <source>This only includes executable files written
 in script languages like Shell and Python.
 
@@ -1846,13 +1846,13 @@ process could be killed by Ctrl+Alt+E.</source>
 процес можна вбити за допомогою Ctrl+Alt+E.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="698"/>
+        <location filename="../../prefDialog.ui" line="709"/>
         <source>Needs window reopening to take effect.</source>
         <translation>Для набрання чинності обов&apos;язковий перезапуск вікна.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="726"/>
-        <location filename="../../prefDialog.ui" line="743"/>
+        <location filename="../../prefDialog.ui" line="737"/>
+        <location filename="../../prefDialog.ui" line="754"/>
         <source>The color value of the background.
 255 means white while 0 means black.
 
@@ -1871,13 +1871,13 @@ Needs window reopening to take effect.</source>
 Для набрання чинності обов&apos;язковий перезапуск вікна.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1113"/>
+        <location filename="../../prefDialog.ui" line="1131"/>
         <source>Run executable scripts</source>
         <translation>Запустити виконуваний скрипт</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="987"/>
-        <location filename="../../prefDialog.ui" line="1001"/>
+        <location filename="../../prefDialog.ui" line="1005"/>
+        <location filename="../../prefDialog.ui" line="1019"/>
         <source>The maximum number of recently modified or
 opened files FeatherPad shows. The default
 is 10.
@@ -1890,8 +1890,13 @@ Needs application restart to take effect.</source>
 Для набрання чинності обов&apos;язковий перезапуск програми.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="777"/>
-        <location filename="../../prefDialog.ui" line="792"/>
+        <location filename="../../prefDialog.ui" line="786"/>
+        <source>Add a small margin around text</source>
+        <translation>Додати невеликий відступ навколо тексту</translation>
+    </message>
+    <message>
+        <location filename="../../prefDialog.ui" line="795"/>
+        <location filename="../../prefDialog.ui" line="810"/>
         <source>Used for pasting the date and time.
 
 Takes effect after closing this dialog.
@@ -1906,35 +1911,35 @@ MMM dd, yyyy, hh:mm:ss</source>
 гру 31, 1999, 23:59:59</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="814"/>
+        <location filename="../../prefDialog.ui" line="832"/>
         <source>Text tab size:</source>
         <translation>Розмір текстової табуляції:</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="821"/>
+        <location filename="../../prefDialog.ui" line="839"/>
         <source> spaces</source>
         <translation> пробіли</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="873"/>
+        <location filename="../../prefDialog.ui" line="891"/>
         <source>Thick text cursor</source>
         <translation>Товстий курсор</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="880"/>
+        <location filename="../../prefDialog.ui" line="898"/>
         <source>Should the mouse wheel scrolling be inertial
 if the cursor is inside the text view?</source>
         <translation>Чи має бути плавним прокручування колесом миші,
 якщо курсор знаходиться всередині текстового подання?</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="891"/>
+        <location filename="../../prefDialog.ui" line="909"/>
         <source>Spell Checking</source>
         <translation>Перевірка правопису</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="899"/>
-        <location filename="../../prefDialog.ui" line="911"/>
+        <location filename="../../prefDialog.ui" line="917"/>
+        <location filename="../../prefDialog.ui" line="929"/>
         <source>A Hunspell dictionary has a name that ends with &quot;.dic&quot;
 and should be alongside an affix file with the same
 name but ending with &quot;.aff&quot;.</source>
@@ -1943,51 +1948,51 @@ name but ending with &quot;.aff&quot;.</source>
 ж назвою, але з розширенням «.aff».</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="904"/>
+        <location filename="../../prefDialog.ui" line="922"/>
         <source>Hunspell dictionary path:</source>
         <translation>Шлях до словника Hunspell:</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="923"/>
-        <location filename="../../pref.cpp" line="1664"/>
+        <location filename="../../prefDialog.ui" line="941"/>
+        <location filename="../../pref.cpp" line="1794"/>
         <source>Add dictionary...</source>
         <translation>Додати словник...</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="935"/>
+        <location filename="../../prefDialog.ui" line="953"/>
         <source>If this is unchecked, spell checking
 will be started from the document start.</source>
         <translation>Якщо не вибрано, перевірку правопису
 буде розпочато від початку документу.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="939"/>
+        <location filename="../../prefDialog.ui" line="957"/>
         <source>Start spell checking from text cursor</source>
         <translation>Почати перевірку правопису від курсора</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="994"/>
+        <location filename="../../prefDialog.ui" line="1012"/>
         <source>Number of recent files: </source>
         <translation>Кількість нещодавніх файлів: </translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1093"/>
+        <location filename="../../prefDialog.ui" line="1111"/>
         <source>Only if their number is not greater than 50.</source>
         <translation>Тільки якщо їх кількість не перевищує 50.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1180"/>
-        <location filename="../../prefDialog.ui" line="1190"/>
+        <location filename="../../prefDialog.ui" line="1198"/>
+        <location filename="../../prefDialog.ui" line="1208"/>
         <source>Only for files that exist and can be saved.</source>
         <translation>Тільки для файлів, які існують та можуть бути збережені.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1193"/>
+        <location filename="../../prefDialog.ui" line="1211"/>
         <source> min</source>
         <translation> мін</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1224"/>
+        <location filename="../../prefDialog.ui" line="1242"/>
         <source>If this is checked, the Save button/menu-item could
 be used also when the opened file is not modified.
 
@@ -2002,218 +2007,218 @@ trailing spaces of a text file.</source>
 кінцевих пробілів текстового файлу.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1232"/>
+        <location filename="../../prefDialog.ui" line="1250"/>
         <source>Allow saving unmodified files</source>
         <translation>Дозволити збереження незмінених файлів</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1239"/>
+        <location filename="../../prefDialog.ui" line="1257"/>
         <source>Show a warning instead.</source>
         <translation>Натомість показувати попередження.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1242"/>
+        <location filename="../../prefDialog.ui" line="1260"/>
         <source>Do not permit opening of non-text files</source>
         <translation>Не дозволяти відкривати нетекстові файли</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1249"/>
+        <location filename="../../prefDialog.ui" line="1267"/>
         <source>By default, when files are copied, they will
 be opened if they are pasted into FeatherPad.</source>
         <translation>Типово, під час копіювання файлів, вони будуть
 відкриті, якщо їх вставлено у FeatherPad.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1253"/>
+        <location filename="../../prefDialog.ui" line="1271"/>
         <source>Paste paths instead of files</source>
         <translation>Вставляння шляхів замість файлів</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1280"/>
+        <location filename="../../prefDialog.ui" line="1298"/>
         <source>Shortcuts</source>
         <translation>Комбінації клавіш</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1302"/>
+        <location filename="../../prefDialog.ui" line="1320"/>
         <source>Action</source>
         <translation>Дія</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1307"/>
+        <location filename="../../prefDialog.ui" line="1325"/>
         <source>Shortcut</source>
         <translation>Комбінація клавіш</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1315"/>
+        <location filename="../../prefDialog.ui" line="1333"/>
         <source>Restore default shortcuts.</source>
         <translation>Відновити типові комбінації клавіш.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1318"/>
-        <location filename="../../prefDialog.ui" line="1392"/>
-        <location filename="../../prefDialog.ui" line="1440"/>
+        <location filename="../../prefDialog.ui" line="1336"/>
+        <location filename="../../prefDialog.ui" line="1410"/>
+        <location filename="../../prefDialog.ui" line="1458"/>
         <source>Default</source>
         <translation>Типові комбінації</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1329"/>
+        <location filename="../../prefDialog.ui" line="1347"/>
         <source>Syntax Colors</source>
         <translation>Кольори синтаксису</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1424"/>
+        <location filename="../../prefDialog.ui" line="1442"/>
         <source>Element</source>
         <translation>Елемент</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1429"/>
+        <location filename="../../prefDialog.ui" line="1447"/>
         <source>Text Color</source>
         <translation>Колір тексту</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1346"/>
+        <location filename="../../prefDialog.ui" line="1364"/>
         <source>Whitespace color value:</source>
         <translation>Колір пробілу:</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1379"/>
-        <location filename="../../prefDialog.ui" line="1389"/>
+        <location filename="../../prefDialog.ui" line="1397"/>
+        <location filename="../../prefDialog.ui" line="1407"/>
         <source>Has effect only if line numbers are shown.</source>
         <translation>Діє лише за умови показу номерів рядків.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1382"/>
+        <location filename="../../prefDialog.ui" line="1400"/>
         <source>Current line highlight value:</source>
         <translation>Колір підсвічування поточного рядка:</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1437"/>
+        <location filename="../../prefDialog.ui" line="1455"/>
         <source>Restore default syntax colors.</source>
         <translation>Відновити типові кольори.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1472"/>
+        <location filename="../../prefDialog.ui" line="1490"/>
         <source>Close</source>
         <translation>Закрити</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="104"/>
+        <location filename="../../pref.cpp" line="105"/>
         <source>Press a modifier key to clear a shortcut
 in the editing mode.</source>
         <translation>Натисніть клавішу-модифікатор, щоб очистити
 комбінацію клавіш у режимі редагування.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="110"/>
+        <location filename="../../pref.cpp" line="111"/>
         <source>Double click a color to change it.</source>
         <translation>Двічі клацніть на колір, щоб змінити його.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="311"/>
-        <location filename="../../pref.cpp" line="1360"/>
+        <location filename="../../pref.cpp" line="347"/>
+        <location filename="../../pref.cpp" line="1490"/>
         <source>files</source>
         <translation>файли</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="311"/>
-        <location filename="../../pref.cpp" line="1360"/>
+        <location filename="../../pref.cpp" line="347"/>
+        <location filename="../../pref.cpp" line="1490"/>
         <source>file</source>
         <translation>файл</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="364"/>
-        <location filename="../../pref.cpp" line="1479"/>
+        <location filename="../../pref.cpp" line="414"/>
+        <location filename="../../pref.cpp" line="1609"/>
         <source>Warning: Ambiguous shortcut detected!</source>
         <translation>Попередження: виявлено двозначну комбінацію клавіш!</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="397"/>
+        <location filename="../../pref.cpp" line="447"/>
         <source>Functions, URLs,…</source>
         <translation>Функції, URL-адреси,…</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="398"/>
+        <location filename="../../pref.cpp" line="448"/>
         <source>Built-in Functions</source>
         <translation>Вбудовані функції</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="399"/>
+        <location filename="../../pref.cpp" line="449"/>
         <source>Comments</source>
         <translation>Коментарі</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="400"/>
+        <location filename="../../pref.cpp" line="450"/>
         <source>Quotations</source>
         <translation>Цитати</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="401"/>
+        <location filename="../../pref.cpp" line="451"/>
         <source>Types</source>
         <translation>Типи</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="402"/>
+        <location filename="../../pref.cpp" line="452"/>
         <source>Key Words</source>
         <translation>Ключові слова</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="403"/>
+        <location filename="../../pref.cpp" line="453"/>
         <source>Numbers</source>
         <translation>Цифри</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="404"/>
+        <location filename="../../pref.cpp" line="454"/>
         <source>Regular Expressions, Code Blocks,…</source>
         <translation>Регулярні вирази, кодові блоки,…</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="405"/>
+        <location filename="../../pref.cpp" line="455"/>
         <source>Document Blocks, XML/HTML Elements,…</source>
         <translation>Блоки документів, XML/HTML-елементи,…</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="406"/>
+        <location filename="../../pref.cpp" line="456"/>
         <source>Markdown Headings, CSS Values,…</source>
         <translation>Заголовки Markdown, значення CSS,…</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="407"/>
+        <location filename="../../pref.cpp" line="457"/>
         <source>Extra Elements</source>
         <translation>Додаткові елементи</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="568"/>
+        <location filename="../../pref.cpp" line="639"/>
         <source>Application restart is needed for changes to take effect.</source>
         <translation>Для набрання чинності потрібен перезапуск програми.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="588"/>
+        <location filename="../../pref.cpp" line="660"/>
         <source>Window reopening is needed for changes to take effect.</source>
         <translation>Для набрання чинності потрібен перезапуск вікна.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="1386"/>
+        <location filename="../../pref.cpp" line="1516"/>
         <source>&amp;Recently Opened</source>
         <translation>Нед&amp;авно відкриті</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="1387"/>
+        <location filename="../../pref.cpp" line="1517"/>
         <source>Recently &amp;Modified</source>
         <translation>Н&amp;едавно змінені</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="1462"/>
+        <location filename="../../pref.cpp" line="1592"/>
         <source>The typed shortcut was reserved.</source>
         <translation>Введену комбінацію клавіш зарезервовано.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="1666"/>
-        <source>Hunspell Dictionary Files (*.dic)</source>
-        <translation>Файли словника Hunspell (*.dic)</translation>
+        <location filename="../../pref.cpp" line="1796"/>
+        <source>Hunspell Dictionary Files</source>
+        <translation>Файли словника Hunspell</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="458"/>
-        <location filename="../../pref.cpp" line="1752"/>
+        <location filename="../../pref.cpp" line="515"/>
+        <location filename="../../pref.cpp" line="1882"/>
         <source>Select Syntax Color</source>
         <translation>Вибрати колір синтаксису</translation>
     </message>
@@ -2451,7 +2456,7 @@ windows will be included in the saved session.</source>
 <context>
     <name>FeatherPad::TextEdit</name>
     <message>
-        <location filename="../../textedit.cpp" line="147"/>
+        <location filename="../../textedit.cpp" line="146"/>
         <source>Double click to center current line</source>
         <translation>Центрувати поточний рядок подвійним клацанням</translation>
     </message>

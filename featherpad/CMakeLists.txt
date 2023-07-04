@@ -18,8 +18,10 @@ find_package(HUNSPELL "${HUNSPELL_MINIMUM_VERSION}" REQUIRED)
 # optional localization
 find_package(Qt${QT_VERSION_MAJOR} QUIET COMPONENTS LinguistTools)
 
-# OS/2 needs an additional lib and tune the processor
-if(OS2)
+if(HAIKU)
+  set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -lnetwork")
+elseif(OS2)
+  # OS/2 needs an additional lib and tune the processor
   add_definitions(-mtune=pentium4 -march=pentium4)
   set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -lcx")
 endif()
@@ -89,6 +91,7 @@ set(featherpad_SRCS
     fpwin.cpp
     encoding.cpp
     tabwidget.cpp
+    menubartitle.cpp
     lineedit.cpp
     textedit.cpp
     tabbar.cpp

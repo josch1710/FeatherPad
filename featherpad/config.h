@@ -131,6 +131,9 @@ public:
         textTabSize_ = textTab;
     }
 
+    int getDefaultRecentFilesNumber() const {
+        return 10;
+    }
     int getRecentFilesNumber() const {
         return recentFilesNumber_;
     }
@@ -169,6 +172,9 @@ public:
         prefSize_ = s;
     }
 
+    QSize getDefaultStartSize() const {
+        return QSize (700, 500);
+    }
     QSize getStartSize() const {
         return startSize_;
     }
@@ -202,6 +208,13 @@ public:
     }
     void setNoMenubar (bool noMB) {
         noMenubar_ = noMB;
+    }
+
+    bool getMenubarTitle() const {
+        return menubarTitle_;
+    }
+    void setMenubarTitle (bool mt) {
+        menubarTitle_ = mt;
     }
 
     bool getHideSearchbar() const {
@@ -317,6 +330,16 @@ public:
         showEndings_ = show;
     }
 
+    bool getTextMargin() const {
+        return textMargin_;
+    }
+    void setTextMargin (bool margin) {
+        textMargin_ = margin;
+    }
+
+    int getDefaultVLineDistance() const {
+        return 80;
+    }
     int getVLineDistance() const {
         return vLineDistance_;
     }
@@ -324,6 +347,9 @@ public:
         vLineDistance_ = distance;
     }
 
+    int getDefaultMaxSHSize() const {
+        return 2;
+    }
     int getMaxSHSize() const {
         return maxSHSize_;
     }
@@ -585,11 +611,13 @@ private:
 
     bool remSize_, remPos_, remSplitterPos_,
          noToolbar_, noMenubar_,
+         menubarTitle_,
          hideSearchbar_,
          showStatusbar_, showCursorPos_, showLangSelector_,
          sidePaneMode_,
          remFont_, wrapByDefault_, indentByDefault_, autoReplace_, autoBracket_, lineByDefault_,
          syntaxByDefault_, showWhiteSpace_, showEndings_,
+         textMargin_,
          isMaxed_, isFull_,
          darkColScheme_,
          thickCursor_,

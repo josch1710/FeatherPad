@@ -282,10 +282,10 @@ public:
 
 signals:
     /* inform the main widget */
-    void fileDropped (const QString& localFile,
-                      int restoreCursor, // Only for connecting to FPwin::newTabFromName().
-                      int posInLine, // Only for connecting to FPwin::newTabFromName().
-                      bool multiple); // Multiple files are dropped?
+    void filePasted (const QString& localFile,
+                     int restoreCursor, // Only for connecting to FPwin::newTabFromName().
+                     int posInLine, // Only for connecting to FPwin::newTabFromName().
+                     bool multiple); // Multiple files are dropped?
     void resized(); // needed by syntax highlighting
     void selChanged(); // needed by a workaround
     void updateRect();
@@ -356,8 +356,6 @@ private:
     QFont font_; // used internally for keeping track of the unzoomed font
     QString textTab_; // text tab in terms of spaces
     QElapsedTimer tripleClickTimer_;
-    /* To know whether text may be pasted, in contrast to text/file dropping: */
-    bool pasting_;
     /* To keep text cursor's horizontal position with Up/Down keys
        (also used in a workaround for a Qt regression): */
     bool keepTxtCurHPos_;

@@ -52,7 +52,6 @@ TextEdit::TextEdit (QWidget *parent, int bgColorValue) : QPlainTextEdit (parent)
     inertialScrolling_ = false;
     scrollTimer_ = nullptr;
 
-    pasting_ = false;
     keepTxtCurHPos_ = false;
     txtCurHPos_ = -1;
 
@@ -176,13 +175,18 @@ void TextEdit::setCurLineHighlight (int value)
 /*************************/
 bool TextEdit::eventFilter (QObject *watched, QEvent *event)
 {
-    if (watched == lineNumberArea_ && event->type() == QEvent::Wheel)
+    if (watched == lineNumberArea_)
     {
-        if (QWheelEvent *we = static_cast<QWheelEvent*>(event))
+        if (event->type() == QEvent::Wheel)
         {
-            wheelEvent (we);
-            return false;
+            if (QWheelEvent *we = static_cast<QWheelEvent*>(event))
+            {
+                wheelEvent (we);
+                return false;
+            }
         }
+        else if (event->type() == QEvent::MouseButtonPress)
+            return true; // prevent the window from being dragged by widget styles (like Kvantum)
     }
     return QPlainTextEdit::eventFilter (watched, event);
 }
@@ -1283,10 +1287,7 @@ void TextEdit::redo()
 void TextEdit::paste()
 {
     keepTxtCurHPos_ = false; // txtCurHPos_ isn't reset here because there may be nothing to paste
-
-    pasting_ = true; // see insertFromMimeData()
     QPlainTextEdit::paste();
-    pasting_ = false;
 }
 void TextEdit::selectAll()
 {
@@ -1327,13 +1328,13 @@ static bool containsPlainText (const QStringList &list)
     }
     return false;
 }
-// We want to pass dropping of files to the main widget with a custom signal.
+// We want to pass dropping of files to the main widget by not accepting it here.
 // We also want to control whether the pasted URLs should be opened.
 bool TextEdit::canInsertFromMimeData (const QMimeData* source) const
 {
     return source != nullptr
-           && (source->hasUrls()
-               || (containsPlainText (source->formats()) && !source->text().isEmpty()));
+           && !source->hasUrls() // let the main widget handle dropped files
+           && containsPlainText (source->formats()) && !source->text().isEmpty();
 }
 void TextEdit::insertFromMimeData (const QMimeData* source)
 {
@@ -1343,7 +1344,7 @@ void TextEdit::insertFromMimeData (const QMimeData* source)
     {
         const QList<QUrl> urlList = source->urls();
         bool multiple (urlList.count() > 1);
-        if (pasting_ && pastePaths_)
+        if (pastePaths_)
         {
             QTextCursor cur = textCursor();
             cur.beginEditBlock();
@@ -1373,7 +1374,7 @@ void TextEdit::insertFromMimeData (const QMimeData* source)
                             .toLocalFile();
                 else
                     continue;
-                emit fileDropped (file, 0, 0, multiple);
+                emit filePasted (file, 0, 0, multiple);
             }
         }
     }
@@ -1540,8 +1541,11 @@ void TextEdit::resizeEvent (QResizeEvent *event)
     QPlainTextEdit::resizeEvent (event);
 
     QRect cr = contentsRect();
-    lineNumberArea_->setGeometry (QRect (QApplication::layoutDirection() == Qt::RightToLeft ? cr.width() - lineNumberAreaWidth() : cr.left(),
-                                         cr.top(), lineNumberAreaWidth(), cr.height()));
+    int lw = lineNumberAreaWidth();
+    lineNumberArea_->setGeometry (QRect (QApplication::layoutDirection() == Qt::RightToLeft
+                                             ? cr.width() - lw : cr.left(),
+                                         cr.top(),
+                                         lw, cr.height()));
 
     if (resizeTimerId_)
     {
@@ -1991,6 +1995,13 @@ void TextEdit::onSelectionChanged()
         prevPos_ = cur.position();
     }
 
+    if (selectionTimerId_)
+    {
+        killTimer (selectionTimerId_);
+        selectionTimerId_ = 0;
+    }
+    selectionTimerId_ = startTimer (UPDATE_INTERVAL);
+
     /* selection highlighting */
     if (!selectionHighlighting_) return;
     if (highlightThisSelection_)
@@ -2000,12 +2011,6 @@ void TextEdit::onSelectionChanged()
         removeSelectionHighlights_ = true;
         highlightThisSelection_ = true; // reset
     }
-    if (selectionTimerId_)
-    {
-        killTimer (selectionTimerId_);
-        selectionTimerId_ = 0;
-    }
-    selectionTimerId_ = startTimer (UPDATE_INTERVAL);
 }
 /*************************/
 void TextEdit::zooming (float range)
@@ -2199,9 +2204,7 @@ void TextEdit::mousePressEvent (QMouseEvent *event)
 /*************************/
 void TextEdit::mouseReleaseEvent (QMouseEvent *event)
 {
-    pasting_ = true; // see insertFromMimeData()
     QPlainTextEdit::mouseReleaseEvent (event);
-    pasting_ = false;
 
     if (event->button() != Qt::LeftButton || !highlighter_)
         return;
@@ -2780,11 +2783,6 @@ void TextEdit::setSelectionHighlighting (bool enable)
         disconnect (document(), &QTextDocument::contentsChange, this, &TextEdit::onContentsChange);
         disconnect (this, &TextEdit::updateRect, this, &TextEdit::selectionHlight);
         disconnect (this, &TextEdit::resized, this, &TextEdit::selectionHlight);
-        if (selectionTimerId_)
-        {
-            killTimer (selectionTimerId_);
-            selectionTimerId_ = 0;
-        }
         /* remove all blue highlights */
         if (!blueSel_.isEmpty())
         {

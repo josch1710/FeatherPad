@@ -88,7 +88,7 @@ private:
     QVector<BracketInfo *> allBrackets;
     QString label; // A label (can be a delimiter string, like that of a here-doc).
     bool Highlighted; // Is this block completely highlighted?
-    bool Property; // A general boolean property (used with SH, Perl, YAML and cmake).
+    bool Property; // A general boolean property (used with SH, Perl, YAML, cmake,...).
     int LastState; // The state of this block before it is highlighted (again).
     /* "Nest" is a generalized bracket. This variable
        is the number of unclosed nests in a block. */
@@ -322,32 +322,35 @@ private:
     QTextCharFormat mainFormat; // The format before highlighting.
     QTextCharFormat neutralFormat; // When a color near that of mainFormat is needed.
     QTextCharFormat commentFormat;
-    QTextCharFormat commentBoldFormat;
-    QTextCharFormat noteFormat;
-    QTextCharFormat quoteFormat; // Usually for double quote.
-    QTextCharFormat altQuoteFormat; // Usually for single quote.
+    QTextCharFormat commentBoldFormat; // Only for Java and inside its comments.
+    QTextCharFormat noteFormat; // Notes inside comments (NOTE:, WARNING:, etc.).
+    QTextCharFormat quoteFormat; // Usually for double quotes.
+    QTextCharFormat altQuoteFormat; // Usually for single quotes.
     QTextCharFormat urlInsideQuoteFormat;
-    QTextCharFormat urlFormat;
+    QTextCharFormat urlFormat; // Inside comments.
     QTextCharFormat blockQuoteFormat;
     QTextCharFormat codeBlockFormat;
     QTextCharFormat whiteSpaceFormat; // For whitespaces.
-    QTextCharFormat translucentFormat;
+    QTextCharFormat translucentFormat; // When highlighting shouldn't be done (for huge blocks).
     QTextCharFormat regexFormat;
     QTextCharFormat errorFormat;
-    QTextCharFormat rawLiteralFormat;
+    QTextCharFormat rawLiteralFormat; // C++ raw string literals.
 
     /* Programming language: */
     QString progLan;
 
     QRegularExpression quoteMark, singleQuoteMark, backQuote, mixedQuoteMark, mixedQuoteBackquote;
     QRegularExpression xmlLt, xmlGt;
-    QRegularExpression cppLiteralStart;
+    QRegularExpression cppLiteralStart; // For C++ raw string literals.
+
+    /* These are the customizable colors. Each color should be used only for
+       one purpose, because highlighting is done based on color differences. */
     QColor Blue, DarkBlue, Red, DarkRed, Verda, DarkGreen, DarkGreenAlt, Magenta, DarkMagenta, Violet, Brown, DarkYellow;
 
     /* The start and end cursors of the visible text: */
     QTextCursor startCursor, endCursor;
 
-    int maxBlockSize_;
+    int maxBlockSize_; // No highlighting for greater blocks.
 
     bool hasQuotes_;
     bool multilineQuote_;

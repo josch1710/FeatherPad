@@ -64,11 +64,9 @@ Sessions can be saved and opened by using the Session Manager dialog. As mention
 
 FeatherPad also has a side-pane mode, which can be enabled either temporarily or with startup. It is most suitable for working with sessions because its file list is alphabetically ordered and can be filtered. Each pane item has a right-click menu, which contains menu-items for various jobs when there is more than one page. Items can also be removed by middle-clicking without being selected.
 
-The side-pane mode does not have features provided by tabs — for example, tab drag-and-drop is missing from it — and conversely — for example, tabs are not sorted and cannot be filtered — but the side-pane and tab modes can be used interchangeably by means of the Side-Pane menu-item, its toolbar button or its shortcut and also by middle-clicking an empty space inside the tab-bar or side-pane.
+The side-pane mode does not have features provided by tabs — for example, tab drag-and-drop is missing from it — and conversely — for example, tabs are not sorted and cannot be filtered — but the side-pane and tab modes can be used interchangeably by means of the Side-Pane menu-item, its toolbar button or its shortcut (Ctrl+Alt+P by default), and also by middle-clicking an empty space inside the tab-bar or side-pane.
 
-The side-pane can be opened by its shortcut (Ctrl+Alt+P by default). If it is already open but does not have focus, the same shortcut focuses it and, if it has focus, the shortcut closes it.
-
-To return the focus to the editor's main view from the side-pane or anywhere else, press the Escape key.
+To focus the side-pane when another widget has the focus, press Ctrl+Escape. To return the focus to the editor's main view from the side-pane or anywhere else, press the Escape key.
 
 *****************
 *   Encodings   *
@@ -78,13 +76,15 @@ FeatherPad tries to guess encodings when opening files. Although it often guesse
 
 Usually, you do not need to worry about encodings; nowadays, UTF-8 is the standard and is used everywhere.
 
+NOTE: Because Qt6 has removed the support for the legacy encodings, they are also removed from FeatherPad.
+
 *****************************
 *   Programming Languages   *
 *****************************
 
-The programming language of a file is detected based on its mime type or name and its syntax will be highlighted if the syntax highlighting is enabled and supports the language in question.
+The programming language of a file is detected based on its mime type or name, and its syntax will be highlighted if the syntax highlighting is enabled and supports the language in question.
 
-If a text has no programming language or its syntax is not supported, only its hyperlinks/URLs will be highlighted and it will be possible to open them by right clicking them and activating the related menu-item or by pressing the Control key, moving the cursor over them, and clicking them while the cursor is like a pointing hand.
+If a text has no programming language or its syntax is not supported, only its hyperlinks/URLs will be highlighted, and it will be possible to open them by right clicking them and activating the related menu-item or by pressing the Control key, moving the cursor over them, and clicking them while the cursor is like a pointing hand.
 
 If the option "Preferences → Text → Support syntax override" is enabled and checked, a language button will be added to the status bar for overriding the original syntax or lack of it. Reloading a document restores its original syntax.
 
@@ -210,7 +210,8 @@ Useful Extra (Hidden) Shortcuts:
 
 Window:
 *********
-Escape              Focus editor's main view without changing anything else
+Escape              Focus the editor's main view without changing anything else
+Ctrl+Escape         Focus the side-pane if existing
 F11                 (Un-)Fullscreen
 
 Zooming:

@@ -54,8 +54,6 @@ public:
     bool matchWhole() const;
     bool matchRegex() const;
 
-    bool hasPopup() const;
-
     void updateShortcuts (bool disable);
 
     void lockPage (bool lock);

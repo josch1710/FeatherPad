@@ -83,6 +83,7 @@ Config::Config():
     remSplitterPos_ (true),
     noToolbar_ (false),
     noMenubar_ (false),
+    menubarTitle_ (false),
     hideSearchbar_ (false),
     showStatusbar_ (true),
     showCursorPos_ (false),
@@ -97,6 +98,7 @@ Config::Config():
     syntaxByDefault_ (true),
     showWhiteSpace_ (false),
     showEndings_ (false),
+    textMargin_ (false),
     isMaxed_ (false),
     isFull_ (false),
     darkColScheme_ (false),
@@ -192,6 +194,9 @@ void Config::readConfig()
         noMenubar_ = true;
     }
 
+    if (settings.value ("menubarTitle").toBool())
+        menubarTitle_ = true; // false by default
+
     if (settings.value ("hideSearchbar").toBool())
         hideSearchbar_ = true; // false by default
 
@@ -282,6 +287,9 @@ void Config::readConfig()
 
     if (settings.value ("showEndings").toBool())
         showEndings_ = true; // false by default
+
+    if (settings.value ("textMargin").toBool())
+        textMargin_ = true; // false by default
 
     if (settings.value ("darkColorScheme").toBool())
         darkColScheme_ = true; // false by default
@@ -490,6 +498,7 @@ void Config::writeConfig()
     settings.setValue ("startSize", startSize_);
     settings.setValue ("noToolbar", noToolbar_);
     settings.setValue ("noMenubar", noMenubar_);
+    settings.setValue ("menubarTitle", menubarTitle_);
     settings.setValue ("hideSearchbar", hideSearchbar_);
     settings.setValue ("showStatusbar", showStatusbar_);
     settings.setValue ("showCursorPos", showCursorPos_);
@@ -526,6 +535,7 @@ void Config::writeConfig()
     settings.setValue ("noSyntaxHighlighting", !syntaxByDefault_);
     settings.setValue ("showWhiteSpace", showWhiteSpace_);
     settings.setValue ("showEndings", showEndings_);
+    settings.setValue ("textMargin", textMargin_);
     settings.setValue ("darkColorScheme", darkColScheme_);
     settings.setValue ("thickCursor", thickCursor_);
     settings.setValue ("inertialScrolling", inertialScrolling_);

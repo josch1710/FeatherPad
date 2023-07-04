@@ -31,8 +31,10 @@ class FPsingleton : public QApplication
 {
     Q_OBJECT
 public:
-    FPsingleton (int &argc, char **argv, bool standalone);
+    FPsingleton (int &argc, char **argv);
     ~FPsingleton();
+
+    void init (bool standalone);
 
     void sendInfo (const QStringList &info);
     void handleInfo (const QStringList &info);

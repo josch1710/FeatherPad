@@ -247,7 +247,7 @@ void FPwin::setProgLang (TextEdit *textEdit)
                 progLan = "javascript";
             else if (mime == "text/x-java")
                 progLan = "java";
-            else if (mime == "application/json")
+            else if (mime == "application/json" || mime == "application/schema+json")
                 progLan = "json";
             else if (mime == "text/x-qml")
                 progLan = "qml";

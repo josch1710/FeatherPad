@@ -3874,7 +3874,7 @@ void Highlighter::latexFormula (const QString &text)
     int commentStart = text.indexOf ('%');
     QString exp;
     TextBlockData *data = static_cast<TextBlockData *>(currentBlock().userData());
-    static const QRegularExpression latexFormulaStart ("\\${2}|\\$|\\\\\\(|\\\\\\[|\\\\begin\\s*{math}|\\\\begin\\s*{displaymath}|\\\\begin\\s*{equation}|\\\\begin\\s*{verbatim}|\\\\begin\\s*{verbatim\\*}");
+    static const QRegularExpression latexFormulaStart ("\\${2}|\\$|\\\\\\(|\\\\\\[|\\\\begin\\s*{math}|\\\\begin\\s*{math\\*}|\\\\begin\\s*{displaymath}|\\\\begin\\s*{displaymath\\*}|\\\\begin\\s*{multline}|\\\\begin\\s*{multline\\*}|\\\\begin\\s*{gather}|\\\\begin\\s*{gather\\*}|\\\\begin\\s*{cases}|\\\\begin\\s*{cases\\*}|\\\\begin\\s*{alignat}|\\\\begin\\s*{alignat\\*}|\\\\begin\\s*{xalignat}|\\\\begin\\s*{xalignat\\*}|\\\\begin\\s*{xxalignat}|\\\\begin\\s*{xxalignat\\*}|\\\\begin\\s*{eqnarray}|\\\\begin\\s*{eqnarray\\*}|\\\\begin\\s*{subeqnarray}|\\\\begin\\s*{subeqnarray\\*}|\\\\begin\\s*{align}|\\\\begin\\s*{align\\*}|\\\\begin\\s*{flalign}|\\\\begin\\s*{flalign\\*}|\\\\begin\\s*{equation}|\\\\begin\\s*{equation\\*}|\\\\begin\\s*{verbatim}|\\\\begin\\s*{verbatim\\*}");
     QRegularExpressionMatch startMatch;
     QRegularExpression endExp;
     QRegularExpressionMatch endMatch;
@@ -3918,9 +3918,71 @@ void Highlighter::latexFormula (const QString &text)
                 else// if (text.at (index + 1) == '[')
                     endExp.setPattern ("\\\\\\]");
             }
-            else
+            else if (startMatch.capturedLength() > 4) // the smallest is "math"
             {
-                if (text.at (index + startMatch.capturedLength() - 2) == 'h')
+                if (text.at (index + startMatch.capturedLength() - 2) == '*') // ending with "*"
+                {
+                    if (text.at (index + startMatch.capturedLength() - 3) == 'h')
+                    {
+                        if (startMatch.capturedLength() > 7
+                            && text.at (index + startMatch.capturedLength() - 7) == 'y')
+                        {
+                            endExp.setPattern ("\\\\end\\s*{displaymath\\*}");
+                        }
+                        else
+                            endExp.setPattern ("\\\\end\\s*{math\\*}");
+                    }
+                    else if (text.at (index + startMatch.capturedLength() - 3) == 'e')
+                        endExp.setPattern ("\\\\end\\s*{multline\\*}");
+                    else if (text.at (index + startMatch.capturedLength() - 3) == 'r')
+                        endExp.setPattern ("\\\\end\\s*{gather\\*}");
+                    else if (text.at (index + startMatch.capturedLength() - 3) == 's')
+                        endExp.setPattern ("\\\\end\\s*{cases\\*}");
+                    else if (text.at (index + startMatch.capturedLength() - 3) == 't')
+                    {
+                        if (startMatch.capturedLength() > 10
+                            && text.at (index + startMatch.capturedLength() - 10) == 'x')
+                        {
+                            if (startMatch.capturedLength() > 11
+                                && text.at (index + startMatch.capturedLength() - 11) == 'x')
+                            {
+                                endExp.setPattern ("\\\\end\\s*{xxalignat\\*}");
+                            }
+                            else
+                                endExp.setPattern ("\\\\end\\s*{xalignat\\*}");
+                        }
+                        else
+                            endExp.setPattern ("\\\\end\\s*{alignat\\*}");
+                    }
+                    else if (text.at (index + startMatch.capturedLength() - 3) == 'y')
+                    {
+                        if (startMatch.capturedLength() > 11
+                            && text.at (index + startMatch.capturedLength() - 11) == 'b')
+                        {
+                            endExp.setPattern ("\\\\end\\s*{subeqnarray\\*}");
+                        }
+                        else
+                            endExp.setPattern ("\\\\end\\s*{eqnarray\\*}");
+                    }
+                    else if (text.at (index + startMatch.capturedLength() - 3) == 'n')
+                    {
+                        if (text.at (index + startMatch.capturedLength() - 4) == 'g')
+                        {
+                            if (startMatch.capturedLength() > 9
+                                && text.at (index + startMatch.capturedLength() - 9) == 'f')
+                            {
+                                endExp.setPattern ("\\\\end\\s*{flalign\\*}");
+                            }
+                            else
+                                endExp.setPattern ("\\\\end\\s*{align\\*}");
+                        }
+                        else
+                            endExp.setPattern ("\\\\end\\s*{equation\\*}");
+                    }
+                    else // 'm'
+                        endExp.setPattern ("\\\\end\\s*{verbatim\\*}");
+                }
+                else if (text.at (index + startMatch.capturedLength() - 2) == 'h')
                 {
                     if (startMatch.capturedLength() > 6
                         && text.at (index + startMatch.capturedLength() - 6) == 'y')
@@ -3930,12 +3992,55 @@ void Highlighter::latexFormula (const QString &text)
                     else
                         endExp.setPattern ("\\\\end\\s*{math}");
                 }
+                else if (text.at (index + startMatch.capturedLength() - 2) == 'e')
+                    endExp.setPattern ("\\\\end\\s*{multline}");
+                else if (text.at (index + startMatch.capturedLength() - 2) == 'r')
+                    endExp.setPattern ("\\\\end\\s*{gather}");
+                else if (text.at (index + startMatch.capturedLength() - 2) == 's')
+                    endExp.setPattern ("\\\\end\\s*{cases}");
+                else if (text.at (index + startMatch.capturedLength() - 2) == 't')
+                {
+                    if (startMatch.capturedLength() > 9
+                        && text.at (index + startMatch.capturedLength() - 9) == 'x')
+                    {
+                        if (startMatch.capturedLength() > 10
+                            && text.at (index + startMatch.capturedLength() - 10) == 'x')
+                        {
+                            endExp.setPattern ("\\\\end\\s*{xxalignat}");
+                        }
+                        else
+                            endExp.setPattern ("\\\\end\\s*{xalignat}");
+                    }
+                    else
+                        endExp.setPattern ("\\\\end\\s*{alignat}");
+                }
+                else if (text.at (index + startMatch.capturedLength() - 2) == 'y')
+                {
+                    if (startMatch.capturedLength() > 10
+                        && text.at (index + startMatch.capturedLength() - 10) == 'b')
+                    {
+                        endExp.setPattern ("\\\\end\\s*{subeqnarray}");
+                    }
+                    else
+                        endExp.setPattern ("\\\\end\\s*{eqnarray}");
+                }
                 else if (text.at (index + startMatch.capturedLength() - 2) == 'n')
-                    endExp.setPattern ("\\\\end\\s*{equation}");
-                else if (text.at (index + startMatch.capturedLength() - 2) == 'm')
+                {
+                    if (text.at (index + startMatch.capturedLength() - 3) == 'g')
+                    {
+                        if (startMatch.capturedLength() > 8
+                            && text.at (index + startMatch.capturedLength() - 8) == 'f')
+                        {
+                            endExp.setPattern ("\\\\end\\s*{flalign}");
+                        }
+                        else
+                            endExp.setPattern ("\\\\end\\s*{align}");
+                    }
+                    else
+                        endExp.setPattern ("\\\\end\\s*{equation}");
+                }
+                else // 'm'
                     endExp.setPattern ("\\\\end\\s*{verbatim}");
-                else
-                    endExp.setPattern ("\\\\end\\s*{verbatim\\*}");
             }
             endIndex = text.indexOf (endExp,
                                      index + startMatch.capturedLength(),

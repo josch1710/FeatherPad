@@ -32,8 +32,24 @@
 int main (int argc, char **argv)
 {
     const QString name = "FeatherPad";
-    const QString version = "1.3.6";
-    const QString firstArg = QString::fromUtf8 (argv[1]);
+    const QString version = "1.4.2";
+
+    FeatherPad::FPsingleton singleton (argc, argv);
+    singleton.setApplicationName (name);
+    singleton.setApplicationVersion (version);
+
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+    singleton.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+#endif
+
+    QStringList args = singleton.arguments();
+    if (!args.isEmpty())
+        args.removeFirst();
+
+    QString firstArg;
+    if (!args.isEmpty())
+        firstArg = args.at (0);
+
     if (firstArg == "--help" || firstArg == "-h")
     {
         QTextStream out (stdout);
@@ -65,13 +81,7 @@ int main (int argc, char **argv)
         return 0;
     }
 
-    FeatherPad::FPsingleton singleton (argc, argv, firstArg == "--standalone" || firstArg == "-s");
-    singleton.setApplicationName (name);
-    singleton.setApplicationVersion (version);
-
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-    singleton.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
-#endif
+    singleton.init (firstArg == "--standalone" || firstArg == "-s");
 
     // with QLocale::system().name(), X and X_Y may be the same in tests
     QStringList langs (QLocale::system().uiLanguages());
@@ -120,12 +130,8 @@ int main (int argc, char **argv)
     int d = -1;
 #endif
     info << QString::number (d) << QDir::currentPath();
-    if (argc > 1)
-    {
-        info << firstArg;
-        for (int i = 2; i < argc; ++i)
-            info << QString::fromUtf8 (argv[i]);
-    }
+    if (!args.isEmpty())
+        info << args;
 
     if (!singleton.isPrimaryInstance())
     {

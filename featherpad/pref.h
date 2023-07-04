@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2019 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2023 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -78,6 +78,7 @@ private slots:
     void prefPos (int checked);
     void prefToolbar (int checked);
     void prefMenubar (int checked);
+    void prefMenubarTitle (int checked);
     void prefSearchbar (int checked);
     void prefSearchHistory (int checked);
     void prefStatusbar (int checked);
@@ -93,6 +94,7 @@ private slots:
     void prefVLine (int checked);
     void prefVLineDistance (int value);
     void prefEndings (int checked);
+    void prefTextMargin (int checked);
     void prefDarkColScheme (int checked);
     void prefColValue (int value);
     void prefAppendEmptyLine (int checked);
@@ -128,6 +130,9 @@ private slots:
     void disableMenubarAccel (int checked);
     void prefIcon (int checked);
 
+protected:
+    bool eventFilter (QObject *object, QEvent *event);
+
 private:
     void closeEvent (QCloseEvent *event);
     void prefTabPosition();
@@ -142,7 +147,7 @@ private:
 
     Ui::PrefDialog *ui;
     QWidget * parent_;
-    bool darkBg_, showWhiteSpace_, showEndings_, saveUnmodified_, sharedSearchHistory_, selHighlighting_, pastePaths_, disableMenubarAccel_, sysIcons_;
+    bool darkBg_, showWhiteSpace_, showEndings_, textMargin_, saveUnmodified_, sharedSearchHistory_, selHighlighting_, pastePaths_, disableMenubarAccel_, sysIcons_;
     int vLineDistance_, darkColValue_, lightColValue_, recentNumber_, textTabSize_, whiteSpaceValue_, curLineHighlight_;
     QHash<QString, QString> shortcuts_, newShortcuts_;
     QString prevtMsg_;

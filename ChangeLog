@@ -1,10 +1,30 @@
-V1.3.6
+V1.4.2
+---------
+ * Prevent the cursor position from being changed when files are dropped into the text view.
+
+V1.4.1
+---------
+ * Added more types to C/C++ syntax highlighting.
+ * To prevent problems on non-Linux systems, don't handle main arguments before calling `QCoreApplication` (Haiku OS may not provide a string argument before `QCoreApplication` is called).
+ * Added an option for a small margin around the text.
+ * Prevented window dragging from the line number strip (which was possible with widget styles like Kvantum).
+ * In Preferences dialog, don't let the mouse wheel focus spin and combo boxes or change their values when they aren't focused.
+ * In Preferences dialog, set the values of spin-boxes to their defaults if they are cleared.
+ * Don't remove single trailing spaces with LaTeX. Also, added more formula keywords to LaTeX.
+ * Fixed showing of the number of selected characters without selection highlighting.
+
+V1.4.0
 ---------
  * Check the view cursor before setting it.
- * Recognize `text/plain;charset=…` as plain text (Qt doesn't).
+ * Recognize `text/plain;charset=…` as plain text when pasting (Qt doesn't).
  * Highlight comments inside formulas with LaTex.
  * Use icons in the recent files menu where possible.
  * Prevent tab DND from tab close button.
+ * Focus side-pane with Ctrl+Escape.
+ * Safeguard the file type filters of file dialogs from bad translations.
+ * Added `application/x-zerosize` to the desktop file (after a change in GLib).
+ * Added an option for showing window title on the menubar.
+ * Fixed the tab tooltip for special folders.
 
 V1.3.5
 ---------

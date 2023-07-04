@@ -213,6 +213,17 @@ a menu button appears on the toolbar.</string>
                </widget>
               </item>
               <item>
+               <widget class="QCheckBox" name="menubarTitleBox">
+                <property name="toolTip">
+                 <string>Double clicking on the title toggles the maximized state.
+The title also has a right click menu when a file is opened.</string>
+                </property>
+                <property name="text">
+                 <string>Show window title on menubar</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QCheckBox" name="accelBox">
                 <property name="toolTip">
                  <string>Menubar accelerators are activated by Alt
@@ -768,6 +779,13 @@ Needs window reopening to take effect.</string>
                  </spacer>
                 </item>
                </layout>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="marginBox">
+                <property name="text">
+                 <string>Add a small margin around text</string>
+                </property>
+               </widget>
               </item>
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_8">

@@ -39,7 +39,7 @@ namespace FeatherPad {
 static const char *serviceName = "org.featherpad.FeatherPad";
 static const char *ifaceName = "org.featherpad.Application";
 
-FPsingleton::FPsingleton (int &argc, char **argv, bool standalone) : QApplication (argc, argv)
+FPsingleton::FPsingleton (int &argc, char **argv) : QApplication (argc, argv)
 {
 #ifdef HAS_X11
     isX11_ = (QString::compare (QGuiApplication::platformName(), "xcb", Qt::CaseInsensitive) == 0);
@@ -52,8 +52,9 @@ FPsingleton::FPsingleton (int &argc, char **argv, bool standalone) : QApplicatio
     else
         isWayland_ = (QString::compare (QGuiApplication::platformName(), "wayland", Qt::CaseInsensitive) == 0);
 
+    isPrimaryInstance_ = true;
+    standalone_ = false;
     quitSignalReceived_ = false;
-    standalone_ = standalone;
     isRoot_ = false;
     config_.readConfig();
     lastFiles_ = config_.getLastFiles();
@@ -61,8 +62,17 @@ FPsingleton::FPsingleton (int &argc, char **argv, bool standalone) : QApplicatio
         searchModel_ = new QStandardItemModel (0, 1, this);
     else
         searchModel_ = nullptr;
-
-    isPrimaryInstance_ = standalone_;
+}
+/*************************/
+FPsingleton::~FPsingleton()
+{
+    qDeleteAll (Wins);
+}
+/*************************/
+void FPsingleton::init (bool standalone)
+{
+    standalone_ = standalone;
+    isPrimaryInstance_ = standalone;
     if (!standalone_)
     {
         QDBusConnection dbus = QDBusConnection::sessionBus();
@@ -78,11 +88,6 @@ FPsingleton::FPsingleton (int &argc, char **argv, bool standalone) : QApplicatio
             dbus.registerObject (QStringLiteral ("/Application"), this);
         }
     }
-}
-/*************************/
-FPsingleton::~FPsingleton()
-{
-    qDeleteAll (Wins);
 }
 /*************************/
 void FPsingleton::quitting()

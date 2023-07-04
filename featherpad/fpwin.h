@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2022 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2023 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -80,6 +80,8 @@ public:
         return defaultShortcuts_;
     }
 
+    void menubarTitle (bool add = true, bool setTitle = false);
+
 signals:
     void finishedLoading();
 
@@ -159,6 +161,7 @@ private slots:
     void zoomZero();
     void defaultSize();
     void focusView();
+    void focusSidePane();
     //void align();
     void manageSessions();
     void executeProcess();
@@ -217,6 +220,7 @@ private:
                    int restoreCursor = 0, int posInLine = 0,
                    bool enforceUneditable = false, bool multiple = false);
     bool alreadyOpen (TabPage *tabPage) const;
+    void setWinTitle (const QString& title);
     void setTitle (const QString& fileName, int tabIndex = -1);
     DOCSTATE savePrompt (int tabIndex, bool noToAll,
                          int first = 0, int last = 0, bool closingWindow = false,

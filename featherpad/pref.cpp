@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2022 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2023 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -30,6 +30,7 @@
 #include <QFileInfo>
 #include <QFileDialog>
 #include <QColorDialog>
+#include <QWheelEvent>
 
 namespace FeatherPad {
 
@@ -116,6 +117,7 @@ PrefDialog::PrefDialog (QWidget *parent)
     recentNumber_ = config.getRecentFilesNumber();
     showWhiteSpace_ = config.getShowWhiteSpace();
     showEndings_ = config.getShowEndings();
+    textMargin_ = config.getTextMargin();
     vLineDistance_ = config.getVLineDistance();
     textTabSize_ = config.getTextTabSize();
     saveUnmodified_ = config.getSaveUnmodified();
@@ -157,6 +159,20 @@ PrefDialog::PrefDialog (QWidget *parent)
     /* old-fashioned: connect (ui->spinX, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),... */
     connect (ui->spinX, QOverload<int>::of(&QSpinBox::valueChanged), this, &PrefDialog::prefStartSize);
     connect (ui->spinY, QOverload<int>::of(&QSpinBox::valueChanged), this, &PrefDialog::prefStartSize);
+    if (auto le = ui->spinX->findChild<QLineEdit*>())
+    {
+        connect (le, &QLineEdit::textChanged, this, [this, config] (const QString &txt) {
+            if (txt == ui->spinX->suffix())
+                ui->spinX->setValue (config.getDefaultStartSize().width());
+        });
+    }
+    if (auto le = ui->spinY->findChild<QLineEdit*>())
+    {
+        connect (le, &QLineEdit::textChanged, this, [this, config] (const QString &txt) {
+            if (txt == ui->spinY->suffix())
+                ui->spinY->setValue (config.getDefaultStartSize().height());
+        });
+    }
 
     ui->winPosBox->setChecked (config.getRemPos());
     connect (ui->winPosBox, &QCheckBox::stateChanged, this, &PrefDialog::prefPos);
@@ -165,6 +181,9 @@ PrefDialog::PrefDialog (QWidget *parent)
     connect (ui->toolbarBox, &QCheckBox::stateChanged, this, &PrefDialog::prefToolbar);
     ui->menubarBox->setChecked (config.getNoMenubar());
     connect (ui->menubarBox, &QCheckBox::stateChanged, this, &PrefDialog::prefMenubar);
+
+    ui->menubarTitleBox->setChecked (config.getMenubarTitle());
+    connect (ui->menubarTitleBox, &QCheckBox::stateChanged, this, &PrefDialog::prefMenubarTitle);
 
     ui->searchbarBox->setChecked (config.getHideSearchbar());
     connect (ui->searchbarBox, &QCheckBox::stateChanged, this, &PrefDialog::prefSearchbar);
@@ -244,9 +263,19 @@ PrefDialog::PrefDialog (QWidget *parent)
     ui->vLineSpin->setEnabled (vLineDistance_ >= 10);
     ui->vLineSpin->setValue (qAbs (vLineDistance_));
     connect (ui->vLineSpin, QOverload<int>::of(&QSpinBox::valueChanged), this, &PrefDialog::prefVLineDistance);
+    if (auto le = ui->vLineSpin->findChild<QLineEdit*>())
+    {
+        connect (le, &QLineEdit::textChanged, this, [this, config] (const QString &txt) {
+            if (txt.isEmpty())
+                ui->vLineSpin->setValue (config.getDefaultVLineDistance());
+        });
+    }
 
     ui->endingsBox->setChecked (config.getShowEndings());
     connect (ui->endingsBox, &QCheckBox::stateChanged, this, &PrefDialog::prefEndings);
+
+    ui->marginBox->setChecked (config.getTextMargin());
+    connect (ui->marginBox, &QCheckBox::stateChanged, this, &PrefDialog::prefTextMargin);
 
     ui->colBox->setChecked (config.getDarkColScheme());
     connect (ui->colBox, &QCheckBox::stateChanged, this, &PrefDialog::prefDarkColScheme);
@@ -283,6 +312,13 @@ PrefDialog::PrefDialog (QWidget *parent)
 
     ui->spinBox->setValue (config.getMaxSHSize());
     connect (ui->spinBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &PrefDialog::prefMaxSHSize);
+    if (auto le = ui->spinBox->findChild<QLineEdit*>())
+    {
+        connect (le, &QLineEdit::textChanged, this, [this, config] (const QString &txt) {
+            if (txt == ui->spinBox->suffix())
+                ui->spinBox->setValue (config.getDefaultMaxSHSize());
+        });
+    }
 
     ui->inertiaBox->setChecked (config.getInertialScrolling());
     connect (ui->inertiaBox, &QCheckBox::stateChanged, this, &PrefDialog::prefInertialScrolling);
@@ -310,6 +346,13 @@ PrefDialog::PrefDialog (QWidget *parent)
     ui->recentSpin->setValue (config.getRecentFilesNumber());
     ui->recentSpin->setSuffix (" " + (ui->recentSpin->value() > 1 ? tr ("files") : tr ("file")));
     connect (ui->recentSpin, QOverload<int>::of(&QSpinBox::valueChanged), this, &PrefDialog::prefRecentFilesNumber);
+    if (auto le = ui->recentSpin->findChild<QLineEdit*>())
+    {
+        connect (le, &QLineEdit::textChanged, this, [this, config] (const QString &txt) {
+            if (txt == ui->recentSpin->suffix())
+                ui->recentSpin->setValue (config.getDefaultRecentFilesNumber());
+        });
+    }
 
     ui->lastFilesBox->setChecked (config.getSaveLastFilesList());
     connect (ui->lastFilesBox, &QCheckBox::stateChanged, this, &PrefDialog::prefSaveLastFilesList);
@@ -320,6 +363,13 @@ PrefDialog::PrefDialog (QWidget *parent)
     ui->autoSaveBox->setChecked (config.getAutoSave());
     ui->autoSaveSpin->setValue (config.getAutoSaveInterval());
     ui->autoSaveSpin->setEnabled (ui->autoSaveBox->isChecked());
+    if (auto le = ui->autoSaveSpin->findChild<QLineEdit*>())
+    {
+        connect (le, &QLineEdit::textChanged, this, [this] (const QString &txt) {
+            if (txt == ui->autoSaveSpin->suffix())
+                ui->autoSaveSpin->setValue (ui->autoSaveSpin->minimum());
+        });
+    }
     connect (ui->autoSaveBox, &QCheckBox::stateChanged, this, &PrefDialog::prefAutoSave);
 
     ui->unmodifiedSaveBox->setChecked (saveUnmodified_);
@@ -445,6 +495,13 @@ PrefDialog::PrefDialog (QWidget *parent)
     ui->whiteSpaceSpin->setMaximum (config.getMaxWhiteSpaceValue());
     ui->whiteSpaceSpin->setValue (whiteSpaceValue_);
     connect (ui->whiteSpaceSpin, QOverload<int>::of(&QSpinBox::valueChanged), this, &PrefDialog::changeWhitespaceValue);
+    if (auto le = ui->whiteSpaceSpin->findChild<QLineEdit*>())
+    {
+        connect (le, &QLineEdit::textChanged, this, [this, config] (const QString &txt) {
+            if (txt.isEmpty())
+                ui->whiteSpaceSpin->setValue (config.getDefaultWhiteSpaceValue());
+        });
+    }
     connect (ui->defaultSyntaxButton, &QAbstractButton::clicked, this, &PrefDialog::restoreDefaultSyntaxColors);
     ui->defaultSyntaxButton->setDisabled (config.customSyntaxColors().isEmpty()
                                           && whiteSpaceValue_ == config.getDefaultWhiteSpaceValue()
@@ -468,6 +525,13 @@ PrefDialog::PrefDialog (QWidget *parent)
     ui->curLineSpin->setMaximum (config.getMaxCurLineHighlight());
     ui->curLineSpin->setValue (curLineHighlight_);
     connect (ui->curLineSpin, QOverload<int>::of(&QSpinBox::valueChanged), this, &PrefDialog::changeCurLineHighlight);
+    if (auto le = ui->curLineSpin->findChild<QLineEdit*>())
+    {
+        connect (le, &QLineEdit::textChanged, this, [this] (const QString &txt) {
+            if (txt.isEmpty())
+                ui->curLineSpin->setValue (ui->curLineSpin->minimum());
+        });
+    }
 
     /*************
      *** Other ***
@@ -487,6 +551,13 @@ PrefDialog::PrefDialog (QWidget *parent)
             w->setWhatsThis (tip.replace ('\n', ' ').replace ("  ", "\n\n"));
             /* for the tooltip mess in Qt 5.12 */
             w->setToolTip ("<p style='white-space:pre'>" + w->toolTip() + "</p>");
+        }
+
+        /* don't let spin and combo boxes accept wheel events when not focused */
+        if (qobject_cast<QSpinBox *>(w) || qobject_cast<QComboBox *>(w))
+        {
+            w->setFocusPolicy (Qt::StrongFocus);
+            w->installEventFilter (this);
         }
     }
 
@@ -572,6 +643,7 @@ void PrefDialog::showPrompt (const QString& str, bool temporary)
              || (!darkBg_ && lightColValue_ != config.getLightBgColorValue())
              || showWhiteSpace_ != config.getShowWhiteSpace()
              || showEndings_ != config.getShowEndings()
+             || textMargin_ != config.getTextMargin()
              || textTabSize_ != config.getTextTabSize()
              || (vLineDistance_ * config.getVLineDistance() < 0
                  || (vLineDistance_ > 0 && vLineDistance_ != config.getVLineDistance()))
@@ -604,6 +676,26 @@ void PrefDialog::showPrompt (const QString& str, bool temporary)
 void PrefDialog::showWhatsThis()
 {
     QWhatsThis::enterWhatsThisMode();
+}
+/*************************/
+bool PrefDialog::eventFilter (QObject *object, QEvent *event)
+{
+    if (event->type() == QEvent::Wheel
+       && (qobject_cast<QSpinBox *>(object) || qobject_cast<QComboBox *>(object))
+       && !qobject_cast<QWidget *>(object)->hasFocus())
+    {
+        /* Don't let unfocused spin and combo boxes accept wheel events;
+           let the parent widget scroll instead.
+           NOTE: Sending the wheel event to the parent widget wasn't
+                 needed with Qt5, but the behavior has changed in Qt6. */
+        if (auto p = qobject_cast<QWidget *>(object)->parentWidget())
+        {
+            if (QWheelEvent *we = static_cast<QWheelEvent *>(event))
+                QCoreApplication::sendEvent (p, we);
+        }
+        return true;
+    }
+    return QDialog::eventFilter (object, event);
 }
 /*************************/
 void PrefDialog::prefSize (int checked)
@@ -677,6 +769,7 @@ void PrefDialog::prefMenubar (int checked)
         config.setNoMenubar (true);
         for (int i = 0; i < singleton->Wins.count(); ++i)
         {
+            singleton->Wins.at (i)->menubarTitle (false);
             singleton->Wins.at (i)->ui->menuBar->setVisible (false);
             singleton->Wins.at (i)->ui->actionMenu->setVisible (true);
         }
@@ -688,6 +781,32 @@ void PrefDialog::prefMenubar (int checked)
         {
             singleton->Wins.at (i)->ui->menuBar->setVisible (true);
             singleton->Wins.at (i)->ui->actionMenu->setVisible (false);
+            if (config.getMenubarTitle())
+                singleton->Wins.at (i)->menubarTitle (true, true);
+        }
+    }
+}
+/*************************/
+void PrefDialog::prefMenubarTitle (int checked)
+{
+    FPsingleton *singleton = static_cast<FPsingleton*>(qApp);
+    Config& config = singleton->getConfig();
+    if (checked == Qt::Checked)
+    {
+        config.setMenubarTitle (true);
+        if (!config.getNoMenubar())
+        {
+            for (int i = 0; i < singleton->Wins.count(); ++i)
+                singleton->Wins.at (i)->menubarTitle (true, true);
+        }
+    }
+    else if (checked == Qt::Unchecked)
+    {
+        config.setMenubarTitle (false);
+        if (!config.getNoMenubar())
+        {
+            for (int i = 0; i < singleton->Wins.count(); ++i)
+                singleton->Wins.at (i)->menubarTitle (false);
         }
     }
 }
@@ -1059,6 +1178,17 @@ void PrefDialog::prefEndings (int checked)
         config.setShowEndings (true);
     else if (checked == Qt::Unchecked)
         config.setShowEndings (false);
+
+    showPrompt();
+}
+/*************************/
+void PrefDialog::prefTextMargin (int checked)
+{
+    Config& config = static_cast<FPsingleton*>(qApp)->getConfig();
+    if (checked == Qt::Checked)
+        config.setTextMargin (true);
+    else if (checked == Qt::Unchecked)
+        config.setTextMargin (false);
 
     showPrompt();
 }
@@ -1663,7 +1793,7 @@ void PrefDialog::addDict()
     dialog.setAcceptMode (QFileDialog::AcceptOpen);
     dialog.setWindowTitle (tr ("Add dictionary..."));
     dialog.setFileMode (QFileDialog::ExistingFile);
-    dialog.setNameFilter (tr ("Hunspell Dictionary Files (*.dic)"));
+    dialog.setNameFilter (tr ("Hunspell Dictionary Files") + " (*.dic)");
     QString path = ui->dictEdit->text();
     if (path.isEmpty())
     {
