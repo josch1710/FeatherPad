@@ -4,7 +4,7 @@
 <context>
     <name>FeatherPad::AboutDialog</name>
     <message>
-        <location filename="../../about.ui" line="173"/>
+        <location filename="../../about.ui" line="177"/>
         <source>License</source>
         <translation>Llicència</translation>
     </message>
@@ -12,25 +12,25 @@
 <context>
     <name>FeatherPad::FPwin</name>
     <message>
-        <location filename="../../fpwin.cpp" line="484"/>
-        <location filename="../../fpwin.cpp" line="1611"/>
-        <location filename="../../fpwin.cpp" line="1663"/>
-        <location filename="../../fpwin.cpp" line="2259"/>
-        <location filename="../../fpwin.cpp" line="2321"/>
-        <location filename="../../fpwin.cpp" line="3086"/>
-        <location filename="../../fpwin.cpp" line="3106"/>
+        <location filename="../../fpwin.cpp" line="452"/>
+        <location filename="../../fpwin.cpp" line="1574"/>
+        <location filename="../../fpwin.cpp" line="1627"/>
+        <location filename="../../fpwin.cpp" line="2255"/>
+        <location filename="../../fpwin.cpp" line="2317"/>
+        <location filename="../../fpwin.cpp" line="3089"/>
         <location filename="../../fpwin.cpp" line="3109"/>
-        <location filename="../../fpwin.cpp" line="4072"/>
-        <location filename="../../fpwin.cpp" line="4825"/>
-        <location filename="../../fpwin.cpp" line="5119"/>
-        <location filename="../../fpwin.cpp" line="5378"/>
+        <location filename="../../fpwin.cpp" line="3112"/>
+        <location filename="../../fpwin.cpp" line="4056"/>
+        <location filename="../../fpwin.cpp" line="4760"/>
+        <location filename="../../fpwin.cpp" line="5057"/>
+        <location filename="../../fpwin.cpp" line="5318"/>
         <source>Untitled</source>
         <translation>Sense títol</translation>
     </message>
     <message>
         <location filename="../../fp.ui" line="71"/>
         <source>Go to line:</source>
-        <translation>Vés a la línia:</translation>
+        <translation>Ves a la línia:</translation>
     </message>
     <message>
         <location filename="../../fp.ui" line="107"/>
@@ -56,7 +56,7 @@
     </message>
     <message>
         <location filename="../../fp.ui" line="189"/>
-        <location filename="../../fp.ui" line="983"/>
+        <location filename="../../fp.ui" line="787"/>
         <source>&amp;Edit</source>
         <translation>&amp;Edita</translation>
     </message>
@@ -66,514 +66,514 @@
         <translation>&amp;Opcions</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2984"/>
-        <location filename="../../fpwin.cpp" line="4635"/>
+        <location filename="../../fpwin.cpp" line="2989"/>
+        <location filename="../../fpwin.cpp" line="4560"/>
         <source>Encoding</source>
         <translation>Codificació</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="282"/>
+        <location filename="../../fp.ui" line="242"/>
         <source>&amp;Search</source>
         <translation>&amp;Cerca</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="290"/>
-        <location filename="../../fp.ui" line="749"/>
+        <location filename="../../fp.ui" line="250"/>
+        <location filename="../../fp.ui" line="709"/>
         <source>&amp;Help</source>
         <translation>&amp;Ajuda</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="393"/>
+        <location filename="../../fp.ui" line="353"/>
         <source>Find:</source>
         <translation>Cerca:</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="409"/>
+        <location filename="../../fp.ui" line="369"/>
         <source>To be replaced</source>
         <translation>Per substituir</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="422"/>
+        <location filename="../../fp.ui" line="382"/>
         <source>Replace with:</source>
         <translation>Substitueix amb:</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="438"/>
+        <location filename="../../fp.ui" line="398"/>
         <source>Replacing text</source>
         <translation>Text de substitució</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="497"/>
+        <location filename="../../fp.ui" line="457"/>
         <source>&amp;New</source>
         <translation>&amp;Nou</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="500"/>
+        <location filename="../../fp.ui" line="460"/>
         <source>New tab</source>
-        <translation>Nova pestanya</translation>
+        <translation>Pestanya nova</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="503"/>
+        <location filename="../../fp.ui" line="463"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="508"/>
+        <location filename="../../fp.ui" line="468"/>
         <source>&amp;Open</source>
         <translation>&amp;Obre</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="511"/>
+        <location filename="../../fp.ui" line="471"/>
         <source>Open a file</source>
         <translation>Obre un fitxer</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="514"/>
+        <location filename="../../fp.ui" line="474"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="522"/>
-        <location filename="../../fpwin.cpp" line="1404"/>
+        <location filename="../../fp.ui" line="482"/>
+        <location filename="../../fpwin.cpp" line="1367"/>
         <source>&amp;Save</source>
         <translation>&amp;Desa</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="525"/>
+        <location filename="../../fp.ui" line="485"/>
         <source>Save the current tab</source>
         <translation>Desa la pestanya actual</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="528"/>
+        <location filename="../../fp.ui" line="488"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="536"/>
+        <location filename="../../fp.ui" line="496"/>
         <source>&amp;Undo</source>
         <translation>&amp;Desfés</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="539"/>
+        <location filename="../../fp.ui" line="499"/>
         <source>Undo</source>
         <translation>Desfés</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="542"/>
+        <location filename="../../fp.ui" line="502"/>
         <source>Ctrl+Z</source>
         <translation>Ctrl+Z</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="550"/>
+        <location filename="../../fp.ui" line="510"/>
         <source>&amp;Redo</source>
         <translation>&amp;Refés</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="553"/>
+        <location filename="../../fp.ui" line="513"/>
         <source>Redo</source>
         <translation>Refés</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="556"/>
+        <location filename="../../fp.ui" line="516"/>
         <source>Ctrl+Shift+Z</source>
         <translation>Ctrl+Maj+Z</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="564"/>
-        <location filename="../../fp.ui" line="567"/>
+        <location filename="../../fp.ui" line="524"/>
+        <location filename="../../fp.ui" line="527"/>
         <source>Reload</source>
         <translation>Recarrega el fitxer</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="570"/>
+        <location filename="../../fp.ui" line="530"/>
         <source>Ctrl+Shift+R</source>
         <translation>Ctrl+Maj+R</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="575"/>
+        <location filename="../../fp.ui" line="535"/>
         <source>&amp;Find</source>
         <translation>&amp;Cerca</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="581"/>
+        <location filename="../../fp.ui" line="541"/>
         <source>Ctrl+F</source>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="589"/>
+        <location filename="../../fp.ui" line="549"/>
         <source>Show/hide replacement dock</source>
         <translation>Mostra/Amaga el panell de substitució</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="592"/>
+        <location filename="../../fp.ui" line="552"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="597"/>
+        <location filename="../../fp.ui" line="557"/>
         <source>Save &amp;As</source>
-        <translation>Desa &amp;com a</translation>
+        <translation>Desa com &amp;a</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="600"/>
+        <location filename="../../fp.ui" line="560"/>
         <source>Ctrl+Shift+S</source>
         <translation>Ctrl+Maj+S</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="605"/>
+        <location filename="../../fp.ui" line="565"/>
         <source>&amp;Print</source>
         <translation>&amp;Imprimeix</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="608"/>
+        <location filename="../../fp.ui" line="568"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="613"/>
+        <location filename="../../fp.ui" line="573"/>
         <source>Documen&amp;t Properties</source>
-        <translation>Propietats del &amp;document</translation>
+        <translation>Propie&amp;tats del document</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="616"/>
+        <location filename="../../fp.ui" line="576"/>
         <source>Ctrl+Shift+D</source>
         <translation>Ctrl+Maj+D</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="621"/>
+        <location filename="../../fp.ui" line="581"/>
         <source>&amp;Close</source>
         <translation>&amp;Tanca</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="624"/>
+        <location filename="../../fp.ui" line="584"/>
         <source>Ctrl+Shift+Q</source>
         <translation>Ctrl+Maj+Q</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="629"/>
+        <location filename="../../fp.ui" line="589"/>
         <source>&amp;Quit</source>
         <translation>&amp;Surt</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="632"/>
+        <location filename="../../fp.ui" line="592"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="640"/>
+        <location filename="../../fp.ui" line="600"/>
         <source>&amp;Cut</source>
         <translation>&amp;Retalla</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="643"/>
+        <location filename="../../fp.ui" line="603"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="651"/>
+        <location filename="../../fp.ui" line="611"/>
         <source>C&amp;opy</source>
         <translation>&amp;Copia</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="654"/>
+        <location filename="../../fp.ui" line="614"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="659"/>
+        <location filename="../../fp.ui" line="619"/>
         <source>&amp;Paste</source>
         <translation>&amp;Enganxa</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="662"/>
+        <location filename="../../fp.ui" line="622"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="670"/>
+        <location filename="../../fp.ui" line="630"/>
         <source>&amp;Delete</source>
         <translation>&amp;Esborra</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="675"/>
+        <location filename="../../fp.ui" line="635"/>
         <source>&amp;Select All</source>
-        <translation>&amp;Selecciona tot</translation>
+        <translation>&amp;Selecciona-ho tot</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="678"/>
+        <location filename="../../fp.ui" line="638"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="683"/>
+        <location filename="../../fp.ui" line="643"/>
         <source>&amp;Font</source>
         <translation>&amp;Tipus de Lletra</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="691"/>
+        <location filename="../../fp.ui" line="651"/>
         <source>&amp;Line Numbers</source>
         <translation>&amp;Números de línia</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="694"/>
+        <location filename="../../fp.ui" line="654"/>
         <source>Ctrl+L</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="705"/>
+        <location filename="../../fp.ui" line="665"/>
         <source>&amp;Wrap Lines</source>
         <translation>&amp;Ajusta les línies</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="708"/>
+        <location filename="../../fp.ui" line="668"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="719"/>
+        <location filename="../../fp.ui" line="679"/>
         <source>&amp;Auto-Indentation</source>
         <translation>&amp;Sagnat automàtic</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="722"/>
+        <location filename="../../fp.ui" line="682"/>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="733"/>
+        <location filename="../../fp.ui" line="693"/>
         <source>&amp;Syntax Highlighting</source>
         <translation>&amp;Realçat de sintaxi</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="736"/>
+        <location filename="../../fp.ui" line="696"/>
         <source>Ctrl+Shift+H</source>
         <translation>Ctrl+Maj+H</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="741"/>
+        <location filename="../../fp.ui" line="701"/>
         <source>&amp;Preferences</source>
-        <translation>&amp;Paràmetres</translation>
+        <translation>&amp;Preferències</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="744"/>
+        <location filename="../../fp.ui" line="704"/>
         <source>Ctrl+Shift+P</source>
         <translation>Ctrl+Maj+P</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="752"/>
+        <location filename="../../fp.ui" line="712"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="757"/>
+        <location filename="../../fp.ui" line="717"/>
         <source>&amp;About</source>
         <translation>&amp;Quant a</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="784"/>
+        <location filename="../../fp.ui" line="733"/>
         <source>Enforce UTF-8</source>
         <translation>Força UTF-8</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="967"/>
+        <location filename="../../fp.ui" line="771"/>
         <source>Save with &amp;Encoding</source>
         <translation>Desa amb &amp;Codificació</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="972"/>
+        <location filename="../../fp.ui" line="776"/>
         <source>&amp;Jump to</source>
         <translation>&amp;Salta a</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="975"/>
+        <location filename="../../fp.ui" line="779"/>
         <source>Show/hide jump bar</source>
-        <translation>Mostra/Amaga la barra de salt</translation>
+        <translation>Mostra / Amaga la barra de salt</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="978"/>
+        <location filename="../../fp.ui" line="782"/>
         <source>Ctrl+J</source>
         <translation>Ctrl+J</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="986"/>
+        <location filename="../../fp.ui" line="790"/>
         <source>Edit text</source>
         <translation>Edita el text</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="989"/>
+        <location filename="../../fp.ui" line="793"/>
         <source>Ctrl+Shift+E</source>
         <translation>Ctrl+Maj+E</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1092"/>
+        <location filename="../../fp.ui" line="888"/>
         <source>&amp;Run</source>
         <translation>&amp;Executa</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1098"/>
+        <location filename="../../fp.ui" line="894"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1103"/>
+        <location filename="../../fp.ui" line="899"/>
         <source>&amp;Clear</source>
         <translation>&amp;Neteja</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1106"/>
+        <location filename="../../fp.ui" line="902"/>
         <source>Clear the list of recently modified files</source>
         <translation>Neteja la llista de fitxers modificats recents</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1114"/>
+        <location filename="../../fp.ui" line="910"/>
         <source>Save/Restore Session</source>
-        <translation>Desa/Restaura la Sessió</translation>
+        <translation>Desa / Restaura la sessió</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1111"/>
+        <location filename="../../fp.ui" line="907"/>
         <source>Sa&amp;ve/Restore Session</source>
         <translation>De&amp;sa/Restaura la Sessió</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1117"/>
+        <location filename="../../fp.ui" line="913"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1122"/>
+        <location filename="../../fp.ui" line="918"/>
         <source>Side-Pane</source>
         <translation>Panell lateral</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1125"/>
+        <location filename="../../fp.ui" line="921"/>
         <source>Ctrl+Alt+P</source>
         <translation>Ctrl+Alt+P</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1130"/>
+        <location filename="../../fp.ui" line="926"/>
         <source>Paste Date and Time</source>
         <translation>Enganxa Data i Hora</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1133"/>
+        <location filename="../../fp.ui" line="929"/>
         <source>Ctrl+Shift+V</source>
         <translation>Ctrl+Maj+V</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1138"/>
-        <location filename="../../fp.ui" line="1141"/>
+        <location filename="../../fp.ui" line="934"/>
+        <location filename="../../fp.ui" line="937"/>
         <source>To Upper Case</source>
         <translation>Canvia a Majúscules</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1144"/>
+        <location filename="../../fp.ui" line="940"/>
         <source>Ctrl+Shift+U</source>
         <translation>Ctrl+Maj+U</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1149"/>
-        <location filename="../../fp.ui" line="1152"/>
+        <location filename="../../fp.ui" line="945"/>
+        <location filename="../../fp.ui" line="948"/>
         <source>To Lower Case</source>
         <translation>Canvia a minúscules</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1155"/>
+        <location filename="../../fp.ui" line="951"/>
         <source>Ctrl+Shift+L</source>
         <translation>Ctrl+Maj+L</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1160"/>
-        <location filename="../../fp.ui" line="1163"/>
+        <location filename="../../fp.ui" line="956"/>
+        <location filename="../../fp.ui" line="959"/>
         <source>To Start Case</source>
         <translation>Inicial Majúscula</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1171"/>
-        <location filename="../../fp.ui" line="1174"/>
+        <location filename="../../fp.ui" line="967"/>
+        <location filename="../../fp.ui" line="970"/>
         <source>Last Active Tab</source>
         <translation>Última pestanya activa</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1177"/>
+        <location filename="../../fp.ui" line="973"/>
         <source>F1</source>
         <translation>F1</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1182"/>
-        <location filename="../../fp.ui" line="1185"/>
+        <location filename="../../fp.ui" line="978"/>
+        <location filename="../../fp.ui" line="981"/>
         <source>Sort Lines</source>
-        <translation>Ordena línies</translation>
+        <translation>Ordena les línies</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1190"/>
-        <location filename="../../fp.ui" line="1193"/>
+        <location filename="../../fp.ui" line="986"/>
+        <location filename="../../fp.ui" line="989"/>
         <source>Sort Lines Reversely</source>
         <translation>Ordena les línies inversament</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1198"/>
+        <location filename="../../fp.ui" line="994"/>
         <source>Check Spelling</source>
-        <translation>Comprova l&apos;ortografia</translation>
+        <translation>Comprova&apos;n l&apos;ortografia</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1201"/>
+        <location filename="../../fp.ui" line="997"/>
         <source>F2</source>
         <translation>F2</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1206"/>
-        <location filename="../../fp.ui" line="1209"/>
+        <location filename="../../fp.ui" line="1002"/>
+        <location filename="../../fp.ui" line="1005"/>
         <source>Save All Files</source>
         <translation>Desa tots els fitxers</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1214"/>
-        <location filename="../../fp.ui" line="1217"/>
+        <location filename="../../fp.ui" line="1010"/>
+        <location filename="../../fp.ui" line="1013"/>
         <source>User Dictionary</source>
-        <translation>Diccionari d&apos;usuari</translation>
+        <translation>Diccionari de l&apos;usuari</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1222"/>
+        <location filename="../../fp.ui" line="1018"/>
         <source>Text Tabs to Spaces</source>
         <translation>Tabuladors de text a espais</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="997"/>
+        <location filename="../../fp.ui" line="801"/>
         <source>&amp;Detach Tab</source>
         <translation>&amp;Desacobla la pestanya</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1000"/>
+        <location filename="../../fp.ui" line="804"/>
         <source>Ctrl+T</source>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1013"/>
+        <location filename="../../fp.ui" line="809"/>
         <source>Close Ne&amp;xt Tabs</source>
         <translation>Tanca les pestanya següents</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1018"/>
+        <location filename="../../fp.ui" line="814"/>
         <source>Close &amp;Previous Tabs</source>
         <translation>Tanca les &amp;pestanyes anteriors</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1046"/>
+        <location filename="../../fp.ui" line="842"/>
         <source>Ne&amp;xt Tab</source>
         <translation>Pesta&amp;nya següent</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1057"/>
+        <location filename="../../fp.ui" line="853"/>
         <source>Previous Ta&amp;b</source>
         <translation>Pes&amp;tanya anterior</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1095"/>
+        <location filename="../../fp.ui" line="891"/>
         <source>Execute</source>
         <translation>Executa</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1023"/>
+        <location filename="../../fp.ui" line="819"/>
         <source>Close &amp;All Tabs</source>
         <translation>Tanca to&amp;tes les pestanyes</translation>
     </message>
@@ -588,669 +588,582 @@
         <translation>&amp;Codificació</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="227"/>
-        <source>&amp;Unicode</source>
-        <translation>&amp;Unicode</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="234"/>
-        <source>&amp;Western European</source>
-        <translation>&amp;Europeu occidental</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="242"/>
-        <source>&amp;East European</source>
-        <translation>&amp;Europeu oriental</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="250"/>
-        <source>Ea&amp;st Asian</source>
-        <translation>Asiàtic oriental</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="345"/>
-        <location filename="../../fpwin.cpp" line="4175"/>
-        <location filename="../../replace.cpp" line="61"/>
-        <location filename="../../replace.cpp" line="113"/>
+        <location filename="../../fp.ui" line="305"/>
+        <location filename="../../fpwin.cpp" line="4160"/>
+        <location filename="../../replace.cpp" line="63"/>
+        <location filename="../../replace.cpp" line="114"/>
         <source>Replacement</source>
         <translation>Substituir</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="578"/>
+        <location filename="../../fp.ui" line="538"/>
         <source>Focus/hide search bar</source>
         <translation>Mostra/Amaga la barra de cerca</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="586"/>
+        <location filename="../../fp.ui" line="546"/>
         <source>&amp;Replace</source>
         <translation>&amp;Substitueix</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="768"/>
-        <source>Windows Arabic (&amp;CP1256)</source>
-        <translation>Aràbic de Windows (&amp;CP1256)</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="776"/>
+        <location filename="../../fp.ui" line="725"/>
         <source>&amp;Other</source>
         <translation>&amp;Altre</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="795"/>
+        <location filename="../../fp.ui" line="744"/>
         <source>&amp;UTF-8</source>
         <translation>&amp;UTF-8</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="806"/>
+        <location filename="../../fp.ui" line="755"/>
         <source>UTF-&amp;16</source>
         <translation>UTF-&amp;16</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="817"/>
+        <location filename="../../fp.ui" line="766"/>
         <source>&amp;ISO-8859-1</source>
         <translation>&amp;ISO-8849-1</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="828"/>
-        <source>&amp;Windows-1252</source>
-        <translation>&amp;Windows-1252</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="839"/>
-        <source>&amp;Cyrillic (CP1251)</source>
-        <translation>&amp;Ciríl·lic (CP1251)</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="850"/>
-        <source>Cyrillic (&amp;KOI8-U)</source>
-        <translation>Ciríl·lic (&amp;KOI8-U)</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="861"/>
-        <source>Cyrillic (&amp;ISO-8859-5)</source>
-        <translation>Ciríl·lic (&amp;ISO-8859-5)</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="872"/>
-        <source>&amp;Chinese (BIG5)</source>
-        <translation>&amp;Xinès (BIG5)</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="883"/>
-        <source>Chinese (&amp;GB18030)</source>
-        <translation>Xinès (&amp;GB18030)</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="894"/>
-        <source>&amp;Japanese (ISO-2022-JP)</source>
-        <translation>&amp;Japonès (ISO-2022-JP)</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="905"/>
-        <source>Japanese (&amp;ISO-2022-JP-2)</source>
-        <translation>Japonès (&amp;ISO-2022-JP-2)</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="916"/>
-        <source>Japanese (ISO-&amp;2022-KR)</source>
-        <translation>Japonès (ISO-&amp;2022-KR)</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="927"/>
-        <source>Ja&amp;panese (CP932)</source>
-        <translation>Jap&amp;onès (CP932)</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="938"/>
-        <source>Japa&amp;nese (EUC-JP)</source>
-        <translation>Jap&amp;onès (EUC-JP)</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="946"/>
-        <source>&amp;Korean (CP949)</source>
-        <translation>&amp;Coreà (CP949)</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="954"/>
-        <source>K&amp;orean (CP1361)</source>
-        <translation>C&amp;oreà (CP1361)</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="962"/>
-        <source>Korean (&amp;EUC-KR)</source>
-        <translation>Coreà (&amp;EUC-KR)</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="1008"/>
-        <source>ISO-&amp;8859-15</source>
-        <translation>ISO-&amp;8859-15</translation>
-    </message>
-    <message>
-        <location filename="../../fp.ui" line="1028"/>
+        <location filename="../../fp.ui" line="824"/>
         <source>Close &amp;Other Tabs</source>
         <translation>Tanca les &amp;altres pestanyes</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1033"/>
+        <location filename="../../fp.ui" line="829"/>
         <source>&amp;Copy File Name</source>
         <translation>&amp;Copia el nom del fitxer</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1038"/>
+        <location filename="../../fp.ui" line="834"/>
         <source>Copy File &amp;Path</source>
         <translation>Copia el &amp;camí del fitxer</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1049"/>
+        <location filename="../../fp.ui" line="845"/>
         <source>Alt+Right</source>
         <translation>Alt+Dreta</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1060"/>
+        <location filename="../../fp.ui" line="856"/>
         <source>Alt+Left</source>
         <translation>Alt+Esquerra</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1068"/>
+        <location filename="../../fp.ui" line="864"/>
         <source>&amp;First Tab</source>
         <translation>&amp;Primera pestanya</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1071"/>
+        <location filename="../../fp.ui" line="867"/>
         <source>Alt+Down</source>
         <translation>Alt+Fletxa avall</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1079"/>
+        <location filename="../../fp.ui" line="875"/>
         <source>&amp;Last Tab</source>
         <translation>&amp;Última pestanya</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1082"/>
+        <location filename="../../fp.ui" line="878"/>
         <source>Alt+Up</source>
         <translation>Alt+Fletxa amunt</translation>
     </message>
     <message>
-        <location filename="../../fp.ui" line="1087"/>
+        <location filename="../../fp.ui" line="883"/>
         <source>Menu</source>
         <translation>Menú</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="104"/>
-        <source>Calculate number of words
-(For huge texts, this may be CPU-intensive.)</source>
-        <translation>Calcular el número de paraules
-(Per a textos enormes, això pot ser intensiu en la CPU.)</translation>
+        <location filename="../../fpwin.cpp" line="100"/>
+        <source>Calculate number of words</source>
+        <translation>Calcular el número de paraules</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="119"/>
+        <location filename="../../fpwin.cpp" line="115"/>
         <source>Next</source>
         <translation>Següent</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="120"/>
+        <location filename="../../fpwin.cpp" line="116"/>
         <source>Previous</source>
         <translation>Anterior</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="121"/>
+        <location filename="../../fpwin.cpp" line="117"/>
         <source>Replace all</source>
-        <translation>Substitueix tot</translation>
+        <translation>Substitueix-ho tot</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="664"/>
+        <location filename="../../fpwin.cpp" line="632"/>
         <source>&amp;Recently Opened</source>
         <translation>&amp;Oberts recentment</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2089"/>
+        <location filename="../../fpwin.cpp" line="2085"/>
         <source>Close</source>
         <translation>Tanca</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1390"/>
+        <location filename="../../fpwin.cpp" line="1353"/>
         <source>Save changes?</source>
         <translation>Voleu desar els canvis?</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1034"/>
+        <location filename="../../fpwin.cpp" line="997"/>
         <source>Please attend to that window or just close its dialog!</source>
         <translation>Ateniu-vos a aquesta finestra o tanqueu el diàleg!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1394"/>
+        <location filename="../../fpwin.cpp" line="1357"/>
         <source>The document has been modified.</source>
         <translation>S&apos;ha modificat el document.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1405"/>
+        <location filename="../../fpwin.cpp" line="1368"/>
         <source>&amp;Discard changes</source>
         <translation>&amp;Descarta els canvis</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1406"/>
+        <location filename="../../fpwin.cpp" line="1369"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Cancel·la</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1408"/>
+        <location filename="../../fpwin.cpp" line="1371"/>
         <source>&amp;No to all</source>
         <translation>&amp;No a tot</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1616"/>
-        <location filename="../../fpwin.cpp" line="1664"/>
+        <location filename="../../fpwin.cpp" line="1579"/>
+        <location filename="../../fpwin.cpp" line="1628"/>
         <source>Unsaved</source>
-        <translation>Sense Desar</translation>
+        <translation>Sense desar</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2986"/>
-        <location filename="../../fpwin.cpp" line="3719"/>
-        <location filename="../../fpwin.cpp" line="3730"/>
-        <location filename="../../fpwin.cpp" line="3737"/>
-        <location filename="../../fpwin.cpp" line="4640"/>
-        <location filename="../../fpwin.cpp" line="6250"/>
-        <location filename="../../fpwin.cpp" line="6261"/>
-        <location filename="../../fpwin.cpp" line="6268"/>
+        <location filename="../../fpwin.cpp" line="2991"/>
+        <location filename="../../fpwin.cpp" line="3694"/>
+        <location filename="../../fpwin.cpp" line="3705"/>
+        <location filename="../../fpwin.cpp" line="3712"/>
+        <location filename="../../fpwin.cpp" line="4565"/>
+        <location filename="../../fpwin.cpp" line="6197"/>
+        <location filename="../../fpwin.cpp" line="6208"/>
+        <location filename="../../fpwin.cpp" line="6215"/>
         <source>Lines</source>
         <translation>Línies</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="4641"/>
-        <location filename="../../fpwin.cpp" line="4656"/>
+        <location filename="../../fpwin.cpp" line="4566"/>
+        <location filename="../../fpwin.cpp" line="4581"/>
         <source>Sel. Chars</source>
-        <translation>Caràcters Seleccionats</translation>
+        <translation>Caràcters seleccionats</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="4643"/>
-        <location filename="../../fpwin.cpp" line="4657"/>
+        <location filename="../../fpwin.cpp" line="4568"/>
+        <location filename="../../fpwin.cpp" line="4582"/>
         <source>Words</source>
         <translation>Paraules</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1982"/>
+        <location filename="../../fpwin.cpp" line="1969"/>
         <source>Another process is running in this tab!</source>
         <translation>S&apos;està executant un altre procés en aquesta pestanya!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2080"/>
+        <location filename="../../fpwin.cpp" line="2076"/>
         <source>Script File</source>
         <translation>Fitxer de Script</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1033"/>
+        <location filename="../../fpwin.cpp" line="996"/>
         <source>Another FeatherPad window has a modal dialog!</source>
         <translation>Una altra finestra de FeatherPad té un diàleg modal!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="870"/>
-        <location filename="../../fpwin.cpp" line="4682"/>
+        <location filename="../../fpwin.cpp" line="833"/>
+        <location filename="../../fpwin.cpp" line="4606"/>
         <source>Position:</source>
         <translation>Posició:</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="918"/>
-        <location filename="../../fpwin.cpp" line="4700"/>
-        <location filename="../../fpwin.cpp" line="4720"/>
+        <location filename="../../fpwin.cpp" line="881"/>
+        <location filename="../../fpwin.cpp" line="4624"/>
+        <location filename="../../fpwin.cpp" line="4644"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1392"/>
-        <location filename="../../fpwin.cpp" line="2755"/>
-        <location filename="../../fpwin.cpp" line="6050"/>
+        <location filename="../../fpwin.cpp" line="1355"/>
+        <location filename="../../fpwin.cpp" line="2751"/>
+        <location filename="../../fpwin.cpp" line="5997"/>
         <source>The file does not exist.</source>
         <translation>El fitxer no existeix.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1756"/>
+        <location filename="../../fpwin.cpp" line="1740"/>
         <source>Open Link</source>
         <translation>Obre l&apos;enllaç</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1769"/>
+        <location filename="../../fpwin.cpp" line="1756"/>
         <source>Copy Link</source>
         <translation>Copia l&apos;enllaç</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="1983"/>
+        <location filename="../../fpwin.cpp" line="1970"/>
         <source>Only one process is allowed per tab.</source>
         <translation>Només es permet un procés per pestanya.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2076"/>
+        <location filename="../../fpwin.cpp" line="2072"/>
         <source>Script Output</source>
-        <translation>Sortida de l&apos;Script</translation>
+        <translation>Sortida de l&apos;script</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2092"/>
+        <location filename="../../fpwin.cpp" line="2088"/>
         <source>Clear</source>
         <translation>Neteja</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2712"/>
+        <location filename="../../fpwin.cpp" line="2708"/>
         <source>FeatherPad does not open files larger than 100 MiB.</source>
-        <translation>FeatherPad no obre fitxers més grans de 100 MiB.</translation>
+        <translation>El FeatherPad no obre fitxers més grossos de 100 MiB.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2720"/>
+        <location filename="../../fpwin.cpp" line="2716"/>
         <source>Non-text file(s) not opened!</source>
         <translation>Els fitxers que no són de text no s&apos;obren!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2721"/>
+        <location filename="../../fpwin.cpp" line="2717"/>
         <source>See Preferences → Files → Do not permit opening of non-text files</source>
         <translation>Vegeu Preferències ▸ Fitxers ▸ No permetre l&apos;obertura de fitxers que no siguin de text</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2730"/>
+        <location filename="../../fpwin.cpp" line="2726"/>
         <source>Some file(s) could not be opened!</source>
         <translation>No s&apos;han pogut obrir alguns fitxers!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2731"/>
+        <location filename="../../fpwin.cpp" line="2727"/>
         <source>You may not have the permission to read.</source>
         <translation>Potser no teniu permisos d&apos;escriptura.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2741"/>
+        <location filename="../../fpwin.cpp" line="2737"/>
         <source>Uneditable file(s)!</source>
-        <translation>Fitxer(s) no editable(s)!</translation>
+        <translation>Fitxer/s no editable/s!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2742"/>
+        <location filename="../../fpwin.cpp" line="2738"/>
         <source>Non-text files or files with huge lines cannot be edited.</source>
         <translatorcomment> línies enormes....?</translatorcomment>
-        <translation>No se poden editar fitxers que no siguin de text o fitxers amb línies de gran exrensió.</translation>
+        <translation>Els fitxers que no siguin de text o els fitxers amb línies grosses no es poden editar.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2806"/>
+        <location filename="../../fpwin.cpp" line="2811"/>
         <source>Root Instance</source>
         <translatorcomment>Instància.root ?</translatorcomment>
-        <translation>Instància arrel (root)</translation>
+        <translation>Instància d&apos;arrel (root)</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2887"/>
+        <location filename="../../fpwin.cpp" line="2892"/>
         <source>Open file...</source>
         <translation>Obre un fitxer...</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3124"/>
-        <location filename="../../fpwin.cpp" line="3162"/>
+        <location filename="../../fpwin.cpp" line="3127"/>
+        <location filename="../../fpwin.cpp" line="3165"/>
         <source>Save as...</source>
-        <translation>Desa com...</translation>
+        <translation>Desa com a...</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3198"/>
+        <location filename="../../fpwin.cpp" line="3201"/>
         <source>Keep encoding and save as...</source>
-        <translation>Mantén la codificació i desa com a...</translation>
+        <translation>Continua la codificació i desa com a...</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3543"/>
+        <location filename="../../fpwin.cpp" line="3518"/>
         <source>Saving as root.</source>
         <translatorcomment>Desa com root. ?</translatorcomment>
-        <translation>Desant com a arrel (root).</translation>
+        <translation>Es desa com a arrel (root).</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3544"/>
+        <location filename="../../fpwin.cpp" line="3519"/>
         <source>Waiting for authentication...</source>
         <translation>S&apos;està esperant l&apos;autenticació...</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3663"/>
+        <location filename="../../fpwin.cpp" line="3638"/>
         <source>&quot;pkexec&quot; is not found. Please install Polkit!</source>
         <translation>No s&apos;ha trobat&quot;pkexec&quot; Instal·la Polkit!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3323"/>
+        <location filename="../../fpwin.cpp" line="3321"/>
         <source>Yes</source>
         <translation>Sí</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3324"/>
+        <location filename="../../fpwin.cpp" line="3322"/>
         <source>No</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3325"/>
+        <location filename="../../fpwin.cpp" line="3323"/>
         <source>Cancel</source>
         <translation>Cancel·la</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3326"/>
+        <location filename="../../fpwin.cpp" line="3324"/>
         <source>Do you want to use &lt;b&gt;MS Windows&lt;/b&gt; end-of-lines?</source>
-        <translation>Voleu utilitzar el final de línia de&lt;b&gt;l&apos;MS Windows&lt;/b&gt;?</translation>
+        <translation>Voleu usar el final de línia de&lt;b&gt;l&apos;MS Windows&lt;/b&gt;?</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3327"/>
+        <location filename="../../fpwin.cpp" line="3325"/>
         <source>This may be good for readability under MS Windows.</source>
         <translation>Això pot ser bo per a la llegibilitat sota MS Windows.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3440"/>
-        <location filename="../../fpwin.cpp" line="3558"/>
-        <location filename="../../fpwin.cpp" line="3662"/>
-        <location filename="../../fpwin.cpp" line="3674"/>
+        <location filename="../../fpwin.cpp" line="3429"/>
+        <location filename="../../fpwin.cpp" line="3533"/>
+        <location filename="../../fpwin.cpp" line="3637"/>
+        <location filename="../../fpwin.cpp" line="3649"/>
         <source>Cannot be saved!</source>
         <translation>No es pot desar!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="482"/>
-        <location filename="../../fpwin.cpp" line="4070"/>
-        <location filename="../../fpwin.cpp" line="5117"/>
-        <location filename="../../fpwin.cpp" line="5376"/>
-        <location filename="../../fpwin.cpp" line="6466"/>
+        <location filename="../../fpwin.cpp" line="450"/>
+        <location filename="../../fpwin.cpp" line="4054"/>
+        <location filename="../../fpwin.cpp" line="5055"/>
+        <location filename="../../fpwin.cpp" line="5316"/>
+        <location filename="../../fpwin.cpp" line="6405"/>
         <source>Help</source>
         <translation>Ajuda</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3715"/>
-        <location filename="../../fpwin.cpp" line="3721"/>
-        <location filename="../../fpwin.cpp" line="3729"/>
-        <location filename="../../fpwin.cpp" line="4638"/>
-        <location filename="../../fpwin.cpp" line="6246"/>
-        <location filename="../../fpwin.cpp" line="6252"/>
-        <location filename="../../fpwin.cpp" line="6260"/>
+        <location filename="../../fpwin.cpp" line="3690"/>
+        <location filename="../../fpwin.cpp" line="3696"/>
+        <location filename="../../fpwin.cpp" line="3704"/>
+        <location filename="../../fpwin.cpp" line="4563"/>
+        <location filename="../../fpwin.cpp" line="6193"/>
+        <location filename="../../fpwin.cpp" line="6199"/>
+        <location filename="../../fpwin.cpp" line="6207"/>
         <source>Syntax</source>
         <translation>Sintaxi</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2711"/>
+        <location filename="../../fpwin.cpp" line="2707"/>
         <source>Huge file(s) not opened!</source>
-        <translation>No s&apos;ha(n) obert un(s) fitxer(s) enorme(s)!</translation>
+        <translation>No s&apos;han obert els fitxers enormes!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="2878"/>
+        <location filename="../../fpwin.cpp" line="1989"/>
+        <source>Cannot start process!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../fpwin.cpp" line="2758"/>
+        <source>Huge column!</source>
+        <translation>Columna enorme!</translation>
+    </message>
+    <message>
+        <location filename="../../fpwin.cpp" line="2759"/>
+        <source>Columns with more than 1000 rows are not supported.</source>
+        <translation>No s&apos;admeten les columnes amb més de 1.000 files.</translation>
+    </message>
+    <message>
         <location filename="../../fpwin.cpp" line="2883"/>
-        <location filename="../../fpwin.cpp" line="3067"/>
-        <location filename="../../fpwin.cpp" line="3073"/>
-        <location filename="../../fpwin.cpp" line="3095"/>
+        <location filename="../../fpwin.cpp" line="2888"/>
+        <location filename="../../fpwin.cpp" line="3070"/>
+        <location filename="../../fpwin.cpp" line="3076"/>
+        <location filename="../../fpwin.cpp" line="3098"/>
         <source>All Files</source>
-        <translation>Tots els Fitxers</translation>
+        <translation>Tots els fitxers</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3818"/>
+        <location filename="../../fpwin.cpp" line="3793"/>
         <source>Text tabs are converted to spaces.</source>
         <translation>Els tabuladors de text es canvien per espais.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3920"/>
+        <location filename="../../fpwin.cpp" line="3903"/>
         <source>The selected text was too long.</source>
         <translation>El text seleccionat era massa llarg.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="3921"/>
+        <location filename="../../fpwin.cpp" line="3904"/>
         <source>It is not fully processed.</source>
         <translation>No està completament processat.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="4082"/>
-        <location filename="../../fpwin.cpp" line="4315"/>
+        <location filename="../../fpwin.cpp" line="4066"/>
+        <location filename="../../fpwin.cpp" line="4300"/>
         <source>This file has been modified elsewhere or in another way!</source>
         <translation>Aquest fitxer s&apos;ha modificat en un altre lloc o d&apos;una altra forma!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="4083"/>
-        <location filename="../../fpwin.cpp" line="4316"/>
+        <location filename="../../fpwin.cpp" line="4067"/>
+        <location filename="../../fpwin.cpp" line="4301"/>
         <source>Please be careful about reloading or saving this document!</source>
         <translation>Si us plau tingueu cura de tornar a carregar o desar aquest document!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="4791"/>
+        <location filename="../../fpwin.cpp" line="4713"/>
         <source>Printing in progress...</source>
         <translation>Impressió en curs...</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="4842"/>
+        <location filename="../../fpwin.cpp" line="4779"/>
         <source>Print Document</source>
         <translation>Imprimeix el document</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="4848"/>
+        <location filename="../../fpwin.cpp" line="4785"/>
         <source>Printing completed.</source>
         <translation>Impressió completada.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5508"/>
-        <location filename="../../fpwin.cpp" line="5638"/>
+        <location filename="../../fpwin.cpp" line="5449"/>
+        <location filename="../../fpwin.cpp" line="5582"/>
         <source>%1 Pages</source>
         <translation>%1 Pàgines</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5540"/>
-        <location filename="../../fpwin.cpp" line="5674"/>
+        <location filename="../../fpwin.cpp" line="5481"/>
+        <location filename="../../fpwin.cpp" line="5618"/>
         <source>Copy Target Path</source>
         <translation>Copia el camí de destinació</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5544"/>
-        <location filename="../../fpwin.cpp" line="5678"/>
+        <location filename="../../fpwin.cpp" line="5485"/>
+        <location filename="../../fpwin.cpp" line="5622"/>
         <source>Open Target Here</source>
         <translation>Obre la destinació aquí</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5563"/>
-        <location filename="../../fpwin.cpp" line="5698"/>
+        <location filename="../../fpwin.cpp" line="5504"/>
+        <location filename="../../fpwin.cpp" line="5642"/>
         <source>Copy Final Target Path</source>
-        <translation>Copia el camí de destinació final</translation>
+        <translation>Copia el camí de la destinació final</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5567"/>
-        <location filename="../../fpwin.cpp" line="5702"/>
+        <location filename="../../fpwin.cpp" line="5508"/>
+        <location filename="../../fpwin.cpp" line="5646"/>
         <source>Open Final Target Here</source>
         <translation>Obre la destinació final aquí</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5587"/>
-        <location filename="../../fpwin.cpp" line="5723"/>
+        <location filename="../../fpwin.cpp" line="5528"/>
+        <location filename="../../fpwin.cpp" line="5667"/>
         <source>Open Containing Folder</source>
         <translation>Obre la carpeta contenidora</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5846"/>
+        <location filename="../../fpwin.cpp" line="5793"/>
         <source>You need to add a Hunspell dictionary.</source>
-        <translation>Heu d&apos;afegir un diccionari Hunspell.</translation>
+        <translation>Heu d&apos;afegir un diccionari de Hunspell.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5847"/>
-        <location filename="../../fpwin.cpp" line="5854"/>
-        <location filename="../../fpwin.cpp" line="5864"/>
+        <location filename="../../fpwin.cpp" line="5794"/>
+        <location filename="../../fpwin.cpp" line="5801"/>
+        <location filename="../../fpwin.cpp" line="5811"/>
         <source>See Preferences → Text → Spell Checking!</source>
         <translation>Vegeu Preferències → Text → Comprovació ortogràfica!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5853"/>
+        <location filename="../../fpwin.cpp" line="5800"/>
         <source>The Hunspell dictionary does not exist.</source>
-        <translation>El diccionari Hunspell no existeix.</translation>
+        <translation>El diccionari de Hunspell no existeix.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5863"/>
+        <location filename="../../fpwin.cpp" line="5810"/>
         <source>The Hunspell dictionary is not accompanied by an affix file.</source>
         <translatorcomment>traducció de affix ?</translatorcomment>
-        <translation>El diccionari Hunspell no va acompanyat d&apos;un fitxer affix.</translation>
+        <translation>El diccionari de Hunspell no va acompanyat d&apos;un fitxer affix.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5886"/>
-        <location filename="../../fpwin.cpp" line="5904"/>
-        <location filename="../../fpwin.cpp" line="5919"/>
+        <location filename="../../fpwin.cpp" line="5833"/>
+        <location filename="../../fpwin.cpp" line="5851"/>
+        <location filename="../../fpwin.cpp" line="5866"/>
         <source>No misspelling in document.</source>
-        <translation>No hi ha errors ortogràfics en el document.</translation>
+        <translation>No hi ha errors ortogràfics al document.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5888"/>
-        <location filename="../../fpwin.cpp" line="5906"/>
-        <location filename="../../fpwin.cpp" line="5921"/>
+        <location filename="../../fpwin.cpp" line="5835"/>
+        <location filename="../../fpwin.cpp" line="5853"/>
+        <location filename="../../fpwin.cpp" line="5868"/>
         <source>No misspelling from text cursor.</source>
-        <translation>No hi ha errors ortogràfics en el text seleccionat.</translation>
+        <translation>No hi ha errors ortogràfics al text seleccionat.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="5937"/>
+        <location filename="../../fpwin.cpp" line="5884"/>
         <source>Spell Checking</source>
         <translation>Comprovació ortogràfica</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6284"/>
+        <location filename="../../fpwin.cpp" line="6231"/>
         <source>Some files cannot be saved!</source>
         <translation>Alguns fitxers no es poden desar!</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6327"/>
+        <location filename="../../fpwin.cpp" line="6271"/>
         <source>Translators</source>
         <translation>Traductors</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6323"/>
+        <location filename="../../fpwin.cpp" line="6267"/>
         <source>A lightweight, tabbed, plain-text editor</source>
         <translation>Un editor de text senzill, lleuger, amb pestanyes</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6324"/>
+        <location filename="../../fpwin.cpp" line="6268"/>
         <source>based on Qt</source>
         <translation>basat en Qt</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6325"/>
+        <location filename="../../fpwin.cpp" line="6269"/>
         <source>Author</source>
         <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6326"/>
+        <location filename="../../fpwin.cpp" line="6270"/>
         <source>aka.</source>
         <translation>àlies.</translation>
     </message>
     <message>
-        <location filename="../../fpwin.cpp" line="6327"/>
-        <location filename="../../fpwin.cpp" line="6328"/>
+        <location filename="../../fpwin.cpp" line="6271"/>
+        <location filename="../../fpwin.cpp" line="6272"/>
         <source>About FeatherPad</source>
         <translation>Quant a FeatherPad</translation>
     </message>
     <message>
-        <location filename="../../replace.cpp" line="242"/>
+        <location filename="../../replace.cpp" line="285"/>
         <source>No Replacement</source>
         <translation>Sense substitució</translation>
     </message>
     <message>
-        <location filename="../../replace.cpp" line="244"/>
+        <location filename="../../replace.cpp" line="287"/>
         <source>One Replacement</source>
         <translation>Una substitució</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../replace.cpp" line="246"/>
+        <location filename="../../replace.cpp" line="289"/>
         <source>%Ln Replacements</source>
         <translation>
             <numerusform>%Ln Substitució</numerusform>
-            <numerusform>%Ln Substitucions</numerusform>
+            <numerusform>%Ln substitucions</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../../replace.cpp" line="250"/>
+        <location filename="../../replace.cpp" line="293"/>
         <source>The first 1000 replacements are highlighted.</source>
         <translation>Les primeres 1.000 substitucions estan ressaltades.</translation>
     </message>
     <message>
-        <location filename="../../syntax.cpp" line="312"/>
+        <location filename="../../syntax.cpp" line="314"/>
         <source>The size limit for syntax highlighting is exceeded.</source>
-        <translation>S&apos;ha excedit el límit de mida per al ressaltat de sintaxi..</translation>
+        <translation>S&apos;ha excedit el límit de mida per al ressaltat de sintaxi.</translation>
     </message>
 </context>
 <context>
@@ -1318,7 +1231,7 @@
         <location filename="../../fontDialog.ui" line="118"/>
         <source>Black</source>
         <translatorcomment>Negreta?</translatorcomment>
-        <translation>Extra Negreta</translation>
+        <translation>Negreta extra</translation>
     </message>
     <message>
         <location filename="../../fontDialog.ui" line="126"/>
@@ -1407,7 +1320,7 @@ sense funcionalitat de pestanya.</translation>
     <message>
         <location filename="../../prefDialog.ui" line="188"/>
         <source>Uncheck for 1/5 of the width.</source>
-        <translation>Desmarca per 1/5 de l&apos;amplada.</translation>
+        <translation>Desmarca per a 1/5 de l&apos;amplada.</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="191"/>
@@ -1423,24 +1336,25 @@ sense funcionalitat de pestanya.</translation>
         <location filename="../../prefDialog.ui" line="207"/>
         <source>If the menubar is hidden,
 a menu button appears on the toolbar.</source>
-        <translation>Si la barra de menú està oculta, 
+        <translation>Si la barra de menú està oculta,
 apareix un botó de menú a la barra d&apos;eines.</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="211"/>
         <source>Do not show &amp;menubar</source>
-        <translation>No es mostra la barra de &amp;menú</translation>
+        <translation>No es mostra la barra del &amp;menú</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="218"/>
         <source>Double clicking on the title toggles the maximized state.
 The title also has a right click menu when a file is opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si feu doble clic al títol, es canvia l&apos;estat maximitzat.
+El títol també té un menú de clic dret quan s&apos;obre un fitxer.</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="222"/>
         <source>Show window title on menubar</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra el títol de la finestra a la barra del menú</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="229"/>
@@ -1457,12 +1371,12 @@ i pot interferir amb les dreceres personalitzades.</translation>
     <message>
         <location filename="../../prefDialog.ui" line="240"/>
         <source>Internal icons are used by default.</source>
-        <translation>Per defecte s&apos;utilitzen icones internes.</translation>
+        <translation>Per defecte s&apos;usen icones internes.</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="243"/>
         <source>Use system icons where possible</source>
-        <translation>Fes servir icones del sistema on sigui possible</translation>
+        <translation>Usa icones del sistema on sigui possible</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="250"/>
@@ -1473,18 +1387,18 @@ i pot interferir amb les dreceres personalitzades.</translation>
         <location filename="../../prefDialog.ui" line="257"/>
         <source>By default, each search entry
 has a separate search history.</source>
-        <translation>Per defecte, cada entrada de cerca 
+        <translation>Per defecte, cada entrada de cerca
 té un historial de cerca separat.</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="261"/>
         <source>Use a shared search history</source>
-        <translation>Utilitza un historial de cerca compartit</translation>
+        <translation>Usa un historial de cerca compartit</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="268"/>
         <source>Always show st&amp;atus bar</source>
-        <translation>Mostra sempre la barra de est&amp;at</translation>
+        <translation>Mostra sempre la barra d&apos;est&amp;at</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="293"/>
@@ -1530,7 +1444,7 @@ after the last tab is activated, and the same for Alt+Left.
 Tab navigation with mouse wheel is not affected.</source>
         <translation>Això significa que, per a texts LTR, Alt+Dreta va a la primera
 pestanya després que l&apos;última pestanya estigui activada,
-i el mateix per Alt+Esquerra.</translation>
+i el mateix per a Alt+Esquerra.</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="365"/>
@@ -1550,7 +1464,7 @@ current desktop, files will be opened in its tabs.
 However, some desktop environments may not
 report that they have multiple desktops.</source>
         <translation>Per defecte, si hi ha una finestra del FeatherPad a l&apos;escriptori actual,
-els fitxers s&apos;obriran a les pestanyes. 
+els fitxers s&apos;obriran a les pestanyes.
 Tanmateix, alguns entorns d&apos;escriptori poden no informar que hi ha múltiples escriptoris.</translation>
     </message>
     <message>
@@ -1565,10 +1479,10 @@ desktop environment will be used instead of the Qt file dialog.
 
 Some desktop environments, like KDE and LXQt, provide files dialogs.</source>
         <translation>Si habiliteu aquesta opció s&apos;usarà la finestra proporcionada nativament
- per l&apos; entorn d&apos;escriptori actual en lloc del proporcionat per Qt. 
+ per l&apos; entorn d&apos;escriptori actual en lloc del proporcionat per Qt.
 
-Aquesta opció existeix perquè alguns entorns d&apos;escriptori, 
-com ara KDE i LXQt, poden oferir les seves pròpies finestres.</translation>
+Aquesta opció existeix perquè alguns entorns d&apos;escriptori,
+com ara KDE i LXQt, poden oferir les pròpies finestres.</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="412"/>
@@ -1578,7 +1492,7 @@ com ara KDE i LXQt, poden oferir les seves pròpies finestres.</translation>
     <message>
         <location filename="../../prefDialog.ui" line="488"/>
         <source>Uncheck for Monospace.</source>
-        <translation>Desmarca per a font Monoespai.</translation>
+        <translation>Desmarca per a monoespai.</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="491"/>
@@ -1602,7 +1516,7 @@ and a double hyphen with a long dash while typing,
 under proper circumstances.</source>
         <translation>Per defecte, un període de tres punts continus seran
 substituïts per punts suspensius i un guió doble per
-un guió llarg mentre escriu, sota circumstàncies adequades.</translation>
+un guió llarg mentre s&apos;escriu, sota circumstàncies adequades.</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="527"/>
@@ -1619,7 +1533,7 @@ i totes les coincidències del text seleccionat.</translation>
     <message>
         <location filename="../../prefDialog.ui" line="545"/>
         <source>Selection highlighting</source>
-        <translation>Ressaltat de selecció</translation>
+        <translation>Selecció ressaltada</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="608"/>
@@ -1636,7 +1550,7 @@ barra d&apos;estat per canviar la sintaxi.</translation>
     <message>
         <location filename="../../prefDialog.ui" line="581"/>
         <source>Support syntax override</source>
-        <translation>Permet la sobreescriptura de sintaxi</translation>
+        <translation>Permet la sobreescriptura de la sintaxi</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="646"/>
@@ -1665,54 +1579,54 @@ el tipus de lletra de l&apos;editor té un ample fix (com Monospace).</translati
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="657"/>
-        <source>Also show line and document ends</source>
+        <source>Show line and document ends</source>
         <translation>Mostra també els finals de línia i de document</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="803"/>
+        <location filename="../../prefDialog.ui" line="801"/>
         <source>Date and time format:</source>
-        <translation>Format de la data i hora:</translation>
+        <translation>Format de la data i l&apos;hora:</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="873"/>
+        <location filename="../../prefDialog.ui" line="869"/>
         <source>Some text editors cannot open a document
 whose last line is not empty.</source>
         <translation>Alguns editors de text no poden obrir un document
 si l&apos;última línia no està buida.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="877"/>
+        <location filename="../../prefDialog.ui" line="873"/>
         <source>Ensure an empty last line on saving</source>
-        <translation>Assegureu deixar una última línia buida en desar</translation>
+        <translation>Assegureu-vos de deixar una última línia buida en desar</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="884"/>
+        <location filename="../../prefDialog.ui" line="880"/>
         <source>Remove trailing spaces on saving</source>
         <translation>Suprimeix els espais finals en desar</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="902"/>
+        <location filename="../../prefDialog.ui" line="898"/>
         <source>Inertial scrolling with mouse wheel</source>
         <translation>Desplaçament inercial amb la roda del ratoli</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="991"/>
+        <location filename="../../prefDialog.ui" line="987"/>
         <source>Files</source>
         <translation>Fitxers</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="997"/>
+        <location filename="../../prefDialog.ui" line="993"/>
         <source>File Management</source>
-        <translation>Gestió de fitxer</translation>
+        <translation>Gestió de fitxers</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1114"/>
+        <location filename="../../prefDialog.ui" line="1110"/>
         <source>Start with files of last window</source>
         <translation>Comença amb els fitxers de l&apos;última finestra</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1156"/>
-        <location filename="../../prefDialog.ui" line="1175"/>
+        <location filename="../../prefDialog.ui" line="1152"/>
+        <location filename="../../prefDialog.ui" line="1171"/>
         <source>This can be any starting command with
 arguments, for example, &quot;xterm -hold&quot;
 for running the process in XTerm.
@@ -1724,40 +1638,40 @@ If the script is not run in a terminal
 emulator, the output and error messages
 will be shown by a popup dialog.</source>
         <translation>Aquesta pot ser qualsevol ordre inicial amb
-arguments, per exemple &quot;xterm -hold&quot; executa el procés a XTerm. 
+arguments, per exemple xterm -hold executa el procés a XTerm.
 
-Si l&apos;ordre es deixa buida, el fitxer s&apos;executarà directament.. 
+Si l&apos;ordre es deixa buida, el fitxer s&apos;executarà directament..
 
 Si l&apos;script no s&apos;executa en un emulador de terminal,
 els missatges de sortida i d&apos;error es mostraran en un diàleg emergent.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1168"/>
+        <location filename="../../prefDialog.ui" line="1164"/>
         <source>Start with this command: </source>
         <translation>Comença amb aquesta ordre: </translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1187"/>
+        <location filename="../../prefDialog.ui" line="1183"/>
         <source>Command + Arguments</source>
         <translation>Ordre + Arguments</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1072"/>
+        <location filename="../../prefDialog.ui" line="1068"/>
         <source>Show recentl&amp;y modified files</source>
-        <translation>Mostra els &amp;fitxers modificat recentment</translation>
+        <translation>Mostra els &amp;fitxers modificats recentment</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1102"/>
+        <location filename="../../prefDialog.ui" line="1098"/>
         <source>Show recentl&amp;y opened files</source>
         <translation>Mostra els fitxers &amp;oberts recentment</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1201"/>
+        <location filename="../../prefDialog.ui" line="1197"/>
         <source>Save changes to opened files every:</source>
         <translation>Desa els canvis de fitxers oberts cada:</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1479"/>
+        <location filename="../../prefDialog.ui" line="1475"/>
         <source>Help</source>
         <translation>Ajuda</translation>
     </message>
@@ -1773,8 +1687,8 @@ tooltip and context menu of a single tab but you could not
 merge a single tabbed window into another one by tab drag-
 and-drop either.</source>
         <translation>Amb aquesta opció habilitada, no només perdreu informació
-sobre el menú contextual d&apos;una sola pestanya,tampoc podreu
-combinar una finestra amb una altra,arrossegant i alliberant la pestanya.</translation>
+sobre el menú contextual d&apos;una sola pestanya, tampoc podreu
+combinar una finestra amb una altra arrossegant i alliberant la pestanya.</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="378"/>
@@ -1827,7 +1741,7 @@ combinar una finestra amb una altra,arrossegant i alliberant la pestanya.</trans
         <translation> MiB</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1121"/>
+        <location filename="../../prefDialog.ui" line="1117"/>
         <source>This only includes executable files written
 in script languages like Shell and Python.
 
@@ -1839,16 +1753,16 @@ process could be killed by Ctrl+Alt+E.</source>
         <translation>Això només s&apos;aplica a fitxers executables escrits
 en llenguatges de script com ara Shell i Python.
 
-Si està marcada i el fitxer obert és executable, 
-el fitxer s&apos;executarà fent clical botó Executa, que 
+Si està marcada i el fitxer obert és executable,
+el fitxer s&apos;executarà fent clic al botó Executa, que
 apareix a la barra d&apos;eines/menú de fitxer
 quan sigui necessari, o per la seva drecera Ctrl+E.
-El procés executat es pot finalitzar amb Control+Alt+E.</translation>
+El procés executat es pot acabar amb Control+Alt+E.</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="709"/>
         <source>Needs window reopening to take effect.</source>
-        <translation>Calreobrir la finestra per fer efectius els canvis.</translation>
+        <translation>Cal reobrir la finestra per fer efectius els canvis.</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="737"/>
@@ -1861,363 +1775,359 @@ between 230 and 255; for the dark
 background, between 0 and 50.
 
 Needs window reopening to take effect.</source>
-        <translation>El valor de color del fons 255 significa blanc, mentre 
-que 0 vol dir negre. 
+        <translation>El valor de color del fons 255 significa blanc, mentre
+que 0 vol dir negre.
 
-Per al fons clar, pot ser entre 230 i 255; 
-Per a fons fosc entre 0 i 50. 
+Per al fons clar, pot ser entre 230 i 255;
+Per a fons fosc entre 0 i 50.
 
 Cal reobrir l&apos;aplicació per fer efectius els canvis.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1131"/>
+        <location filename="../../prefDialog.ui" line="1127"/>
         <source>Run executable scripts</source>
         <translation>Executa scripts</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1005"/>
-        <location filename="../../prefDialog.ui" line="1019"/>
+        <location filename="../../prefDialog.ui" line="1001"/>
+        <location filename="../../prefDialog.ui" line="1015"/>
         <source>The maximum number of recently modified or
 opened files FeatherPad shows. The default
 is 10.
 
 Needs application restart to take effect.</source>
         <translation>Nombre màxim de fitxers modificats recentment
- o fitxers oberts que mostra FeatherPad. El valor 
-per defecte es 10. 
+ o fitxers oberts que mostra FeatherPad. El valor
+per defecte es 10.
 
 Necessita reiniciar l&apos;aplicació per fer efectius els canvis.</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="786"/>
         <source>Add a small margin around text</source>
-        <translation type="unfinished"></translation>
+        <translation>Afegeix un marge petit al voltant del text</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="795"/>
-        <location filename="../../prefDialog.ui" line="810"/>
+        <location filename="../../prefDialog.ui" line="808"/>
         <source>Used for pasting the date and time.
+Leave empty for the system default.
 
-Takes effect after closing this dialog.
+Takes effect after closing this dialog.</source>
+        <translation>S&apos;utilitza per enganxar la data i l&apos;hora.
+Deixeu-ho buit per al valor predeterminat del sistema.
 
-Leave empty for:
-MMM dd, yyyy, hh:mm:ss</source>
-        <translation>Aquí trieu el format que voleu utilitzar en enganxar la
-data i l&apos;hora actuals al document. 
-
-Els canvis tindran efecte després de tancar aquest diàleg. 
-
-Si es deixa buit, s&apos;utilitzarà aquest format: MMM dd, y, hh:mm:ss</translation>
+Té efecte després de tancar aquest diàleg.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="832"/>
+        <location filename="../../prefDialog.ui" line="828"/>
         <source>Text tab size:</source>
         <translation>Mida de text de la pestanya:</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="839"/>
+        <location filename="../../prefDialog.ui" line="835"/>
         <source> spaces</source>
         <translation> espais</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="891"/>
+        <location filename="../../prefDialog.ui" line="887"/>
         <source>Thick text cursor</source>
         <translation>Cursor de text gruixut</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="898"/>
+        <location filename="../../prefDialog.ui" line="894"/>
         <source>Should the mouse wheel scrolling be inertial
 if the cursor is inside the text view?</source>
         <translation>Ha de ser inercial el desplaçament amb la roda
-del ratolí si el cursor es troba dins de l&apos; àrea de text?</translation>
+del ratolí si el cursor es troba dins de l&apos;àrea de text?</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="909"/>
+        <location filename="../../prefDialog.ui" line="905"/>
         <source>Spell Checking</source>
-        <translation>Correció Ortográfica</translation>
+        <translation>Comprovació ortogràfica</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="917"/>
-        <location filename="../../prefDialog.ui" line="929"/>
+        <location filename="../../prefDialog.ui" line="913"/>
+        <location filename="../../prefDialog.ui" line="925"/>
         <source>A Hunspell dictionary has a name that ends with &quot;.dic&quot;
 and should be alongside an affix file with the same
 name but ending with &quot;.aff&quot;.</source>
-        <translation>El nom d&apos;un diccionari en format Hunspell ha d&apos;acabar
-amb &quot;.dic&quot; i ha d&apos;anar acompanyat d&apos;un fitxer en format affix
+        <translation>El nom d&apos;un diccionari en format de Hunspell ha d&apos;acabar
+amb &apos;.dic&apos; i ha d&apos;anar acompanyat d&apos;un fitxer en format affix
 amb el mateix nom però acabat en &quot;.aff&quot;.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="922"/>
+        <location filename="../../prefDialog.ui" line="918"/>
         <source>Hunspell dictionary path:</source>
-        <translation>Camí del diccionari Hunspell:</translation>
+        <translation>Camí del diccionari de Hunspell:</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="941"/>
-        <location filename="../../pref.cpp" line="1794"/>
+        <location filename="../../prefDialog.ui" line="937"/>
+        <location filename="../../pref.cpp" line="1802"/>
         <source>Add dictionary...</source>
-        <translation>Afegir un diccionari...</translation>
+        <translation>Afegeix un diccionari...</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="953"/>
+        <location filename="../../prefDialog.ui" line="949"/>
         <source>If this is unchecked, spell checking
 will be started from the document start.</source>
         <translation>Si desactiva aquesta opció, la verificació ortogràfica
  s&apos;iniciarà des de l&apos;inici del document.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="957"/>
+        <location filename="../../prefDialog.ui" line="953"/>
         <source>Start spell checking from text cursor</source>
         <translation>Comença la comprovació ortogràfica des del cursor</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1012"/>
+        <location filename="../../prefDialog.ui" line="1008"/>
         <source>Number of recent files: </source>
         <translation>Número de fitxers recents: </translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1111"/>
+        <location filename="../../prefDialog.ui" line="1107"/>
         <source>Only if their number is not greater than 50.</source>
-        <translation>Només si el seu número no és superior a 50.</translation>
+        <translation>Només si el número no és superior a 50.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1198"/>
-        <location filename="../../prefDialog.ui" line="1208"/>
+        <location filename="../../prefDialog.ui" line="1194"/>
+        <location filename="../../prefDialog.ui" line="1204"/>
         <source>Only for files that exist and can be saved.</source>
         <translation>Només per als fitxers que existeixen i es poden desar.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1211"/>
+        <location filename="../../prefDialog.ui" line="1207"/>
         <source> min</source>
         <translation> min</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1242"/>
+        <location filename="../../prefDialog.ui" line="1238"/>
         <source>If this is checked, the Save button/menu-item could
 be used also when the opened file is not modified.
 
 This can be useful under certain circumstances,
 e.g. for changing the time stamp or removing the
 trailing spaces of a text file.</source>
-        <translation>Si activa aquesta opció es pot utilitzar el botó Desa
-fins i tot quan el fitxer obert no s&apos;ha modificat. 
+        <translation>Si activa aquesta opció es pot usar el botó Desa
+fins i tot quan el fitxer obert no s&apos;ha modificat.
 
-Això pot ser útil en determinades circumstàncies, 
+Això pot ser útil en determinades circumstàncies,
 per exemple, per canviar la marca de temps o suprimir
 els espais finals d&apos;un fitxer de text.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1250"/>
+        <location filename="../../prefDialog.ui" line="1246"/>
         <source>Allow saving unmodified files</source>
         <translation>Permet desar fitxers sense modificar</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1257"/>
+        <location filename="../../prefDialog.ui" line="1253"/>
         <source>Show a warning instead.</source>
-        <translation>Mostra un avís en el seu lloc.</translation>
+        <translation>Mostra un avís.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1260"/>
+        <location filename="../../prefDialog.ui" line="1256"/>
         <source>Do not permit opening of non-text files</source>
-        <translation>No permetre obrir fitxers que no siguin de text</translation>
+        <translation>No permetis obrir fitxers que no siguin de text</translation>
+    </message>
+    <message>
+        <location filename="../../prefDialog.ui" line="1263"/>
+        <source>By default, when files are copied, they will
+be opened if they are pasted into FeatherPad.</source>
+        <translation>Per defecte, quan es copien els fitxers, s&apos;obriran
+si s&apos;enganxen dins del FeatherPad.</translation>
     </message>
     <message>
         <location filename="../../prefDialog.ui" line="1267"/>
-        <source>By default, when files are copied, they will
-be opened if they are pasted into FeatherPad.</source>
-        <translation>Per defecte, quan es copien els fitxers, s&apos;obriràn
-si s&apos;enganxen dins de FeatherPad.</translation>
-    </message>
-    <message>
-        <location filename="../../prefDialog.ui" line="1271"/>
         <source>Paste paths instead of files</source>
         <translation>Engantxa camins en lloc de fitxers</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1298"/>
+        <location filename="../../prefDialog.ui" line="1294"/>
         <source>Shortcuts</source>
         <translation>Dreceres</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1320"/>
+        <location filename="../../prefDialog.ui" line="1316"/>
         <source>Action</source>
         <translation>Acció</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1325"/>
+        <location filename="../../prefDialog.ui" line="1321"/>
         <source>Shortcut</source>
         <translation>Drecera</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1333"/>
+        <location filename="../../prefDialog.ui" line="1329"/>
         <source>Restore default shortcuts.</source>
         <translation>Restaura les dreceres per defecte.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1336"/>
-        <location filename="../../prefDialog.ui" line="1410"/>
-        <location filename="../../prefDialog.ui" line="1458"/>
+        <location filename="../../prefDialog.ui" line="1332"/>
+        <location filename="../../prefDialog.ui" line="1406"/>
+        <location filename="../../prefDialog.ui" line="1454"/>
         <source>Default</source>
         <translation>Per defecte</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1347"/>
+        <location filename="../../prefDialog.ui" line="1343"/>
         <source>Syntax Colors</source>
-        <translation>Colors de sintaxi</translation>
+        <translation>Colors de la sintaxi</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1442"/>
+        <location filename="../../prefDialog.ui" line="1438"/>
         <source>Element</source>
         <translation>Element</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1447"/>
+        <location filename="../../prefDialog.ui" line="1443"/>
         <source>Text Color</source>
-        <translation>Color de tex</translation>
+        <translation>Color del text</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1364"/>
+        <location filename="../../prefDialog.ui" line="1360"/>
         <source>Whitespace color value:</source>
         <translation>Valor de color de l&apos;espai en blanc:</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1397"/>
-        <location filename="../../prefDialog.ui" line="1407"/>
+        <location filename="../../prefDialog.ui" line="1393"/>
+        <location filename="../../prefDialog.ui" line="1403"/>
         <source>Has effect only if line numbers are shown.</source>
-        <translation>Només té efecte si es mostren els números de Línia.</translation>
+        <translation>Només té efecte si es mostren els números de línia.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1400"/>
+        <location filename="../../prefDialog.ui" line="1396"/>
         <source>Current line highlight value:</source>
         <translation>Valor de ressaltat de la línia actual:</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1455"/>
+        <location filename="../../prefDialog.ui" line="1451"/>
         <source>Restore default syntax colors.</source>
         <translation>Restaura els colors per defecte de la sintaxi.</translation>
     </message>
     <message>
-        <location filename="../../prefDialog.ui" line="1490"/>
+        <location filename="../../prefDialog.ui" line="1486"/>
         <source>Close</source>
         <translation>Tanca</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="105"/>
+        <location filename="../../pref.cpp" line="113"/>
         <source>Press a modifier key to clear a shortcut
 in the editing mode.</source>
-        <translation>Premeu una tecla modificadora per netejar 
-una drecera en el mode d&apos;edició.</translation>
+        <translation>Premeu una tecla modificadora per netejar
+una drecera al mode d&apos;edició.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="111"/>
+        <location filename="../../pref.cpp" line="119"/>
         <source>Double click a color to change it.</source>
         <translation>Feu doble clic per canviar un color.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="347"/>
-        <location filename="../../pref.cpp" line="1490"/>
+        <location filename="../../pref.cpp" line="355"/>
+        <location filename="../../pref.cpp" line="1498"/>
         <source>files</source>
         <translation>fitxers</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="347"/>
-        <location filename="../../pref.cpp" line="1490"/>
+        <location filename="../../pref.cpp" line="355"/>
+        <location filename="../../pref.cpp" line="1498"/>
         <source>file</source>
         <translation>fitxer</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="414"/>
-        <location filename="../../pref.cpp" line="1609"/>
+        <location filename="../../pref.cpp" line="422"/>
+        <location filename="../../pref.cpp" line="1617"/>
         <source>Warning: Ambiguous shortcut detected!</source>
-        <translation>Avís: S&apos;ha detectat una drecera ambigua!</translation>
+        <translation>Avís: s&apos;ha detectat una drecera ambigua!</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="447"/>
+        <location filename="../../pref.cpp" line="455"/>
         <source>Functions, URLs,…</source>
-        <translation>Funcions, URLs,…</translation>
+        <translation>Funcions, URLs…</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="448"/>
+        <location filename="../../pref.cpp" line="456"/>
         <source>Built-in Functions</source>
         <translation>Funcions integrades</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="449"/>
+        <location filename="../../pref.cpp" line="457"/>
         <source>Comments</source>
         <translation>Comentaris</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="450"/>
+        <location filename="../../pref.cpp" line="458"/>
         <source>Quotations</source>
         <translation>Cites</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="451"/>
+        <location filename="../../pref.cpp" line="459"/>
         <source>Types</source>
         <translation>Tipus</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="452"/>
+        <location filename="../../pref.cpp" line="460"/>
         <source>Key Words</source>
         <translation>Palaules clau</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="453"/>
+        <location filename="../../pref.cpp" line="461"/>
         <source>Numbers</source>
         <translation>Números</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="454"/>
+        <location filename="../../pref.cpp" line="462"/>
         <source>Regular Expressions, Code Blocks,…</source>
-        <translation>Expresions regulars, blocs de codi,…</translation>
+        <translation>Expressions regulars, blocs de codi…</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="455"/>
+        <location filename="../../pref.cpp" line="463"/>
         <source>Document Blocks, XML/HTML Elements,…</source>
-        <translation>Blocs de documents,Elements XML/HTML,…</translation>
+        <translation>Blocs de documents, elements XML / HTML…</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="456"/>
+        <location filename="../../pref.cpp" line="464"/>
         <source>Markdown Headings, CSS Values,…</source>
-        <translation>Capçaleres Markdown, valors de CSS,…</translation>
+        <translation>Capçaleres de Markdown, valors de CSS…</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="457"/>
+        <location filename="../../pref.cpp" line="465"/>
         <source>Extra Elements</source>
         <translation>Elements addicionals</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="639"/>
+        <location filename="../../pref.cpp" line="647"/>
         <source>Application restart is needed for changes to take effect.</source>
         <translation>Cal reiniciar l&apos;aplicació perquè els canvis tinguin efecte.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="660"/>
+        <location filename="../../pref.cpp" line="668"/>
         <source>Window reopening is needed for changes to take effect.</source>
         <translation>Cal reobrir la finestra perquè els canvis tinguin efecte.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="1516"/>
+        <location filename="../../pref.cpp" line="1524"/>
         <source>&amp;Recently Opened</source>
         <translation>&amp;Obert recentment</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="1517"/>
+        <location filename="../../pref.cpp" line="1525"/>
         <source>Recently &amp;Modified</source>
         <translation>Modificat &amp;recentment</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="1592"/>
+        <location filename="../../pref.cpp" line="1600"/>
         <source>The typed shortcut was reserved.</source>
         <translation>La drecera teclejada està reservada.</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="1796"/>
+        <location filename="../../pref.cpp" line="1804"/>
         <source>Hunspell Dictionary Files</source>
-        <translation>Fitxers de diccionari Hunspell</translation>
+        <translation>Fitxers de diccionari de Hunspell</translation>
     </message>
     <message>
-        <location filename="../../pref.cpp" line="515"/>
-        <location filename="../../pref.cpp" line="1882"/>
+        <location filename="../../pref.cpp" line="523"/>
+        <location filename="../../pref.cpp" line="1890"/>
         <source>Select Syntax Color</source>
         <translation>Selecciona color de sintaxi</translation>
     </message>
@@ -2266,28 +2176,28 @@ una drecera en el mode d&apos;edició.</translation>
     <message>
         <location filename="../../sessionDialog.ui" line="14"/>
         <source>Session Manager</source>
-        <translation>Gestor de sessió</translation>
+        <translation>Gestor de la sessió</translation>
     </message>
     <message>
         <location filename="../../sessionDialog.ui" line="113"/>
         <location filename="../../sessionDialog.ui" line="294"/>
         <source>&amp;Remove</source>
-        <translation>&amp;Esborra</translation>
+        <translation>Sup&amp;rimeix</translation>
     </message>
     <message>
         <location filename="../../sessionDialog.ui" line="45"/>
         <source>&lt;b&gt;Save/Restore Session&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Desa/Restaura Sessió&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Desa/Restaura la sessió&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../sessionDialog.ui" line="68"/>
         <source>Filter...</source>
-        <translation>Filtre...</translation>
+        <translation>Filtra...</translation>
     </message>
     <message>
         <location filename="../../sessionDialog.ui" line="81"/>
         <source>Open the selected session(s).</source>
-        <translation>Obre la(s) sessió(ns) seleccionades.</translation>
+        <translation>Obre les sessions seleccionades.</translation>
     </message>
     <message>
         <location filename="../../sessionDialog.ui" line="84"/>
@@ -2326,7 +2236,7 @@ les finestress&apos;inclouran a la sessió desada.</translation>
     </message>
     <message>
         <location filename="../../sessionDialog.ui" line="250"/>
-        <location filename="../../session.cpp" line="328"/>
+        <location filename="../../session.cpp" line="332"/>
         <source>&amp;Yes</source>
         <translation>&amp;Sí</translation>
     </message>
@@ -2338,12 +2248,12 @@ les finestress&apos;inclouran a la sessió desada.</translation>
     <message>
         <location filename="../../sessionDialog.ui" line="307"/>
         <source>Re&amp;name</source>
-        <translation>Rea&amp;nomena</translation>
+        <translation>Canvia&apos;n el &amp;nom</translation>
     </message>
     <message>
         <location filename="../../sessionDialog.ui" line="130"/>
         <source>Remove &amp;All</source>
-        <translation>Esbo&amp;rra tot</translation>
+        <translation>Suprimei&amp;x-ho tot</translation>
     </message>
     <message>
         <location filename="../../sessionDialog.ui" line="284"/>
@@ -2366,42 +2276,42 @@ les finestress&apos;inclouran a la sessió desada.</translation>
         <translation>Escriu un nom per desar la sessió</translation>
     </message>
     <message>
-        <location filename="../../session.cpp" line="179"/>
+        <location filename="../../session.cpp" line="183"/>
         <source>Nothing saved.&lt;br&gt;No file was opened.</source>
-        <translation>No s&apos;ha desat res &lt;br&gt;No s&apos;ha obert cap fitxer.</translation>
+        <translation>No s&apos;ha desat res. &lt;br&gt;No s&apos;ha obert cap fitxer.</translation>
     </message>
     <message>
-        <location filename="../../session.cpp" line="277"/>
+        <location filename="../../session.cpp" line="281"/>
         <source>No file exists or can be opened.</source>
         <translation>No existeix cap fitxer o no es pot obrir.</translation>
     </message>
     <message>
-        <location filename="../../session.cpp" line="279"/>
+        <location filename="../../session.cpp" line="283"/>
         <source>Not all files exist or can be opened.</source>
         <translation>No tots els fitxer existeixen o no es poden obrir.</translation>
     </message>
     <message>
-        <location filename="../../session.cpp" line="314"/>
+        <location filename="../../session.cpp" line="318"/>
         <source>&amp;OK</source>
-        <translation>&amp;Accepta</translation>
+        <translation>D&apos;ac&amp;ord</translation>
     </message>
     <message>
-        <location filename="../../session.cpp" line="333"/>
+        <location filename="../../session.cpp" line="337"/>
         <source>Do you really want to remove all saved sessions?</source>
-        <translation>Voleu esborrar totes les sessions desades?</translation>
+        <translation>Voleu suprimir totes les sessions desades?</translation>
     </message>
     <message>
-        <location filename="../../session.cpp" line="339"/>
+        <location filename="../../session.cpp" line="343"/>
         <source>Do you really want to remove the selected sessions?</source>
-        <translation>Voleu esborrar totes les sessions seleccionades?</translation>
+        <translation>Voleu suprimir totes les sessions seleccionades?</translation>
     </message>
     <message>
-        <location filename="../../session.cpp" line="341"/>
+        <location filename="../../session.cpp" line="345"/>
         <source>Do you really want to remove the selected session?</source>
-        <translation>Voleu esborrar la sessió seleccionada?</translation>
+        <translation>Voleu suprimir la sessió seleccionada?</translation>
     </message>
     <message>
-        <location filename="../../session.cpp" line="346"/>
+        <location filename="../../session.cpp" line="350"/>
         <source>A session with the same name exists.&lt;br&gt;Do you want to overwrite it?</source>
         <translation>Existeix una sessió amb el mateix nom.&lt;br&gt;Voleu sobreescriure-la?</translation>
     </message>
@@ -2409,9 +2319,9 @@ les finestress&apos;inclouran a la sessió desada.</translation>
 <context>
     <name>FeatherPad::SidePane</name>
     <message>
-        <location filename="../../sidepane.cpp" line="224"/>
+        <location filename="../../sidepane.cpp" line="196"/>
         <source>Filter...</source>
-        <translation>Filtre...</translation>
+        <translation>Filtra...</translation>
     </message>
 </context>
 <context>
@@ -2424,7 +2334,7 @@ les finestress&apos;inclouran a la sessió desada.</translation>
     <message>
         <location filename="../../spellDialog.ui" line="51"/>
         <source>Add To Dictionary</source>
-        <translation>Afegir al diccionari</translation>
+        <translation>Afegeix al diccionari</translation>
     </message>
     <message>
         <location filename="../../spellDialog.ui" line="62"/>
@@ -2434,28 +2344,28 @@ les finestress&apos;inclouran a la sessió desada.</translation>
     <message>
         <location filename="../../spellDialog.ui" line="129"/>
         <source>Correct Once</source>
-        <translation>Corregir una vegada</translation>
+        <translation>Corregeix-ho una vegada</translation>
     </message>
     <message>
         <location filename="../../spellDialog.ui" line="142"/>
         <source>Correct All</source>
-        <translation>Corregir tot</translation>
+        <translation>Corregeix-ho tot</translation>
     </message>
     <message>
         <location filename="../../spellDialog.ui" line="87"/>
         <source>Ignore Once</source>
-        <translation>Ignorar una vegada</translation>
+        <translation>Ignora-ho una vegada</translation>
     </message>
     <message>
         <location filename="../../spellDialog.ui" line="100"/>
         <source>Ignore All</source>
-        <translation>Ignorar tot</translation>
+        <translation>Ignora-ho tot</translation>
     </message>
 </context>
 <context>
     <name>FeatherPad::TextEdit</name>
     <message>
-        <location filename="../../textedit.cpp" line="146"/>
+        <location filename="../../textedit.cpp" line="152"/>
         <source>Double click to center current line</source>
         <translation>Feu doble clic per centrar la línia actual</translation>
     </message>

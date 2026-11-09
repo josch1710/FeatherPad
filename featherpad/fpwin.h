@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2023 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2026 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -34,6 +34,8 @@ namespace FeatherPad {
 namespace Ui {
 class FPwin;
 }
+
+class WarningBar;
 
 // A FeatherPad window.
 class FPwin : public QMainWindow
@@ -152,7 +154,7 @@ private slots:
     void replaceDock();
     void resizeDock (bool topLevel);
     void jumpTo();
-    void setMax (const int max);
+    void setMaxBlocks (const int max);
     void goTo();
     void asterisk (bool modified);
     void reformat (TextEdit *textEdit);
@@ -170,6 +172,7 @@ private slots:
     void displayOutput();
     void docProp();
     void filePrint();
+    void printing();
     void detachTab();
     void nextTab();
     void previousTab();
@@ -197,6 +200,7 @@ private slots:
     void onPermissionDenied();
     void onOpeningUneditable();
     void onOpeningNonexistent();
+    void columnWarning();
     void autoSave();
     void pauseAutoSaving (bool pause);
     void enforceLang (QAction *action);
@@ -261,7 +265,7 @@ private:
     void removeGreenSel();
     void makeBusy();
     void displayMessage (bool error);
-    void showWarningBar (const QString& message, int timeout = 10, bool startupBar = false);
+    WarningBar* showWarningBar (const QString& message, int timeout = 10, bool startupBar = false);
     void closeWarningBar (bool keepOnStartup = false);
     void disconnectLambda();
     void updateLangBtn (TextEdit *textEdit);
@@ -273,7 +277,6 @@ private:
     QActionGroup *aGroup_;
     QString lastFile_; // The last opened or saved file (for file dialogs).
     QHash<QString, QVariant> lastWinFilesCur_; // The last window files and their cusrors (if restored).
-    QString txtReplace_; // The replacing text.
     int rightClicked_; // The index/row of the right-clicked tab/item.
     int loadingProcesses_; // The number of loading processes (used to prevent early closing).
     QMetaObject::Connection lambdaConnection_; // Captures a lambda connection to disconnect it later.

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2022 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2024 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -21,62 +21,10 @@
 //#include <QFileInfo>
 #include <QKeySequence>
 
+#include <cmath>
+
 namespace FeatherPad {
 
-// Qt6 has changed "QFont::toString()" in a backward incompatible way, so that,
-// if a document is saved by the Qt6 version, the Qt5 version will show wrong fonts.
-// This function circumvents the problem when it's used instead of "QFont::fromString()".
-static inline void fontFromString (QFont &f, const QString &str)
-{
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-    const QChar comma (QLatin1Char (','));
-    QStringList l = str.split (comma);
-    if (l.size() <= 10)
-        f.fromString (str);
-    else
-    {
-        l = l.mid (0, 10);
-        int weight = l.at (4).toInt();
-        switch (weight) {
-        case 100:
-            weight = 0;
-            break;
-        case 200:
-            weight = 12;
-            break;
-        case 300:
-            weight = 25;
-            break;
-        case 400:
-            weight = 50;
-            break;
-        case 500:
-            weight = 57;
-            break;
-        case 600:
-            weight = 63;
-            break;
-        case 700:
-            weight = 75;
-            break;
-        case 800:
-            weight = 81;
-            break;
-        case 900:
-            weight = 87;
-            break;
-        default:
-            weight = 50;
-            break;
-        }
-        l[4] = QString::number (weight);
-        f.fromString (l.join (comma));
-    }
-#else
-    f.fromString (str);
-#endif
-}
-/*************************/
 Config::Config():
     remSize_ (true),
     remPos_ (false),
@@ -178,7 +126,7 @@ void Config::readConfig()
     if (settings.value ("splitterPos") == "none")
         remSplitterPos_ = false; // true by default
     else
-        splitterPos_ = qMax (settings.value ("splitterPos", 150).toInt(), 0);
+        splitterPos_ = std::max (settings.value ("splitterPos", 150).toInt(), 0);
 
     prefSize_ = settings.value ("prefSize").toSize();
 
@@ -253,15 +201,15 @@ void Config::readConfig()
     if (settings.value ("font") == "none")
     {
         remFont_ = false; // true by default
-        font_.setPointSize (qMax (QFont().pointSize(), 9));
+        font_.setPointSize (std::max (QFont().pointSize(), 9));
     }
     else
     {
         QString fontStr = settings.value ("font").toString();
         if (!fontStr.isEmpty())
-            fontFromString (font_, fontStr);
+            font_.fromString (fontStr);
         else
-            font_.setPointSize (qMax (QFont().pointSize(), 9));
+            font_.setPointSize (std::max (QFont().pointSize(), 9));
     }
 
     if (settings.value ("noWrap").toBool())
@@ -304,7 +252,7 @@ void Config::readConfig()
         autoSave_ = true; // false by default
 
     int distance = settings.value ("vLineDistance").toInt();
-    if (qAbs (distance) >= 10 && qAbs (distance) < 1000)
+    if (std::abs (distance) >= 10 && std::abs (distance) < 1000)
         vLineDistance_ = distance; // -80 by default
 
     v = settings.value ("skipNonText");
@@ -320,13 +268,13 @@ void Config::readConfig()
     if (settings.value ("pastePaths").toBool())
         pastePaths_ = true; // false by default
 
-    maxSHSize_ = qBound (1, settings.value ("maxSHSize", 2).toInt(), 10);
+    maxSHSize_ = std::clamp (settings.value ("maxSHSize", 2).toInt(), 1, 10);
 
     /* don't let the dark bg be darker than #e6e6e6 */
-    lightBgColorValue_ = qBound (230, settings.value ("lightBgColorValue", 255).toInt(), 255);
+    lightBgColorValue_ = std::clamp (settings.value ("lightBgColorValue", 255).toInt(), 230, 255);
 
     /* don't let the dark bg be lighter than #323232 */
-    darkBgColorValue_ = qBound (0, settings.value ("darkBgColorValue", 15).toInt(), 50);
+    darkBgColorValue_ = std::clamp (settings.value ("darkBgColorValue", 15).toInt(), 0, 50);
 
     dateFormat_ = settings.value ("dateFormat").toString();
 
@@ -341,7 +289,7 @@ void Config::readConfig()
     if (settings.value ("removeTrailingSpaces").toBool())
         removeTrailingSpaces_ = true; // false by default
 
-    recentFilesNumber_ = qBound (0, settings.value ("recentFilesNumber", 10).toInt(), 50);
+    recentFilesNumber_ = std::clamp (settings.value ("recentFilesNumber", 10).toInt(), 0, 50);
     curRecentFilesNumber_ = recentFilesNumber_; // fixed
     recentFiles_ = settings.value ("recentFiles").toStringList();
     recentFiles_.removeAll ("");
@@ -354,9 +302,9 @@ void Config::readConfig()
     if (settings.value ("saveLastFilesList").toBool())
         saveLastFilesList_ = true; // false by default
 
-    autoSaveInterval_ = qBound (1, settings.value ("autoSaveInterval", 1).toInt(), 60);
+    autoSaveInterval_ = std::clamp (settings.value ("autoSaveInterval", 1).toInt(), 1, 60);
 
-    textTabSize_ = qBound (2, settings.value ("textTabSize", 4).toInt(), 10);
+    textTabSize_ = std::clamp (settings.value ("textTabSize", 4).toInt(), 2, 10);
 
     dictPath_ = settings.value ("dictionaryPath").toString();
     spellCheckFromStart_ = settings.value ("spellCheckFromStart").toBool();
@@ -369,7 +317,7 @@ void Config::readConfig()
 void Config::resetFont()
 {
     font_ = QFont ("Monospace");
-    font_.setPointSize (qMax (QFont().pointSize(), 9));
+    font_.setPointSize (std::max (QFont().pointSize(), 9));
 }
 /*************************/
 void Config::readShortcuts()
@@ -421,7 +369,7 @@ void Config::readSyntaxColors()// may be called multiple times
     Settings settingsColors (tmp.fileName(), QSettings::NativeFormat);
 
     settingsColors.beginGroup ("curLineHighlight");
-    curLineHighlight_ = qBound (-1, settingsColors.value ("value", -1).toInt(), 255);
+    curLineHighlight_ = std::clamp (settingsColors.value ("value", -1).toInt(), -1, 255);
     settingsColors.endGroup();
     if (curLineHighlight_ >= 0
         && (darkColScheme_ ? curLineHighlight_ > 70
@@ -429,7 +377,6 @@ void Config::readSyntaxColors()// may be called multiple times
     {
         curLineHighlight_ = -1;
     }
-
 
     settingsColors.beginGroup ("whiteSpace");
     int ws = settingsColors.value ("value").toInt();
@@ -446,7 +393,11 @@ void Config::readSyntaxColors()// may be called multiple times
     for (auto &syntax : syntaxes)
     {
         QColor col;
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+        col = QColor::fromString (settingsColors.value (syntax).toString());
+#else
         col.setNamedColor (settingsColors.value (syntax).toString());
+#endif
         if (col.isValid())
             col.setAlpha (255); // only opaque custom colors
         if (!col.isValid() || l.contains (col))
@@ -686,7 +637,7 @@ void Config::writeSyntaxColors()
 /*************************/
 void Config::setWhiteSpaceValue (int value)
 {
-    value = qBound (getMinWhiteSpaceValue(), value, getMaxWhiteSpaceValue());
+    value = std::clamp (value, getMinWhiteSpaceValue(), getMaxWhiteSpaceValue());
     QList<QColor> colors;
     colors << (darkColScheme_ ? QColor (Qt::white) : QColor (Qt::black));
     if (!customSyntaxColors_.isEmpty())

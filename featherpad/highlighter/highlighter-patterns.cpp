@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2019 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2024 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -30,14 +30,14 @@ QStringList Highlighter::keywords (const QString &lang)
                         << "\\b(const|case|catch|cdecl|continue)(?!(\\.|-|@|#|\\$))\\b"
                         << "\\b(break|default|do)(?!(\\.|-|@|#|\\$))\\b"
                         << "\\b(enum|explicit|else|extern)(?!(\\.|-|@|#|\\$))\\b"
-                        << "\\b(for|goto|if|NULL|or|pasca|register|return)(?!(\\.|-|@|#|\\$))\\b"
+                        << "\\b(for|goto|if|not|NULL|or|pasca|register|return)(?!(\\.|-|@|#|\\$))\\b"
                         << "\\b(signals|sizeof|static|struct|switch)(?!(\\.|-|@|#|\\$))\\b"
                         << "\\b(typedef|typename|union|volatile|while)(?!(\\.|-|@|#|\\$))\\b";
 
         if (lang == "c")
             keywordPatterns << "\\b(FALSE|TRUE)(?!(\\.|-|@|#|\\$))\\b";
         else
-            keywordPatterns << "\\b(class|const_cast|delete|dynamic_cast)(?!(\\.|-|@|#|\\$))\\b"
+            keywordPatterns << "\\b(class|constexpr|const_cast|delete|dynamic_cast)(?!(\\.|-|@|#|\\$))\\b"
                             << "\\b(false|foreach|friend|inline|namespace|new|operator)(?!(\\.|-|@|#|\\$))\\b"
                             << "\\b(nullptr|override|private|protected|public|qobject_cast|reinterpret_cast|slots|static_cast)(?!(\\.|-|@|#|\\$))\\b"
                             << "\\b(template|true|this|throw|try|typeid|using|virtual)(?!(\\.|-|@|#|\\$))\\b"
@@ -182,10 +182,10 @@ QStringList Highlighter::types()
     QStringList typePatterns;
     if (progLan == "c" || progLan == "cpp")
     {
-        typePatterns << "\\b(bool|char|double|float)(?!(\\.|-|@|#|\\$))\\b"
-                     << "\\b(gchar|gint|guint|guint8|guint16|guint32|guint64|gboolean)(?!(\\.|-|@|#|\\$))\\b"
-                     << "\\b(int|ptrdiff_t|long|short|size_t)(?!(\\.|-|@|#|\\$))\\b"
-                     << "\\b(unsigned|uint|uint8|uint16|uint32|uint64|uint8_t|uint16_t|uint32_t|uint64_t)(?!(\\.|-|@|#|\\$))\\b"
+        typePatterns << "\\b(bool|char|clock_t|double|float|FILE)(?!(\\.|-|@|#|\\$))\\b"
+                     << "\\b(gchar|gint|guint(8|16|32|64)?|gboolean)(?!(\\.|-|@|#|\\$))\\b"
+                     << "\\b(int(8_t|16_t|32_t|64_t)?|ptrdiff_t|long|short|size_t|ssize_t|time_t)(?!(\\.|-|@|#|\\$))\\b"
+                     << "\\b(unsigned|uint(8|16|32|64|8_t|16_t|32_t|64_t)?)(?!(\\.|-|@|#|\\$))\\b"
                      << "\\b(uid_t|gid_t|mode_t)(?!(\\.|-|@|#|\\$))\\b"
                      << "\\b(void|wchar_t|wint_t)(?!(\\.|-|@|#|\\$))\\b";
         if (progLan == "cpp")

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2021 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2021-2024 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -18,6 +18,8 @@
  */
 
 #include "highlighter.h"
+
+#include <algorithm>
 
 namespace FeatherPad {
 
@@ -111,11 +113,11 @@ bool Highlighter::isPascalMLCommented (const QString &text, const int index,
 void Highlighter::singleLinePascalComment (const QString &text, const int start)
 {
     QRegularExpression commentExp ("//.*");
-    int startIndex = qMax (start, 0);
+    int startIndex = std::max (start, 0);
     startIndex = text.indexOf (commentExp, startIndex);
     /* skip quoted comments */
     while (format (startIndex) == quoteFormat // only for multiLinePascalComment()
-           || isPascalQuoted (text, startIndex, qMax (start, 0)))
+           || isPascalQuoted (text, startIndex, std::max (start, 0)))
     {
         startIndex = text.indexOf (commentExp, startIndex + 1);
     }
@@ -125,11 +127,7 @@ void Highlighter::singleLinePascalComment (const QString &text, const int start)
         setFormat (startIndex, l - startIndex, commentFormat);
 
         /* also format urls and email addresses inside the comment */
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        QString str = text.mid (startIndex, l - startIndex);
-#else
         QString str = text.sliced (startIndex, l - startIndex);
-#endif
         int pIndex = 0;
         QRegularExpressionMatch urlMatch;
         while ((pIndex = str.indexOf (urlPattern, pIndex, &urlMatch)) > -1)
@@ -277,11 +275,7 @@ void Highlighter::multiLinePascalComment (const QString &text)
         if (!compilerDirective)
         {
             /* format urls and email addresses inside the comment */
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-            QString str = text.mid (startIndex, commentLength);
-#else
             QString str = text.sliced (startIndex, commentLength);
-#endif
             int pIndex = 0;
             QRegularExpressionMatch urlMatch;
             while ((pIndex = str.indexOf (urlPattern, pIndex, &urlMatch)) > -1)

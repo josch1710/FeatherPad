@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2022 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2024 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -46,6 +46,8 @@ public:
         /* this is needed for formatTextRect() to be called (for syntax highlighting) */
         emit QPlainTextEdit::updateRequest (rect(), 1);
     }
+
+    bool pastingIsPossible() const;
 
     void setEditorFont (const QFont &f, bool setDefault = true);
     void adjustScrollbars();
@@ -195,6 +197,10 @@ public:
         greenSel_ = sel;
     }
 
+    QList<QTextEdit::ExtraSelection> getColSel() const {
+        return colSel_;
+    }
+
     QList<QTextEdit::ExtraSelection> getRedSel() const {
         return redSel_;
     }
@@ -264,6 +270,14 @@ public:
         pastePaths_ = pastePaths;
     }
 
+    void releaseMouse() {
+        mousePressed_ = false;
+    }
+
+    void removeColumnHighlight();
+
+    int selectionSize() const;
+
     QTextCursor finding (const QString& str, const QTextCursor& start,
                          QTextDocument::FindFlags flags = QTextDocument::FindFlags(),
                          bool isRegex = false, const int end = 0) const;
@@ -291,10 +305,13 @@ signals:
     void updateRect();
     void zoomedOut (TextEdit *textEdit); // needed for reformatting text
     void updateBracketMatching();
+    void hugeColumn();
+    void canCopy (bool yes);
 
 public slots:
     void copy();
     void cut();
+    void deleteText();
     void undo();
     void redo();
     void paste();
@@ -336,6 +353,13 @@ private:
     QString computeIndentation (const QTextCursor &cur) const;
     QString remainingSpaces (const QString& spaceTab, const QTextCursor& cursor) const;
     QTextCursor backTabCursor(const QTextCursor& cursor, bool twoSpace) const;
+    void makeColumn (const QPoint &endPoint);
+    void highlightColumn (const QTextCursor &endCur, int gap);
+    void prependToColumn (QKeyEvent *event);
+    void copyColumn();
+    void cutColumn();
+    void deleteColumn();
+    void pasteOnColumn();
 
     int prevAnchor_, prevPos_; // used only for bracket matching
     QWidget *lineNumberArea_;
@@ -353,6 +377,7 @@ private:
     QColor lineHColor_;
     int resizeTimerId_, selectionTimerId_; // for not wasting CPU's time
     QPoint pressPoint_; // used internally for hyperlinks
+    bool mousePressed_; // used when removing the column highlight on changing the cursor position
     QFont font_; // used internally for keeping track of the unzoomed font
     QString textTab_; // text tab in terms of spaces
     QElapsedTimer tripleClickTimer_;
@@ -381,6 +406,7 @@ private:
     */
     QList<QTextEdit::ExtraSelection> greenSel_; // for replaced matches
     QList<QTextEdit::ExtraSelection> blueSel_; // for selection highlighting
+    QList<QTextEdit::ExtraSelection> colSel_; // for column selection
     QList<QTextEdit::ExtraSelection> redSel_; // for bracket matching
     bool selectionHighlighting_; // should selections be highlighted?
     bool highlightThisSelection_; // should this selection be highlighted?
@@ -422,7 +448,7 @@ protected:
     }
 
     void mouseDoubleClickEvent (QMouseEvent *event) {
-        if (rect().contains (event->pos()))
+        if (rect().contains (event->position().toPoint()))
             editor->centerCursor();
         QWidget::mouseDoubleClickEvent (event);
     }

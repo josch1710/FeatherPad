@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2019 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2024 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -143,11 +143,7 @@ void Highlighter::SH_MultiLineQuote (const QString &text)
         else
             setFormat (index, quoteLength, altQuoteFormat);
 
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        QString str = text.mid (index, quoteLength);
-#else
         QString str = text.sliced (index, quoteLength);
-#endif
         int urlIndex = 0;
         QRegularExpressionMatch urlMatch;
         while ((urlIndex = str.indexOf (urlPattern, urlIndex, &urlMatch)) > -1)

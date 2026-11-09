@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2023 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2026 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -52,11 +52,7 @@
 #include <QPushButton>
 #include <QDBusConnection> // for opening containing folder
 #include <QDBusMessage> // for opening containing folder
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-#include <QTextCodec>
-#else
 #include <QStringDecoder>
-#endif
 
 #ifdef HAS_X11
 #include "x11.h"
@@ -101,7 +97,7 @@ FPwin::FPwin (QWidget *parent):QMainWindow (parent), dummyWidget (nullptr), ui (
     wordButton->setIconSize (QSize (16, 16));
     wordButton->setIcon (symbolicIcon::icon (":icons/view-refresh.svg"));
     wordButton->setToolTip ("<p style='white-space:pre'>"
-                            + tr ("Calculate number of words\n(For huge texts, this may be CPU-intensive.)")
+                            + tr ("Calculate number of words")
                             + "</p>");
     connect (wordButton, &QAbstractButton::clicked, [this] {updateWordInfo();});
     ui->statusBar->addWidget (statusLabel);
@@ -170,38 +166,10 @@ FPwin::FPwin (QWidget *parent):QMainWindow (parent), dummyWidget (nullptr), ui (
     ui->actionUTF_8->setActionGroup (aGroup_);
     ui->actionUTF_16->setActionGroup (aGroup_);
     ui->actionISO_8859_1->setActionGroup (aGroup_);
-    ui->actionISO_8859_15->setActionGroup (aGroup_);
-    ui->actionWindows_1252->setActionGroup (aGroup_);
-    ui->actionWindows_Arabic->setActionGroup (aGroup_);
-    ui->actionCyrillic_CP1251->setActionGroup (aGroup_);
-    ui->actionCyrillic_KOI8_U->setActionGroup (aGroup_);
-    ui->actionCyrillic_ISO_8859_5->setActionGroup (aGroup_);
-    ui->actionChinese_BIG5->setActionGroup (aGroup_);
-    ui->actionChinese_GB18030->setActionGroup (aGroup_);
-    ui->actionJapanese_ISO_2022_JP->setActionGroup (aGroup_);
-    ui->actionJapanese_ISO_2022_JP_2->setActionGroup (aGroup_);
-    ui->actionJapanese_ISO_2022_KR->setActionGroup (aGroup_);
-    ui->actionJapanese_CP932->setActionGroup (aGroup_);
-    ui->actionJapanese_EUC_JP->setActionGroup (aGroup_);
-    ui->actionKorean_CP949->setActionGroup (aGroup_);
-    ui->actionKorean_CP1361->setActionGroup (aGroup_);
-    ui->actionKorean_EUC_KR->setActionGroup (aGroup_);
     ui->actionOther->setActionGroup (aGroup_);
 
     ui->actionUTF_8->setChecked (true);
     ui->actionOther->setDisabled (true);
-
-#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
-    /* Qt >= 6 doesn't support legacy encodings */
-    ui->menuEncoding->insertAction (ui->actionOther, ui->actionUTF_8);
-    ui->menuEncoding->insertAction (ui->actionOther, ui->actionUTF_16);
-    ui->menuEncoding->insertAction (ui->actionOther, ui->actionISO_8859_1);
-    ui->menuUnicode->menuAction()->setVisible (false);
-    ui->menuWestern_European->menuAction()->setVisible (false);
-    ui->menuEast_European->menuAction()->setVisible (false);
-    ui->menuEast_Asian->menuAction()->setVisible (false);
-    ui->actionWindows_Arabic->setVisible (false);
-#endif
 
     if (static_cast<FPsingleton*>(qApp)->isStandAlone())
         ui->tabWidget->noTabDND();
@@ -365,7 +333,7 @@ void FPwin::closeEvent (QCloseEvent *event)
     /* NOTE: With Qt6, "QCoreApplication::quit()" calls "closeEvent()" when the window is
              visible. But we want the app to quit without any prompt when receiving SIGTERM
              and similar signals. Here, we handle the situation by checking if a quit signal
-             is received. This is also safe with Qt5. */
+             is received. (This was also safe with Qt5.) */
     if (singleton->isQuitSignalReceived())
     {
         event->accept();
@@ -402,8 +370,8 @@ void FPwin::closeEvent (QCloseEvent *event)
 // session end and, for now, covers cursor positions of sessions and last files.
 void FPwin::cleanUpOnTerminating (Config &config, bool isLastWin)
 {
-    /* WARNING: Qt5 has a bug that will cause a crash if "QDockWidget::visibilityChanged"
-                isn't disconnected here. This is also good with Qt6. */
+    /* WARNING: Qt5 had a bug that would cause a crash if "QDockWidget::visibilityChanged"
+                wasn't disconnected here. This is also good with Qt6. */
     disconnect (ui->dockReplace, &QDockWidget::visibilityChanged, this, &FPwin::dockVisibilityChanged);
 
     lastWinFilesCur_.clear();
@@ -445,13 +413,13 @@ void FPwin::toggleSidePane()
         {
             /* make sure that the side pane is visible and
                its width isn't greater than that of the view */
-            sizes.append (qBound (16, config.getSplitterPos(), size().width() / 2));
+            sizes.append (std::min (std::max (16, config.getSplitterPos()), size().width() / 2));
             sizes.append (100); // an arbitrary integer, because of stretching
         }
         else
         {
             /* don't let the side pane be wider than 1/5 of the window width */
-            int s = qMin (size().width() / 5, 40 * sidePane_->fontMetrics().horizontalAdvance(' '));
+            int s = std::min (size().width() / 5, 40 * sidePane_->fontMetrics().horizontalAdvance(' '));
             sizes << s << size().width() - s;
         }
         ui->splitter->setSizes (sizes);
@@ -714,10 +682,8 @@ void FPwin::applyConfigOnStarting()
         ui->actionHelp->setIcon (QIcon::fromTheme ("help-contents"));
         ui->actionAbout->setIcon (QIcon::fromTheme ("help-about"));
         ui->actionJump->setIcon (QIcon::fromTheme ("go-jump"));
-        QIcon sideIcn = QIcon::fromTheme ("sidebar-expand-left");
-        if (sideIcn.isNull())
-            sideIcn = symbolicIcon::icon (":icons/side-pane.svg");
-        ui->actionSidePane->setIcon (sideIcn);
+        ui->actionSidePane->setIcon (QIcon::fromTheme ("sidebar-expand-left",
+                                                       symbolicIcon::icon (":icons/side-pane.svg")));
         ui->actionEdit->setIcon (QIcon::fromTheme ("document-edit"));
         ui->actionRun->setIcon (QIcon::fromTheme ("system-run"));
         ui->actionCopyName->setIcon (QIcon::fromTheme ("edit-copy"));
@@ -801,10 +767,7 @@ void FPwin::applyConfigOnStarting()
     ui->toolButtonPrv->setIcon (symbolicIcon::icon (":icons/go-up.svg"));
     ui->toolButtonAll->setIcon (symbolicIcon::icon (":icons/arrow-down-double.svg"));
 
-    QIcon icn = QIcon::fromTheme ("featherpad");
-    if (icn.isNull())
-        icn = QIcon (":icons/featherpad.svg");
-    setWindowIcon (icn);
+    setWindowIcon (QIcon::fromTheme ("featherpad", QIcon (":icons/featherpad.svg")));
 
     if (!config.hasReservedShortcuts())
     { // the reserved shortcuts list could also be in "singleton.cpp"
@@ -812,7 +775,7 @@ void FPwin::applyConfigOnStarting()
                     // QPLainTextEdit
         reserved << QKeySequence (Qt::CTRL | Qt::SHIFT | Qt::Key_Z).toString() << QKeySequence (Qt::CTRL | Qt::Key_Z).toString() << QKeySequence (Qt::CTRL | Qt::Key_X).toString() << QKeySequence (Qt::CTRL | Qt::Key_C).toString() << QKeySequence (Qt::CTRL | Qt::Key_V).toString() << QKeySequence (Qt::CTRL | Qt::Key_A).toString()
                  << QKeySequence (Qt::SHIFT | Qt::Key_Insert).toString() << QKeySequence (Qt::SHIFT | Qt::Key_Delete).toString() << QKeySequence (Qt::CTRL | Qt::Key_Insert).toString()
-                 << QKeySequence (Qt::CTRL | Qt::Key_Left).toString() << QKeySequence (Qt::CTRL | Qt::Key_Right).toString() << QKeySequence (Qt::CTRL | Qt::Key_Up).toString() << QKeySequence (Qt::CTRL | Qt::Key_Down).toString() << QKeySequence (Qt::CTRL | Qt::Key_PageUp).toString() << QKeySequence (Qt::CTRL | Qt::Key_PageDown).toString()
+                 << QKeySequence (Qt::CTRL | Qt::Key_Left).toString() << QKeySequence (Qt::CTRL | Qt::Key_Right).toString() << QKeySequence (Qt::CTRL | Qt::Key_Up).toString() << QKeySequence (Qt::CTRL | Qt::Key_Down).toString() << QKeySequence (Qt::CTRL | Qt::Key_PageUp).toString() << QKeySequence (Qt::CTRL | Qt::Key_PageDown).toString() << QKeySequence (Qt::META | Qt::Key_Home).toString()
                  << QKeySequence (Qt::CTRL | Qt::Key_Home).toString() << QKeySequence (Qt::CTRL | Qt::Key_End).toString()
                  << QKeySequence (Qt::CTRL | Qt::SHIFT | Qt::Key_Up).toString() << QKeySequence (Qt::CTRL | Qt::SHIFT | Qt::Key_Down).toString()
                  << QKeySequence (Qt::META | Qt::Key_Up).toString() << QKeySequence (Qt::META | Qt::Key_Down).toString() << QKeySequence (Qt::META | Qt::SHIFT | Qt::Key_Up).toString() << QKeySequence (Qt::META | Qt::SHIFT | Qt::Key_Down).toString()
@@ -1621,7 +1584,7 @@ TabPage* FPwin::createEmptyTab (bool setCurrent, bool allowNormalHighlighter)
     if (ui->actionLineNumbers->isChecked() || ui->spinBox->isVisible())
         textEdit->showLineNumbers (true);
     if (ui->spinBox->isVisible())
-        connect (textEdit->document(), &QTextDocument::blockCountChanged, this, &FPwin::setMax);
+        connect (textEdit->document(), &QTextDocument::blockCountChanged, this, &FPwin::setMaxBlocks);
     if (ui->statusBar->isVisible()
         || config.getShowStatusbar()) // when the main window is being created, isVisible() isn't set yet
     {
@@ -1638,15 +1601,16 @@ TabPage* FPwin::createEmptyTab (bool setCurrent, bool allowNormalHighlighter)
     if (!config.getSaveUnmodified())
         connect (textEdit->document(), &QTextDocument::modificationChanged, this, &FPwin::enableSaving);
     connect (textEdit->document(), &QTextDocument::modificationChanged, this, &FPwin::asterisk);
-    connect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionCut, &QAction::setEnabled);
-    connect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionDelete, &QAction::setEnabled);
-    connect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionCopy, &QAction::setEnabled);
+    connect (textEdit, &TextEdit::canCopy, ui->actionCut, &QAction::setEnabled);
+    connect (textEdit, &TextEdit::canCopy, ui->actionDelete, &QAction::setEnabled);
+    connect (textEdit, &TextEdit::canCopy, ui->actionCopy, &QAction::setEnabled);
     connect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionUpperCase, &QAction::setEnabled);
     connect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionLowerCase, &QAction::setEnabled);
     connect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionStartCase, &QAction::setEnabled);
 
     connect (textEdit, &TextEdit::filePasted, this, &FPwin::newTabFromName);
     connect (textEdit, &TextEdit::zoomedOut, this, &FPwin::reformat);
+    connect (textEdit, &TextEdit::hugeColumn, this, &FPwin::columnWarning);
 
     connect (tabPage, &TabPage::find, this, &FPwin::find);
     connect (tabPage, &TabPage::searchFlagChanged, this, &FPwin::searchFlagChanged);
@@ -1701,6 +1665,11 @@ void FPwin::editorContextMenu (const QPoint& p)
     TextEdit *textEdit = qobject_cast<TextEdit*>(QObject::sender());
     if (textEdit == nullptr) return;
 
+    /* Announce that the mouse button is released, because "TextEdit::mouseReleaseEvent"
+       is not called when the context menu is shown. This is only needed for removing the
+       column highlight on changing the cursor position after opening the context menu. */
+    QTimer::singleShot (0, textEdit, [textEdit]() {textEdit->releaseMouse();});
+
     /* put the cursor at the right-click position if it has no selection */
     if (!textEdit->textCursor().hasSelection())
         textEdit->setTextCursor (textEdit->cursorForPosition (p));
@@ -1709,6 +1678,7 @@ void FPwin::editorContextMenu (const QPoint& p)
     const QList<QAction*> actions = menu->actions();
     if (!actions.isEmpty())
     {
+        bool hasColumn = !textEdit->getColSel().isEmpty();
         for (QAction* const thisAction : actions)
         {
             /* remove the shortcut strings because shortcuts may change */
@@ -1722,16 +1692,30 @@ void FPwin::editorContextMenu (const QPoint& p)
             {
                 disconnect (thisAction, &QAction::triggered, nullptr, nullptr);
                 connect (thisAction, &QAction::triggered, textEdit, &TextEdit::copy);
+                if (hasColumn && !thisAction->isEnabled())
+                    thisAction->setEnabled (true);
             }
             else if (thisAction->objectName() == "edit-cut")
             {
                 disconnect (thisAction, &QAction::triggered, nullptr, nullptr);
                 connect (thisAction, &QAction::triggered, textEdit, &TextEdit::cut);
+                if (hasColumn && !thisAction->isEnabled())
+                    thisAction->setEnabled (true);
             }
             else if (thisAction->objectName() == "edit-paste")
             {
                 disconnect (thisAction, &QAction::triggered, nullptr, nullptr);
                 connect (thisAction, &QAction::triggered, textEdit, &TextEdit::paste);
+                /* also, correct the enabled state of the paste action by consulting our
+                   "TextEdit::pastingIsPossible()" instead of "QPlainTextEdit::canPaste()" */
+                thisAction->setEnabled (textEdit->pastingIsPossible());
+            }
+            else if (thisAction->objectName() == "edit-delete")
+            {
+                disconnect (thisAction, &QAction::triggered, nullptr, nullptr);
+                connect (thisAction, &QAction::triggered, textEdit, &TextEdit::deleteText);
+                if (hasColumn && !thisAction->isEnabled())
+                    thisAction->setEnabled (true);
             }
             else if (thisAction->objectName() == "edit-undo")
             {
@@ -1761,8 +1745,11 @@ void FPwin::editorContextMenu (const QPoint& p)
                     url = QUrl::fromUserInput (str, "/");
                 /* QDesktopServices::openUrl() may resort to "xdg-open", which isn't
                    the best choice. "gio" is always reliable, so we check it first. */
-                if (!QProcess::startDetached ("gio", QStringList() << "open" << url.toString()))
+                if (QStandardPaths::findExecutable ("gio").isEmpty()
+                    || !QProcess::startDetached ("gio", QStringList() << "open" << url.toString()))
+                {
                     QDesktopServices::openUrl (url);
+                }
             });
             if (str.startsWith ("mailto:")) // see getUrl()
                 str.remove (0, 7);
@@ -1819,7 +1806,7 @@ void FPwin::updateRecenMenu()
     {
         if (i < recentSize)
         {
-            actions.at (i)->setText (metrics.elidedText (recentFiles.at (i), Qt::ElideMiddle, w));
+            actions.at (i)->setText (metrics.elidedText (recentFiles.value (i).replace ("&", "&&").replace ('\t', ' '), Qt::ElideMiddle, w));
             QIcon icon;
             auto mimes = mimeDatabase.mimeTypesForFileName (recentFiles.at (i).section ("/", -1));
             if (!mimes.isEmpty())
@@ -1948,12 +1935,12 @@ void FPwin::focusSidePane()
             Config config = static_cast<FPsingleton*>(qApp)->getConfig();
             if (config.getRemSplitterPos())
             {
-                sizes.append (qBound (16, config.getSplitterPos(), size().width() / 2));
+                sizes.append (std::min (std::max (16, config.getSplitterPos()), size().width() / 2));
                 sizes.append (100);
             }
             else
             {
-                int s = qMin (size().width() / 5, 40 * sidePane_->fontMetrics().horizontalAdvance(' '));
+                int s = std::min (size().width() / 5, 40 * sidePane_->fontMetrics().horizontalAdvance(' '));
                 sizes << s << size().width() - s;
             }
             ui->splitter->setSizes (sizes);
@@ -1994,8 +1981,20 @@ void FPwin::executeProcess()
 
         QProcess *process = new QProcess (tabPage);
         process->setObjectName (fName); // to put it into the message dialog
-        connect (process, &QProcess::readyReadStandardOutput,this, &FPwin::displayOutput);
-        connect (process, &QProcess::readyReadStandardError,this, &FPwin::displayError);
+        connect (process, &QProcess::readyReadStandardOutput, this, &FPwin::displayOutput);
+        connect (process, &QProcess::readyReadStandardError, this, &FPwin::displayError);
+        connect (process, &QProcess::errorOccurred, this, [this, process](QProcess::ProcessError error) {
+            if (error == QProcess::FailedToStart)
+            {
+                showWarningBar ("<center><b><big>" + tr ("Cannot start process!") + "</big></b></center>"
+                                + "<center><i>" + process->errorString() + "</i></center>",
+                                15);
+                process->deleteLater();
+            }
+        });
+        /* old-fashioned: connect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),... */
+        connect (process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
+                 [process](int /*exitCode*/, QProcess::ExitStatus /*exitStatus*/) {process->deleteLater();});
         QString command = config.getExecuteCommand();
         if (!command.isEmpty())
         {
@@ -2010,9 +2009,6 @@ void FPwin::executeProcess()
         }
         else
             process->start (fName, QStringList());
-        /* old-fashioned: connect(process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),... */
-        connect (process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-                 [=](int /*exitCode*/, QProcess::ExitStatus /*exitStatus*/) {process->deleteLater();});
     }
 }
 /*************************/
@@ -2495,7 +2491,7 @@ void FPwin::addText (const QString& text, const QString& fileName, const QString
             {
                 QTextCursor cur = textEdit->textCursor();
                 cur.movePosition (QTextCursor::End);
-                int pos = qMin (qMax (cursorPos.value (fileName, 0).toInt(), 0), cur.position());
+                int pos = std::min (std::max (cursorPos.value (fileName, 0).toInt(), 0), cur.position());
                 cur.setPosition (pos);
                 QTimer::singleShot (0, textEdit, [textEdit, cur]() {
                     textEdit->setTextCursor (cur); // ensureCursorVisible() is called by this
@@ -2627,8 +2623,8 @@ void FPwin::addText (const QString& text, const QString& fileName, const QString
             if (config.getSaveUnmodified())
                 ui->actionSave->setDisabled (true);
         }
-        disconnect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionCut, &QAction::setEnabled);
-        disconnect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionDelete, &QAction::setEnabled);
+        disconnect (textEdit, &TextEdit::canCopy, ui->actionCut, &QAction::setEnabled);
+        disconnect (textEdit, &TextEdit::canCopy, ui->actionDelete, &QAction::setEnabled);
         disconnect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionUpperCase, &QAction::setEnabled);
         disconnect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionLowerCase, &QAction::setEnabled);
         disconnect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionStartCase, &QAction::setEnabled);
@@ -2707,7 +2703,7 @@ void FPwin::disconnectLambda()
 void FPwin::onOpeningHugeFiles()
 {
     disconnect (this, &FPwin::finishedLoading, this, &FPwin::onOpeningHugeFiles);
-    QTimer::singleShot (0, this, [=]() {
+    QTimer::singleShot (0, this, [this]() {
         showWarningBar ("<center><b><big>" + tr ("Huge file(s) not opened!") + "</big></b></center>\n"
                         + "<center>" + tr ("FeatherPad does not open files larger than 100 MiB.") + "</center>");
     });
@@ -2716,7 +2712,7 @@ void FPwin::onOpeningHugeFiles()
 void FPwin::onOpeninNonTextFiles()
 {
     disconnect (this, &FPwin::finishedLoading, this, &FPwin::onOpeninNonTextFiles);
-    QTimer::singleShot (0, this, [=]() {
+    QTimer::singleShot (0, this, [this]() {
         showWarningBar ("<center><b><big>" + tr ("Non-text file(s) not opened!") + "</big></b></center>\n"
                         + "<center><i>" + tr ("See Preferences → Files → Do not permit opening of non-text files") + "</i></center>",
                         20);
@@ -2726,7 +2722,7 @@ void FPwin::onOpeninNonTextFiles()
 void FPwin::onPermissionDenied()
 {
     disconnect (this, &FPwin::finishedLoading, this, &FPwin::onPermissionDenied);
-    QTimer::singleShot (0, this, [=]() {
+    QTimer::singleShot (0, this, [this]() {
         showWarningBar ("<center><b><big>" + tr ("Some file(s) could not be opened!") + "</big></b></center>\n"
                         + "<center>" + tr ("You may not have the permission to read.") + "</center>");
     });
@@ -2737,7 +2733,7 @@ void FPwin::onOpeningUneditable()
     disconnect (this, &FPwin::finishedLoading, this, &FPwin::onOpeningUneditable);
     /* A timer is needed here because the scrollbar position is restored on reloading by a
        lambda connection. Timers are also used in similar places for the sake of certainty. */
-    QTimer::singleShot (0, this, [=]() {
+    QTimer::singleShot (0, this, [this]() {
         showWarningBar ("<center><b><big>" + tr ("Uneditable file(s)!") + "</big></b></center>\n"
                         + "<center>" + tr ("Non-text files or files with huge lines cannot be edited.") + "</center>");
     });
@@ -2746,7 +2742,7 @@ void FPwin::onOpeningUneditable()
 void FPwin::onOpeningNonexistent()
 {
     disconnect (this, &FPwin::finishedLoading, this, &FPwin::onOpeningNonexistent);
-    QTimer::singleShot (0, this, [=]() {
+    QTimer::singleShot (0, this, [this]() {
         /* show the bar only if the current file doesn't exist at this very moment */
         if (TabPage *tabPage = qobject_cast< TabPage *>(ui->tabWidget->currentWidget()))
         {
@@ -2757,24 +2753,31 @@ void FPwin::onOpeningNonexistent()
     });
 }
 /*************************/
-void FPwin::showWarningBar (const QString& message, int timeout, bool startupBar)
+void FPwin::columnWarning()
 {
-    /* don't show this warning bar if the window is locked at this moment */
-    if (locked_) return;
+    showWarningBar ("<center><b><big>" + tr ("Huge column!") + "</big></b></center>\n"
+                    + "<center>" + tr ("Columns with more than 1000 rows are not supported.") + "</center>");
+}
+/*************************/
+WarningBar* FPwin::showWarningBar (const QString& message, int timeout, bool startupBar)
+{
+    /* don not show this warning bar if the window is locked at this moment */
+    if (locked_) return nullptr;
+
     if (timeout > 0)
     {
-        /* don't show the temporary warning bar when there's a modal dialog */
+        /* do not show the temporary warning bar when there is a modal dialog */
         QList<QDialog*> dialogs = findChildren<QDialog*>();
         for (int i = 0; i < dialogs.count(); ++i)
         {
             if (dialogs.at (i)->isModal())
-                return;
+                return nullptr;
         }
     }
 
     TabPage *tabPage = qobject_cast<TabPage*>(ui->tabWidget->currentWidget());
 
-    /* don't close and show the same warning bar */
+    /* do not close and show the same warning bar */
     if (WarningBar *prevBar = ui->tabWidget->findChild<WarningBar *>())
     {
         if (!prevBar->isClosing() && prevBar->getMessage() == message)
@@ -2785,7 +2788,7 @@ void FPwin::showWarningBar (const QString& message, int timeout, bool startupBar
                 disconnect (tabPage->textEdit(), &QPlainTextEdit::updateRequest, prevBar, &WarningBar::closeBarOnScrolling);
                 connect (tabPage->textEdit(), &QPlainTextEdit::updateRequest, prevBar, &WarningBar::closeBarOnScrolling);
             }
-            return;
+            return nullptr;
         }
     }
 
@@ -2798,11 +2801,13 @@ void FPwin::showWarningBar (const QString& message, int timeout, bool startupBar
     /* close the bar when the text is scrolled */
     if (tabPage && timeout > 0)
         connect (tabPage->textEdit(), &QPlainTextEdit::updateRequest, bar, &WarningBar::closeBarOnScrolling);
+
+    return bar;
 }
 /*************************/
 void FPwin::showRootWarning()
 {
-    QTimer::singleShot (0, this, [=]() {
+    QTimer::singleShot (0, this, [this]() {
         showWarningBar ("<center><b><big>" + tr ("Root Instance") + "</big></b></center>",
                         10, true);
     });
@@ -3027,7 +3032,6 @@ static inline int trailingSpaces (const QString &str)
     return i;
 }
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
 static inline QStringEncoder getEncoder (const QString &encoding)
 {
     if (encoding.compare ("UTF-16", Qt::CaseInsensitive) == 0)
@@ -3041,7 +3045,6 @@ static inline QStringEncoder getEncoder (const QString &encoding)
                                QStringConverter::Utf32
                            : QStringConverter::Latin1);
 }
-#endif
 /*************************/
 // This is for both "Save" and "Save As".
 // See savePrompt() for the meanings of "first" and its following variables.
@@ -3222,39 +3225,43 @@ bool FPwin::saveFile (bool keepSyntax,
         updateShortcuts (false);
     }
 
-    if (config.getRemoveTrailingSpaces() && textEdit->getProg() != "diff")
+    if (config.getRemoveTrailingSpaces())
     {
-        /* using text blocks directly is the fastest
-           and lightest way of removing trailing spaces */
-        makeBusy();
-        bool doubleSpace (textEdit->getProg() == "markdown" || textEdit->getProg() == "fountain");
-        bool singleSpace (textEdit->getProg() == "LaTeX") ;
-        QTextBlock block = textEdit->document()->firstBlock();
-        QTextCursor tmpCur = textEdit->textCursor();
-        tmpCur.beginEditBlock();
-        while (block.isValid())
+        QString lang = textEdit->getFileName().isEmpty() ? textEdit->getLang() : textEdit->getProg();
+        if (lang != "diff" && textEdit->getFileName().section ('/', -1) != "locale.gen")
         {
-            if (const int num = trailingSpaces (block.text()))
+            /* using text blocks directly is the fastest
+               and lightest way of removing trailing spaces */
+            makeBusy();
+            bool doubleSpace (lang == "markdown" || lang == "fountain");
+            bool singleSpace (lang == "LaTeX") ;
+            QTextBlock block = textEdit->document()->firstBlock();
+            QTextCursor tmpCur = textEdit->textCursor();
+            tmpCur.beginEditBlock();
+            while (block.isValid())
             {
-                tmpCur.setPosition (block.position() + block.text().length());
-                if (doubleSpace)
-                { // markdown sees two trailing spaces as a new line
-                    if (num != 2)
-                        tmpCur.movePosition (QTextCursor::PreviousCharacter, QTextCursor::KeepAnchor, qMax (1, num - 2));
+                if (const int num = trailingSpaces (block.text()))
+                {
+                    tmpCur.setPosition (block.position() + block.text().length());
+                    if (doubleSpace)
+                    { // markdown sees two trailing spaces as a new line
+                        if (num != 2)
+                            tmpCur.movePosition (QTextCursor::PreviousCharacter, QTextCursor::KeepAnchor, std::max (1, num - 2));
+                    }
+                    else if (singleSpace)
+                    { // LaTeX takes its single trailing spaces into account
+                        if (num > 1)
+                            tmpCur.movePosition (QTextCursor::PreviousCharacter, QTextCursor::KeepAnchor, num - 1);
+                    }
+                    else
+                        tmpCur.movePosition (QTextCursor::PreviousCharacter, QTextCursor::KeepAnchor, num);
+                    tmpCur.removeSelectedText();
                 }
-                else if (singleSpace)
-                { // LaTeX takes its single trailing spaces into account
-                    if (num > 1)
-                        tmpCur.movePosition (QTextCursor::PreviousCharacter, QTextCursor::KeepAnchor, num - 1);
-                }
-                else
-                    tmpCur.movePosition (QTextCursor::PreviousCharacter, QTextCursor::KeepAnchor, num);
-                tmpCur.removeSelectedText();
+                block = block.next();
             }
-            block = block.next();
+            tmpCur.endEditBlock();
+            unbusy();
         }
-        tmpCur.endEditBlock();
-        unbusy();
     }
 
     if (config.getAppendEmptyLine()
@@ -3281,11 +3288,7 @@ bool FPwin::saveFile (bool keepSyntax,
 
         QString encoding  = checkToEncoding();
         QString contents;
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        QTextCodec *codec;
-#else
         QStringEncoder encoder = getEncoder (encoding);
-#endif
         QByteArray encodedString;
         const char *txt;
 
@@ -3295,12 +3298,7 @@ bool FPwin::saveFile (bool keepSyntax,
             contents = textEdit->document()->toPlainText();
             contents.replace ("\n", "\r\n");
             size_t ln = static_cast<size_t>(contents.length()); // for fwrite()
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-            codec = QTextCodec::codecForName (encoding.toUtf8());
-            encodedString = codec->fromUnicode (contents);
-#else
             encodedString = encoder.encode (contents);
-#endif
             txt = encodedString.constData();
             FILE *file;
             file = fopen (fname.toUtf8().constData(), "wb");
@@ -3333,12 +3331,7 @@ bool FPwin::saveFile (bool keepSyntax,
                 MSWinLineEnd = true;
                 contents = textEdit->document()->toPlainText();
                 contents.replace ("\n", "\r\n");
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-                codec = QTextCodec::codecForName (encoding.toUtf8());
-                encodedString = codec->fromUnicode (contents);
-#else
                 encodedString = encoder.encode (contents);
-#endif
                 txt = encodedString.constData();
                 file.open (fname.toUtf8().constData());
                 if (file.is_open())
@@ -3349,9 +3342,6 @@ bool FPwin::saveFile (bool keepSyntax,
                 }
                 break;
             case QMessageBox::No:
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-                writer.setCodec (QTextCodec::codecForName (encoding.toUtf8()));
-#else
                 contents = textEdit->document()->toPlainText();
                 encodedString = encoder.encode (contents);
                 txt = encodedString.constData();
@@ -3362,7 +3352,6 @@ bool FPwin::saveFile (bool keepSyntax,
                     file.close();
                     success = true;
                 }
-#endif
                 break;
             default:
                 updateShortcuts (false);
@@ -3416,25 +3405,25 @@ bool FPwin::saveFile (bool keepSyntax,
     }
     else
     {
-        /* when every attempt at saving fails, try to save as root */
         if (QFile::exists (fname))
-        {
+        { // when every attempt at saving fails, try to save as root
             if (!QFileInfo (fname).permission (QFile::WriteUser))
             {
                 saveAsRoot (fname, tabPage, first, last, closingWindow, curItem, curPage, MSWinLineEnd);
-                return false; // the probable saving will be done with a dealy
+                return false; // the probable saving will be done with a delay
             }
         }
-        /* check the containing folder (which is guaranteed to exist) */
-        else if (!QFileInfo (fname.section ("/", 0, -2)).permission (QFile::WriteUser))
-        {
-            saveAsRoot (fname, tabPage, first, last, closingWindow, curItem, curPage, MSWinLineEnd);
-            return false;
+        else
+        { // check the containing folder
+            QFileInfo pDir (fname.section ("/", 0, -2));
+            if (pDir.isDir() && !pDir.permission (QFile::WriteUser))
+            {
+                saveAsRoot (fname, tabPage, first, last, closingWindow, curItem, curPage, MSWinLineEnd);
+                return false;
+            }
         }
 
         closePreviousPages_ = false;
-        /* NOTE: Is it possible to reach this?
-                 It was needed before saveAsRoot() was added. */
         QString error = writer.device()->errorString();
         QTimer::singleShot (0, this, [this, error]() {
             showWarningBar ("<center><b><big>" + tr ("Cannot be saved!") + "</big></b></center>\n"
@@ -3472,13 +3461,8 @@ void FPwin::saveAsRoot (const QString& fileName, TabPage *tabPage,
             QString contents = textEdit->document()->toPlainText();
             contents.replace ("\n", "\r\n");
             size_t ln = static_cast<size_t>(contents.length());
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-            QTextCodec *codec = QTextCodec::codecForName (encoding.toUtf8());
-            QByteArray encodedString = codec->fromUnicode (contents);
-#else
             QStringEncoder encoder = getEncoder (encoding);
             QByteArray encodedString = encoder.encode (contents);
-#endif
             const char *txt = encodedString.constData();
             FILE *file;
             file = fopen (fname.toUtf8().constData(), "wb");
@@ -3495,13 +3479,8 @@ void FPwin::saveAsRoot (const QString& fileName, TabPage *tabPage,
             {
                 QString contents =textEdit->document()->toPlainText();
                 contents.replace ("\n", "\r\n");
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-                QTextCodec *codec = QTextCodec::codecForName (encoding.toUtf8());
-                QByteArray encodedString = codec->fromUnicode (contents);
-#else
                 QStringEncoder encoder = getEncoder (encoding);
                 QByteArray encodedString = encoder.encode (contents);
-#endif
                 const char *txt = encodedString.constData();
                 std::ofstream file;
                 file.open (fname.toUtf8().constData());
@@ -3514,9 +3493,6 @@ void FPwin::saveAsRoot (const QString& fileName, TabPage *tabPage,
             }
             else
             {
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-                writer.setCodec (QTextCodec::codecForName (encoding.toUtf8()));
-#else
                 QString contents = textEdit->document()->toPlainText();
                 QStringEncoder encoder = getEncoder (encoding);
                 QByteArray encodedString = encoder.encode (contents);
@@ -3529,7 +3505,6 @@ void FPwin::saveAsRoot (const QString& fileName, TabPage *tabPage,
                     file.close();
                     success = true;
                 }
-#endif
             }
         }
     }
@@ -3546,7 +3521,7 @@ void FPwin::saveAsRoot (const QString& fileName, TabPage *tabPage,
         lockWindow (tabPage, true); // wait until the following process is finished
         QProcess *fileProcess = new QProcess (this);
         connect (fileProcess, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), textEdit,
-                 [=](int exitCode, QProcess::ExitStatus exitStatus) {
+                 [=, this](int exitCode, QProcess::ExitStatus exitStatus) {
             lockWindow (tabPage, false);
             QFile::remove (fname);
             if (exitStatus != QProcess::NormalExit || exitCode != 0)
@@ -3826,9 +3801,9 @@ void FPwin::insertDate()
     {
         Config config = static_cast<FPsingleton*>(qApp)->getConfig();
         QString format  = config.getDateFormat();
-        tabPage->textEdit()->insertPlainText (QDateTime::currentDateTime().toString (format.isEmpty()
-                                                  ? "MMM dd, yyyy, hh:mm:ss"
-                                                  : format));
+        tabPage->textEdit()->insertPlainText (
+            format.isEmpty() ? locale().toString(QDateTime::currentDateTime(), QLocale::ShortFormat)
+                             : locale().toString(QDateTime::currentDateTime(), format));
     }
 }
 /*************************/
@@ -3838,7 +3813,7 @@ void FPwin::deleteText()
     {
         TextEdit *textEdit = tabPage->textEdit();
         if (!textEdit->isReadOnly())
-            textEdit->insertPlainText ("");
+            textEdit->deleteText();
     }
 }
 /*************************/
@@ -3877,12 +3852,12 @@ void FPwin::startCase()
         {
             bool showWarning = false;
             QTextCursor cur = textEdit->textCursor();
-            int start = qMin (cur.anchor(), cur.position());
-            int end = qMax (cur.anchor(), cur.position());
-            if (end > start + 50000)
+            int start = std::min (cur.anchor(), cur.position());
+            int end = std::max (cur.anchor(), cur.position());
+            if (end > start + 100000)
             {
                 showWarning = true;
-                end = start + 50000;
+                end = start + 100000;
             }
 
             cur.setPosition (start);
@@ -3903,10 +3878,18 @@ void FPwin::startCase()
 
             start = 0;
             QRegularExpressionMatch match;
-            /* QTextCursor::selectedText() uses "U+2029" instead of "\n" */
-            while ((start = str.indexOf (QRegularExpression ("[^\\s\\.\\x{2029}]+"), start, &match)) > -1)
+            /* WARNING: "QTextCursor::selectedText()" uses "U+2029" instead of "\n". */
+            while ((start = str.indexOf (QRegularExpression ("[^\\s\\-\\.\\n\\x{2029}]+"), start, &match)) > -1)
             {
-                str.replace (start, 1, str.at (start).toUpper());
+                QChar c = str.at (start);
+                /* find the first letter from the start of the word */
+                int i = 0;
+                while (!c.isLetter() && i + 1 < match.capturedLength())
+                {
+                    ++i;
+                    c = str.at (start + i);
+                }
+                str.replace (start + i, 1, c.toUpper());
                 start += match.capturedLength();
             }
 
@@ -3932,7 +3915,7 @@ void FPwin::showingEditMenu()
         TextEdit *textEdit = tabPage->textEdit();
         if (!textEdit->isReadOnly())
         {
-            ui->actionPaste->setEnabled (textEdit->canPaste());
+            ui->actionPaste->setEnabled (textEdit->pastingIsPossible());
             if (textEdit->textCursor().selectedText().contains (QChar (QChar::ParagraphSeparator)))
             {
                 ui->actionSortLines->setEnabled (true);
@@ -3975,6 +3958,7 @@ void FPwin::makeEditable()
 
     TextEdit *textEdit = tabPage->textEdit();
     bool textIsSelected = textEdit->textCursor().hasSelection();
+    bool hasColumn = !textEdit->getColSel().isEmpty();
 
     textEdit->setReadOnly (false);
     Config config = static_cast<FPsingleton*>(qApp)->getConfig();
@@ -3997,14 +3981,14 @@ void FPwin::makeEditable()
     ui->actionPaste->setEnabled (true); // it might change temporarily in showingEditMenu()
     ui->actionSoftTab->setEnabled (true);
     ui->actionDate->setEnabled (true);
-    ui->actionCopy->setEnabled (textIsSelected);
-    ui->actionCut->setEnabled (textIsSelected);
-    ui->actionDelete->setEnabled (textIsSelected);
+    ui->actionCopy->setEnabled (textIsSelected || hasColumn);
+    ui->actionCut->setEnabled (textIsSelected || hasColumn);
+    ui->actionDelete->setEnabled (textIsSelected || hasColumn);
     ui->actionUpperCase->setEnabled (textIsSelected);
     ui->actionLowerCase->setEnabled (textIsSelected);
     ui->actionStartCase->setEnabled (textIsSelected);
-    connect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionCut, &QAction::setEnabled);
-    connect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionDelete, &QAction::setEnabled);
+    connect (textEdit, &TextEdit::canCopy, ui->actionCut, &QAction::setEnabled);
+    connect (textEdit, &TextEdit::canCopy, ui->actionDelete, &QAction::setEnabled);
     connect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionUpperCase, &QAction::setEnabled);
     connect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionLowerCase, &QAction::setEnabled);
     connect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionStartCase, &QAction::setEnabled);
@@ -4123,9 +4107,10 @@ void FPwin::tabSwitch (int index)
     ui->actionSoftTab->setEnabled (!readOnly);
     ui->actionDate->setEnabled (!readOnly);
     bool textIsSelected = textEdit->textCursor().hasSelection();
-    ui->actionCopy->setEnabled (textIsSelected);
-    ui->actionCut->setEnabled (!readOnly && textIsSelected);
-    ui->actionDelete->setEnabled (!readOnly && textIsSelected);
+    bool hasColumn = !textEdit->getColSel().isEmpty();
+    ui->actionCopy->setEnabled (textIsSelected || hasColumn);
+    ui->actionCut->setEnabled (!readOnly && (textIsSelected || hasColumn));
+    ui->actionDelete->setEnabled (!readOnly && (textIsSelected || hasColumn));
     ui->actionUpperCase->setEnabled (!readOnly && textIsSelected);
     ui->actionLowerCase->setEnabled (!readOnly && textIsSelected);
     ui->actionStartCase->setEnabled (!readOnly && textIsSelected);
@@ -4353,6 +4338,7 @@ void FPwin::showHideSearch()
             if (ui->actionLineNumbers->isChecked() || ui->spinBox->isVisible())
                 es.prepend (textEdit->currentLineSelection());
             es.append (textEdit->getBlueSel());
+            es.append (textEdit->getColSel());
             es.append (textEdit->getRedSel());
             textEdit->setExtraSelections (es);
             /* ... and empty all search entries */
@@ -4380,13 +4366,13 @@ void FPwin::jumpTo()
             connect (thisTextEdit->document(),
                      &QTextDocument::blockCountChanged,
                      this,
-                     &FPwin::setMax);
+                     &FPwin::setMaxBlocks);
         }
         else
             disconnect (thisTextEdit->document(),
                         &QTextDocument::blockCountChanged,
                         this,
-                        &FPwin::setMax);
+                        &FPwin::setMaxBlocks);
     }
 
     TabPage *tabPage = qobject_cast< TabPage *>(ui->tabWidget->currentWidget());
@@ -4409,7 +4395,7 @@ void FPwin::jumpTo()
         tabPage->textEdit()->setFocus();
 }
 /*************************/
-void FPwin::setMax (const int max)
+void FPwin::setMaxBlocks (const int max)
 {
     ui->spinBox->setMaximum (max);
 }
@@ -4458,7 +4444,12 @@ void FPwin::toggleWrapping()
 
     bool wrapLines = ui->actionWrap->isChecked();
     for (int i = 0; i < count; ++i)
-        qobject_cast<TabPage*>(ui->tabWidget->widget (i))->textEdit()->setLineWrapMode (wrapLines ? QPlainTextEdit::WidgetWidth : QPlainTextEdit::NoWrap);
+    {
+        auto textEdit = qobject_cast<TabPage*>(ui->tabWidget->widget (i))->textEdit();
+        textEdit->setLineWrapMode (wrapLines ? QPlainTextEdit::WidgetWidth
+                                             : QPlainTextEdit::NoWrap);
+        textEdit->removeColumnHighlight();
+    }
     if (TabPage *tabPage = qobject_cast<TabPage*>(ui->tabWidget->currentWidget()))
         reformat (tabPage->textEdit());
 }
@@ -4490,40 +4481,6 @@ void FPwin::encodingToCheck (const QString& encoding)
         ui->actionUTF_16->setChecked (true);
     else if (encoding == "ISO-8859-1")
         ui->actionISO_8859_1->setChecked (true);
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-    else if (encoding == "ISO-8859-15")
-        ui->actionISO_8859_15->setChecked (true);
-    else if (encoding == "CP1252")
-        ui->actionWindows_1252->setChecked (true);
-    else if (encoding == "CP1256")
-        ui->actionWindows_Arabic->setChecked (true);
-    else if (encoding == "CP1251")
-        ui->actionCyrillic_CP1251->setChecked (true);
-    else if (encoding == "KOI8-U")
-        ui->actionCyrillic_KOI8_U->setChecked (true);
-    else if (encoding == "ISO-8859-5")
-        ui->actionCyrillic_ISO_8859_5->setChecked (true);
-    else if (encoding == "BIG5")
-        ui->actionChinese_BIG5->setChecked (true);
-    else if (encoding == "GB18030")
-        ui->actionChinese_GB18030->setChecked (true);
-    else if (encoding == "ISO-2022-JP")
-        ui->actionJapanese_ISO_2022_JP->setChecked (true);
-    else if (encoding == "ISO-2022-JP-2")
-        ui->actionJapanese_ISO_2022_JP_2->setChecked (true);
-    else if (encoding == "ISO-2022-KR")
-        ui->actionJapanese_ISO_2022_KR->setChecked (true);
-    else if (encoding == "CP932")
-        ui->actionJapanese_CP932->setChecked (true);
-    else if (encoding == "EUC-JP")
-        ui->actionJapanese_EUC_JP->setChecked (true);
-    else if (encoding == "CP949")
-        ui->actionKorean_CP949->setChecked (true);
-    else if (encoding == "CP1361")
-        ui->actionKorean_CP1361->setChecked (true);
-    else if (encoding == "EUC-KR")
-        ui->actionKorean_EUC_KR->setChecked (true);
-#endif
     else
     {
         ui->actionOther->setDisabled (false);
@@ -4539,40 +4496,8 @@ const QString FPwin::checkToEncoding() const
         encoding = "UTF-8";
     else if (ui->actionUTF_16->isChecked())
         encoding = "UTF-16";
-    else if (ui->actionWindows_Arabic->isChecked())
-        encoding = "CP1256";
     else if (ui->actionISO_8859_1->isChecked())
         encoding = "ISO-8859-1";
-    else if (ui->actionISO_8859_15->isChecked())
-        encoding = "ISO-8859-15";
-    else if (ui->actionWindows_1252->isChecked())
-        encoding = "CP1252";
-    else if (ui->actionCyrillic_CP1251->isChecked())
-        encoding = "CP1251";
-    else if (ui->actionCyrillic_KOI8_U->isChecked())
-        encoding = "KOI8-U";
-    else if (ui->actionCyrillic_ISO_8859_5->isChecked())
-        encoding = "ISO-8859-5";
-    else if (ui->actionChinese_BIG5->isChecked())
-        encoding = "BIG5";
-    else if (ui->actionChinese_GB18030->isChecked())
-        encoding = "GB18030";
-    else if (ui->actionJapanese_ISO_2022_JP->isChecked())
-        encoding = "ISO-2022-JP";
-    else if (ui->actionJapanese_ISO_2022_JP_2->isChecked())
-        encoding = "ISO-2022-JP-2";
-    else if (ui->actionJapanese_ISO_2022_KR->isChecked())
-        encoding = "ISO-2022-KR";
-    else if (ui->actionJapanese_CP932->isChecked())
-        encoding = "CP932";
-    else if (ui->actionJapanese_EUC_JP->isChecked())
-        encoding = "EUC-JP";
-    else if (ui->actionKorean_CP949->isChecked())
-        encoding = "CP949";
-    else if (ui->actionKorean_CP1361->isChecked())
-        encoding = "CP1361";
-    else if (ui->actionKorean_EUC_KR->isChecked())
-        encoding = "EUC-KR";
     else
         encoding = "UTF-8";
 
@@ -4639,7 +4564,7 @@ void FPwin::statusMsgWithLineCount (const int lines)
     QLocale l = locale();
     QString lineStr = "&nbsp;&nbsp;&nbsp;<b>" + tr ("Lines") + QString (":</b> <i>%1</i>").arg (l.toString (lines));
     QString selStr = "&nbsp;&nbsp;&nbsp;<b>" + tr ("Sel. Chars")
-                     + QString (":</b> <i>%1</i>").arg (l.toString (textEdit->textCursor().selectedText().size()));
+                     + QString (":</b> <i>%1</i>").arg (l.toString (textEdit->selectionSize()));
     QString wordStr = "&nbsp;&nbsp;&nbsp;<b>" + tr ("Words") + ":</b>";
 
     statusLabel->setText (encodStr + syntaxStr + lineStr + selStr + wordStr);
@@ -4651,7 +4576,7 @@ void FPwin::statusMsg()
     QLocale l = locale();
     QLabel *statusLabel = ui->statusBar->findChild<QLabel *>("statusLabel");
     int sel = qobject_cast< TabPage *>(ui->tabWidget->currentWidget())->textEdit()
-              ->textCursor().selectedText().size();
+              ->selectionSize();
     QString str = statusLabel->text();
     QString selStr = tr ("Sel. Chars");
     QString wordStr = "&nbsp;&nbsp;&nbsp;<b>" + tr ("Words");
@@ -4676,8 +4601,7 @@ void FPwin::showCursorPos()
     if (tabPage == nullptr) return;
 
     int pos = tabPage->textEdit()->textCursor().positionInBlock();
-    QString charN;
-    charN.setNum (pos); charN = "<i> " + charN + "</i>";
+    QString charN = "<i> " + locale().toString (pos) + "</i>";
     QString str = posLabel->text();
     QString scursorStr = "<b>" + tr ("Position:") + "</b>";
     int i = scursorStr.size();
@@ -4719,7 +4643,7 @@ void FPwin::enforceLang (QAction *action)
     langButton->setText (lang);
     if (lang == tr ("Normal"))
     {
-        if (textEdit->getProg() == "desktop" || textEdit->getProg() == "theme"
+        if (textEdit->getProg() == "desktop" || textEdit->getProg() == "theme" || textEdit->getProg() == "openbox"
             || textEdit->getProg() == "changelog"
             || textEdit->getProg() == "srt"
             || textEdit->getProg() == "gtkrc")
@@ -4784,19 +4708,30 @@ void FPwin::filePrint()
 {
     if (isLoading() || hasAnotherDialog())
         return;
-
     TabPage *tabPage = qobject_cast< TabPage *>(ui->tabWidget->currentWidget());
     if (tabPage == nullptr) return;
-
-    showWarningBar ("<center><b><big>" + tr ("Printing in progress...") + "</big></b></center>",
-                    0);
+    auto bar = showWarningBar ("<center><b><big>" + tr ("Printing in progress...") + "</big></b></center>",
+                               0);
     lockWindow (tabPage, true);
-
+    makeBusy(); // may not work correctly on Wayland
+    if (bar != nullptr)
+    {
+        /* Start printing only after the warning bar's animation finishes
+           and the control returns to the event loop. */
+        connect (bar, &WarningBar::shown, this, &FPwin::printing, Qt::QueuedConnection);
+    }
+    else
+        printing(); // never happens
+}
+/*************************/
+void FPwin::printing()
+{
+    TabPage *tabPage = qobject_cast< TabPage *>(ui->tabWidget->currentWidget());
+    if (tabPage == nullptr) return;
     TextEdit *textEdit = tabPage->textEdit();
 
     /* complete the syntax highlighting when printing
        because the whole document may not be highlighted */
-    makeBusy();
     if (Highlighter *highlighter = qobject_cast< Highlighter *>(textEdit->getHighlighter()))
     {
         QTextCursor start = textEdit->textCursor();
@@ -4826,10 +4761,12 @@ void FPwin::filePrint()
     }
     fileName.append (".pdf");
 
+    /* Qt -> qfont.cpp -> qt_defaultDpiX() */
     bool Use96Dpi = QCoreApplication::instance()->testAttribute (Qt::AA_Use96Dpi);
     QScreen *screen = QGuiApplication::primaryScreen();
-    qreal sourceDpiX = Use96Dpi ? 96 : screen ? screen->logicalDotsPerInchX() : 100;
-    qreal sourceDpiY = Use96Dpi ? 96 : screen ? screen->logicalDotsPerInchY() : 100;
+    double sourceDpiX = Use96Dpi ? 96 : screen ? screen->logicalDotsPerInchX() : 100;
+    double sourceDpiY = Use96Dpi ? 96 : screen ? screen->logicalDotsPerInchY() : 100;
+
     Printing *thread = new Printing (textEdit->document(),
                                      fileName,
                                      textEdit->getTextPrintColor(),
@@ -5032,14 +4969,15 @@ void FPwin::detachTab()
         if (statusCurPos)
             disconnect (textEdit, &QPlainTextEdit::cursorPositionChanged, this, &FPwin::showCursorPos);
     }
-    disconnect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionCut, &QAction::setEnabled);
-    disconnect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionDelete, &QAction::setEnabled);
+    disconnect (textEdit, &TextEdit::canCopy, ui->actionCut, &QAction::setEnabled);
+    disconnect (textEdit, &TextEdit::canCopy, ui->actionDelete, &QAction::setEnabled);
     disconnect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionUpperCase, &QAction::setEnabled);
     disconnect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionLowerCase, &QAction::setEnabled);
     disconnect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionStartCase, &QAction::setEnabled);
-    disconnect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionCopy, &QAction::setEnabled);
+    disconnect (textEdit, &TextEdit::canCopy, ui->actionCopy, &QAction::setEnabled);
     disconnect (textEdit, &QWidget::customContextMenuRequested, this, &FPwin::editorContextMenu);
     disconnect (textEdit, &TextEdit::zoomedOut, this, &FPwin::reformat);
+    disconnect (textEdit, &TextEdit::hugeColumn, this, &FPwin::columnWarning);
     disconnect (textEdit, &TextEdit::filePasted, this, &FPwin::newTabFromName);
     disconnect (textEdit, &TextEdit::updateBracketMatching, this, &FPwin::matchBrackets);
     disconnect (textEdit, &QPlainTextEdit::blockCountChanged, this, &FPwin::formatOnBlockChange);
@@ -5048,7 +4986,7 @@ void FPwin::detachTab()
 
     disconnect (textEdit->document(), &QTextDocument::contentsChange, this, &FPwin::updateWordInfo);
     disconnect (textEdit->document(), &QTextDocument::contentsChange, this, &FPwin::formatOnTextChange);
-    disconnect (textEdit->document(), &QTextDocument::blockCountChanged, this, &FPwin::setMax);
+    disconnect (textEdit->document(), &QTextDocument::blockCountChanged, this, &FPwin::setMaxBlocks);
     disconnect (textEdit->document(), &QTextDocument::modificationChanged, this, &FPwin::asterisk);
     disconnect (textEdit->document(), &QTextDocument::undoAvailable, ui->actionUndo, &QAction::setEnabled);
     disconnect (textEdit->document(), &QTextDocument::redoAvailable, ui->actionRedo, &QAction::setEnabled);
@@ -5127,7 +5065,7 @@ void FPwin::detachTab()
                                                          : hasFinalTarget ? QIcon (":icons/hasTarget.svg")
                                                                           : QIcon(),
                                                   fname, lw);
-        lw->setToolTip (tooltip);
+        lwi->setToolTip (tooltip);
         dropTarget->sideItems_.insert (lwi, tabPage);
         lw->addItem (lwi);
         lw->setCurrentItem (lwi);
@@ -5156,7 +5094,7 @@ void FPwin::detachTab()
         dropTarget->ui->spinBox->setVisible (true);
         dropTarget->ui->label->setVisible (true);
         dropTarget->ui->spinBox->setMaximum (textEdit->document()->blockCount());
-        connect (textEdit->document(), &QTextDocument::blockCountChanged, dropTarget, &FPwin::setMax);
+        connect (textEdit->document(), &QTextDocument::blockCountChanged, dropTarget, &FPwin::setMaxBlocks);
     }
     if (ln)
         dropTarget->ui->actionLineNumbers->setChecked (true);
@@ -5211,21 +5149,22 @@ void FPwin::detachTab()
     if (!config.getSaveUnmodified())
         connect (textEdit->document(), &QTextDocument::modificationChanged, dropTarget, &FPwin::enableSaving);
     connect (textEdit->document(), &QTextDocument::modificationChanged, dropTarget, &FPwin::asterisk);
-    connect (textEdit, &QPlainTextEdit::copyAvailable, dropTarget->ui->actionCopy, &QAction::setEnabled);
+    connect (textEdit, &TextEdit::canCopy, dropTarget->ui->actionCopy, &QAction::setEnabled);
 
     connect (tabPage, &TabPage::find, dropTarget, &FPwin::find);
     connect (tabPage, &TabPage::searchFlagChanged, dropTarget, &FPwin::searchFlagChanged);
 
     if (!textEdit->isReadOnly())
     {
-        connect (textEdit, &QPlainTextEdit::copyAvailable, dropTarget->ui->actionCut, &QAction::setEnabled);
-        connect (textEdit, &QPlainTextEdit::copyAvailable, dropTarget->ui->actionDelete, &QAction::setEnabled);
+        connect (textEdit, &TextEdit::canCopy, dropTarget->ui->actionCut, &QAction::setEnabled);
+        connect (textEdit, &TextEdit::canCopy, dropTarget->ui->actionDelete, &QAction::setEnabled);
         connect (textEdit, &QPlainTextEdit::copyAvailable, dropTarget->ui->actionUpperCase, &QAction::setEnabled);
         connect (textEdit, &QPlainTextEdit::copyAvailable, dropTarget->ui->actionLowerCase, &QAction::setEnabled);
         connect (textEdit, &QPlainTextEdit::copyAvailable, dropTarget->ui->actionStartCase, &QAction::setEnabled);
     }
     connect (textEdit, &TextEdit::filePasted, dropTarget, &FPwin::newTabFromName);
     connect (textEdit, &TextEdit::zoomedOut, dropTarget, &FPwin::reformat);
+    connect (textEdit, &TextEdit::hugeColumn, dropTarget, &FPwin::columnWarning);
     connect (textEdit, &QWidget::customContextMenuRequested, dropTarget, &FPwin::editorContextMenu);
 
     textEdit->setFocus();
@@ -5288,14 +5227,15 @@ void FPwin::dropTab (const QString& str, QObject *source)
         if (dragSource->ui->statusBar->findChild<QLabel *>("posLabel"))
             disconnect (textEdit, &QPlainTextEdit::cursorPositionChanged, dragSource, &FPwin::showCursorPos);
     }
-    disconnect (textEdit, &QPlainTextEdit::copyAvailable, dragSource->ui->actionCut, &QAction::setEnabled);
-    disconnect (textEdit, &QPlainTextEdit::copyAvailable, dragSource->ui->actionDelete, &QAction::setEnabled);
+    disconnect (textEdit, &TextEdit::canCopy, dragSource->ui->actionCut, &QAction::setEnabled);
+    disconnect (textEdit, &TextEdit::canCopy, dragSource->ui->actionDelete, &QAction::setEnabled);
     disconnect (textEdit, &QPlainTextEdit::copyAvailable, dragSource->ui->actionUpperCase, &QAction::setEnabled);
     disconnect (textEdit, &QPlainTextEdit::copyAvailable, dragSource->ui->actionLowerCase, &QAction::setEnabled);
     disconnect (textEdit, &QPlainTextEdit::copyAvailable, dragSource->ui->actionStartCase, &QAction::setEnabled);
-    disconnect (textEdit, &QPlainTextEdit::copyAvailable, dragSource->ui->actionCopy, &QAction::setEnabled);
+    disconnect (textEdit, &TextEdit::canCopy, dragSource->ui->actionCopy, &QAction::setEnabled);
     disconnect (textEdit, &QWidget::customContextMenuRequested, dragSource, &FPwin::editorContextMenu);
     disconnect (textEdit, &TextEdit::zoomedOut, dragSource, &FPwin::reformat);
+    disconnect (textEdit, &TextEdit::hugeColumn, dragSource, &FPwin::columnWarning);
     disconnect (textEdit, &TextEdit::filePasted, dragSource, &FPwin::newTabFromName);
     disconnect (textEdit, &TextEdit::updateBracketMatching, dragSource, &FPwin::matchBrackets);
     disconnect (textEdit, &QPlainTextEdit::blockCountChanged, dragSource, &FPwin::formatOnBlockChange);
@@ -5304,7 +5244,7 @@ void FPwin::dropTab (const QString& str, QObject *source)
 
     disconnect (textEdit->document(), &QTextDocument::contentsChange, dragSource, &FPwin::updateWordInfo);
     disconnect (textEdit->document(), &QTextDocument::contentsChange, dragSource, &FPwin::formatOnTextChange);
-    disconnect (textEdit->document(), &QTextDocument::blockCountChanged, dragSource, &FPwin::setMax);
+    disconnect (textEdit->document(), &QTextDocument::blockCountChanged, dragSource, &FPwin::setMaxBlocks);
     disconnect (textEdit->document(), &QTextDocument::modificationChanged, dragSource, &FPwin::asterisk);
     disconnect (textEdit->document(), &QTextDocument::undoAvailable, dragSource->ui->actionUndo, &QAction::setEnabled);
     disconnect (textEdit->document(), &QTextDocument::redoAvailable, dragSource->ui->actionRedo, &QAction::setEnabled);
@@ -5386,7 +5326,7 @@ void FPwin::dropTab (const QString& str, QObject *source)
                                                          : hasFinalTarget ? QIcon (":icons/hasTarget.svg")
                                                                           : QIcon(),
                                                   fname, lw);
-        lw->setToolTip (tooltip);
+        lwi->setToolTip (tooltip);
         sideItems_.insert (lwi, tabPage);
         lw->addItem (lwi);
         lw->setCurrentItem (lwi);
@@ -5419,7 +5359,7 @@ void FPwin::dropTab (const QString& str, QObject *source)
         delete highlighter; highlighter = nullptr;
     }
     if (ui->spinBox->isVisible())
-        connect (textEdit->document(), &QTextDocument::blockCountChanged, this, &FPwin::setMax);
+        connect (textEdit->document(), &QTextDocument::blockCountChanged, this, &FPwin::setMaxBlocks);
     if (ui->actionLineNumbers->isChecked() || ui->spinBox->isVisible())
         textEdit->showLineNumbers (true);
     else
@@ -5463,21 +5403,22 @@ void FPwin::dropTab (const QString& str, QObject *source)
     if (!config.getSaveUnmodified())
         connect (textEdit->document(), &QTextDocument::modificationChanged, this, &FPwin::enableSaving);
     connect (textEdit->document(), &QTextDocument::modificationChanged, this, &FPwin::asterisk);
-    connect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionCopy, &QAction::setEnabled);
+    connect (textEdit, &TextEdit::canCopy, ui->actionCopy, &QAction::setEnabled);
 
     connect (tabPage, &TabPage::find, this, &FPwin::find);
     connect (tabPage, &TabPage::searchFlagChanged, this, &FPwin::searchFlagChanged);
 
     if (!textEdit->isReadOnly())
     {
-        connect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionCut, &QAction::setEnabled);
-        connect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionDelete, &QAction::setEnabled);
+        connect (textEdit, &TextEdit::canCopy, ui->actionCut, &QAction::setEnabled);
+        connect (textEdit, &TextEdit::canCopy, ui->actionDelete, &QAction::setEnabled);
         connect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionUpperCase, &QAction::setEnabled);
         connect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionLowerCase, &QAction::setEnabled);
         connect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionStartCase, &QAction::setEnabled);
     }
     connect (textEdit, &TextEdit::filePasted, this, &FPwin::newTabFromName);
     connect (textEdit, &TextEdit::zoomedOut, this, &FPwin::reformat);
+    connect (textEdit, &TextEdit::hugeColumn, this, &FPwin::columnWarning);
     connect (textEdit, &QWidget::customContextMenuRequested, this, &FPwin::editorContextMenu);
 
     textEdit->setFocus();
@@ -5592,7 +5533,7 @@ void FPwin::tabContextMenu (const QPoint& p)
                                                 QString(),
                                                 QStringLiteral ("ShowItems"));
                 /* NOTE: The removal of the auto-start flag is needed for switching to
-                         QProcess if "org.freedesktop.FileManager1" doesn't exist. */
+                         URL opening if "org.freedesktop.FileManager1" doesn't exist. */
                 methodCall.setAutoStartService (false);
                 QList<QVariant> args;
                 args.append (QStringList() << fname);
@@ -5602,8 +5543,11 @@ void FPwin::tabContextMenu (const QPoint& p)
                 if (response.type() == QDBusMessage::ErrorMessage)
                 {
                     QString folder = fname.section ("/", 0, -2);
-                    if (!QProcess::startDetached ("gio", QStringList() << "open" << folder))
+                    if (QStandardPaths::findExecutable ("gio").isEmpty()
+                        || !QProcess::startDetached ("gio", QStringList() << "open" << folder))
+                    {
                         QDesktopServices::openUrl (QUrl::fromLocalFile (folder));
+                    }
                 }
             });
         }
@@ -5736,8 +5680,11 @@ void FPwin::listContextMenu (const QPoint& p)
                 if (response.type() == QDBusMessage::ErrorMessage)
                 {
                     QString folder = fname.section ("/", 0, -2);
-                    if (!QProcess::startDetached ("gio", QStringList() << "open" << folder))
+                    if (QStandardPaths::findExecutable ("gio").isEmpty()
+                        || !QProcess::startDetached ("gio", QStringList() << "open" << folder))
+                    {
                         QDesktopServices::openUrl (QUrl::fromLocalFile (folder));
+                    }
                 }
             });
         }
@@ -6136,7 +6083,7 @@ void FPwin::autoSave()
        and saveFile(), we can't use the latter here.
        We especially don't show any prompt or warning here. */
     if (autoSaverPause_.isValid()) return;
-    QTimer::singleShot (0, this, [=]() {
+    QTimer::singleShot (0, this, [this]() {
         if (!autoSaver_ || !autoSaver_->isActive())
             return;
         saveAllFiles (false); // without warning
@@ -6161,7 +6108,7 @@ void FPwin::saveAllFiles (bool showWarning)
         if (fname.isEmpty() || !QFile::exists (fname))
             continue;
         /* make changes to the document if needed */
-        if (config.getRemoveTrailingSpaces() && thisTextEdit->getProg() != "diff")
+        if (config.getRemoveTrailingSpaces() && thisTextEdit->getProg() != "diff" && fname.section ('/', -1) != "locale.gen")
         {
             makeBusy();
             bool doubleSpace (thisTextEdit->getProg() == "markdown" || thisTextEdit->getProg() == "fountain");
@@ -6177,7 +6124,7 @@ void FPwin::saveAllFiles (bool showWarning)
                     if (doubleSpace)
                     {
                         if (num != 2)
-                            tmpCur.movePosition (QTextCursor::PreviousCharacter, QTextCursor::KeepAnchor, qMax (1, num - 2));
+                            tmpCur.movePosition (QTextCursor::PreviousCharacter, QTextCursor::KeepAnchor, std::max (1, num - 2));
                     }
                     else if (singleSpace)
                     {
@@ -6315,10 +6262,7 @@ void FPwin::aboutDialog()
     };
 
     AboutDialog dialog (this);
-    QIcon FPIcon = QIcon::fromTheme ("featherpad");
-    if (FPIcon.isNull())
-        FPIcon = QIcon (":icons/featherpad.svg");
-    dialog.setMainIcon (FPIcon);
+    dialog.setMainIcon (QIcon::fromTheme ("featherpad", QIcon (":icons/featherpad.svg")));
     dialog.settMainTitle (QString ("<center><b><big>%1 %2</big></b></center><br>").arg (qApp->applicationName(), qApp->applicationVersion()));
     dialog.setMainText ("<center> " + tr ("A lightweight, tabbed, plain-text editor") + " </center>\n<center> "
                         + tr ("based on Qt") + " </center><br><center> "
@@ -6359,7 +6303,7 @@ void FPwin::helpDoc()
     }
 
     /* see if a translated help file exists */
-    QString lang;
+    /*QString lang;
     QStringList langs (QLocale::system().uiLanguages());
     if (!langs.isEmpty())
         lang = langs.first().replace ('-', '_');
@@ -6385,15 +6329,15 @@ void FPwin::helpDoc()
     }
 
     if (!QFile::exists (helpPath))
-    {
+    {*/
 #if defined(Q_OS_HAIKU)
-        helpPath =  QStringLiteral (DATADIR) + "/help";
+        QString helpPath =  QStringLiteral (DATADIR) + "/help";
 #elif defined(Q_OS_MAC)
-        helpPath = qApp->applicationDirPath() + QStringLiteral ("/../Resources/") + "/help";
+        QString helpPath = qApp->applicationDirPath() + QStringLiteral ("/../Resources/") + "/help";
 #else
-        helpPath =  QStringLiteral (DATADIR) + "/featherpad/help";
+        QString helpPath =  QStringLiteral (DATADIR) + "/featherpad/help";
 #endif
-    }
+    //}
 
     QFile helpFile (helpPath);
     if (!helpFile.exists()) return;
@@ -6418,13 +6362,8 @@ void FPwin::helpDoc()
 
     QByteArray data = helpFile.readAll();
     helpFile.close();
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-    QTextCodec *codec = QTextCodec::codecForName ("UTF-8");
-    QString str = codec->toUnicode (data);
-#else
     auto decoder = QStringDecoder (QStringDecoder::Utf8);
     QString str = decoder.decode (data);
-#endif
     textEdit->setPlainText (str);
 
     textEdit->setReadOnly (true);
@@ -6444,8 +6383,8 @@ void FPwin::helpDoc()
     ui->actionUpperCase->setDisabled (true);
     ui->actionLowerCase->setDisabled (true);
     ui->actionStartCase->setDisabled (true);
-    disconnect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionCut, &QAction::setEnabled);
-    disconnect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionDelete, &QAction::setEnabled);
+    disconnect (textEdit, &TextEdit::canCopy, ui->actionCut, &QAction::setEnabled);
+    disconnect (textEdit, &TextEdit::canCopy, ui->actionDelete, &QAction::setEnabled);
     disconnect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionUpperCase, &QAction::setEnabled);
     disconnect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionLowerCase, &QAction::setEnabled);
     disconnect (textEdit, &QPlainTextEdit::copyAvailable, ui->actionStartCase, &QAction::setEnabled);
@@ -6496,13 +6435,19 @@ void FPwin::stealFocus (QWidget *w)
     /* WARNING: Under Wayland, this warning is shown by qtwayland -> qwaylandwindow.cpp
                 -> QWaylandWindow::requestActivateWindow():
                 "Wayland does not support QWindow::requestActivate()" */
-    if (!static_cast<FPsingleton*>(qApp)->isWayland())
+    if (!static_cast<FPsingleton*>(qApp)->isWayland() || qApp->activeWindow() != nullptr)
     {
         w->activateWindow();
         QTimer::singleShot (0, w, [w]() {
             if (QWindow *win = w->windowHandle())
                 win->requestActivate();
         });
+    }
+    else if (!w->isActiveWindow())
+    {
+        /* This is the only way to demand attention under Wayland,
+           although Wayland WMs may ignore it. */
+        QApplication::alert(w);
     }
 }
 /*************************/

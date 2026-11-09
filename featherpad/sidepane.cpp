@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2017-2021 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2017-2024 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -34,15 +34,10 @@ bool ListWidgetItem::operator<(const QListWidgetItem &other) const {
     {
         int end1 = txt1.indexOf (QLatin1Char ('.'), start1);
         int end2 = txt2.indexOf (QLatin1Char ('.'), start2);
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        QStringRef part1 = txt1.midRef (start1, end1 - start1);
-        QStringRef part2 = txt2.midRef (start2, end2 - start2);
-#else
         QString part1 = end1 == -1 ? txt1.sliced (start1, txt1.size() - start1)
                                    : txt1.sliced (start1, end1 - start1);
         QString part2 = end2 == -1 ? txt2.sliced (start2, txt2.size() - start2)
                                    : txt2.sliced (start2, end2 - start2);
-#endif
         int comp = collator_.compare (part1, part2);
         if (comp == 0)
             comp = part1.size() - part2.size(); // a workaround for QCollator's bug
@@ -96,29 +91,10 @@ ListWidget::ListWidget (QWidget *parent) : QListWidget (parent)
 // To prevent deselection by Ctrl + left click; see "qabstractitemview.cpp".
 QItemSelectionModel::SelectionFlags ListWidget::selectionCommand (const QModelIndex &index, const QEvent *event) const
 {
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-    Qt::KeyboardModifiers keyModifiers = Qt::NoModifier;
-    if (event)
-    {
-        switch (event->type()) {
-            case QEvent::MouseButtonDblClick:
-            case QEvent::MouseButtonPress:
-            case QEvent::MouseButtonRelease:
-            case QEvent::MouseMove:
-            case QEvent::KeyPress:
-            case QEvent::KeyRelease:
-                keyModifiers = (static_cast<const QInputEvent*>(event))->modifiers();
-                break;
-            default:
-                keyModifiers = QApplication::keyboardModifiers();
-        }
-    }
-#else
     Qt::KeyboardModifiers keyModifiers = event != nullptr && event->isInputEvent()
                                              ? (static_cast<const QInputEvent*>(event))->modifiers()
                                              : Qt::NoModifier;
 
-#endif
     if (selectionMode() == QAbstractItemView::SingleSelection)
     {
         if (!index.isValid())
@@ -167,7 +143,7 @@ void ListWidget::mousePressEvent (QMouseEvent *event)
     {
         if (event->button() == Qt::MiddleButton)
         {
-            QModelIndex index = indexAt (event->pos());
+            QModelIndex index = indexAt (event->position().toPoint());
             if (QListWidgetItem *item = itemFromIndex (index)) // index is checked for its validity in QListWidget::itemFromIndex()
                 emit closeItem (item);
             else
@@ -185,12 +161,8 @@ void ListWidget::mouseMoveEvent (QMouseEvent *event)
     QListWidget::mouseMoveEvent (event);
     if (event->button() == Qt::NoButton && !(event->buttons() & Qt::LeftButton))
     { // "this" is for Wayland, when the window isn't active
-        if (QListWidgetItem *item = itemAt (event->pos()))
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-            QToolTip::showText (event->globalPos(), item->toolTip(), this);
-#else
+        if (QListWidgetItem *item = itemAt (event->position().toPoint()))
             QToolTip::showText (event->globalPosition().toPoint(), item->toolTip(), this);
-#endif
         else
             QToolTip::hideText();
     }

@@ -58,9 +58,9 @@ public:
         LastFormattedRegex (0) {}
     ~TextBlockData();
 
-    QVector<ParenthesisInfo *> parentheses() const;
-    QVector<BraceInfo *> braces() const;
-    QVector<BracketInfo *> brackets() const;
+    QList<ParenthesisInfo *> parentheses() const;
+    QList<BraceInfo *> braces() const;
+    QList<BracketInfo *> brackets() const;
     QString labelInfo() const;
     bool isHighlighted() const;
     bool getProperty() const;
@@ -83,9 +83,9 @@ public:
     void insertOpenQuotes (const QSet<int> &openQuotes);
 
 private:
-    QVector<ParenthesisInfo *> allParentheses;
-    QVector<BraceInfo *> allBraces;
-    QVector<BracketInfo *> allBrackets;
+    QList<ParenthesisInfo *> allParentheses;
+    QList<BraceInfo *> allBraces;
+    QList<BracketInfo *> allBrackets;
     QString label; // A label (can be a delimiter string, like that of a here-doc).
     bool Highlighted; // Is this block completely highlighted?
     bool Property; // A general boolean property (used with SH, Perl, YAML, cmake,...).
@@ -308,7 +308,7 @@ private:
         QRegularExpression pattern;
         QTextCharFormat format;
     };
-    QVector<HighlightingRule> highlightingRules;
+    QList<HighlightingRule> highlightingRules;
 
     QRegularExpression hereDocDelimiter;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2021-2022 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2021-2024 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -171,11 +171,7 @@ void Highlighter::multiLineLuaComment (const QString &text)
             commentLength = endIndex - startIndex + endMatch.capturedLength();
         setFormat (startIndex, commentLength, isStringBlock ? regexFormat : commentFormat);
 
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        QString str = text.mid (startIndex, commentLength);
-#else
         QString str = text.sliced (startIndex, commentLength);
-#endif
         int pIndex = 0;
         QRegularExpressionMatch urlMatch;
         while ((pIndex = str.indexOf (urlPattern, pIndex, &urlMatch)) > -1)
@@ -244,11 +240,7 @@ void Highlighter::highlightLuaBlock (const QString &text)
                 int l = text.length() - index;
                 setFormat (index, l, commentFormat);
                 /* format urls and email addresses inside the comment */
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-                QString str = text.mid (index, l);
-#else
                 QString str = text.sliced (index, l);
-#endif
                 int pIndex = 0;
                 while ((pIndex = str.indexOf (urlPattern, pIndex, &match)) > -1)
                 {
@@ -291,11 +283,7 @@ void Highlighter::highlightLuaBlock (const QString &text)
                        text.at (index) == '\"' ? quoteFormat : altQuoteFormat);
 
             /* format urls and email addresses inside the quotation */
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-            QString str = text.mid (index, match.capturedLength());
-#else
             QString str = text.sliced (index, match.capturedLength());
-#endif
             int urlIndex = 0;
             QRegularExpressionMatch urlMatch;
             while ((urlIndex = str.indexOf (urlPattern, urlIndex, &urlMatch)) > -1)
@@ -310,7 +298,11 @@ void Highlighter::highlightLuaBlock (const QString &text)
         /*****************
          * Other formats *
          *****************/
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+        for (const HighlightingRule &rule : std::as_const (highlightingRules))
+#else
         for (const HighlightingRule &rule : qAsConst (highlightingRules))
+#endif
         {
             index = text.indexOf (rule.pattern, 0, &match);
             /* skip all quotes and comments */

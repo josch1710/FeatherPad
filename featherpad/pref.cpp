@@ -32,6 +32,14 @@
 #include <QColorDialog>
 #include <QWheelEvent>
 
+#include <cmath>
+
+#if (QT_VERSION >= QT_VERSION_CHECK(6,7,0))
+#define CHECKBOX_CHANGED QCheckBox::checkStateChanged
+#else
+#define CHECKBOX_CHANGED QCheckBox::stateChanged
+#endif
+
 namespace FeatherPad {
 
 static QHash<QString, QString> OBJECT_NAMES;
@@ -134,7 +142,7 @@ PrefDialog::PrefDialog (QWidget *parent)
      **************/
 
     ui->winSizeBox->setChecked (config.getRemSize());
-    connect (ui->winSizeBox, &QCheckBox::stateChanged, this, &PrefDialog::prefSize);
+    connect (ui->winSizeBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefSize);
     if (ui->winSizeBox->isChecked())
     {
         ui->spinX->setEnabled (false);
@@ -151,7 +159,7 @@ PrefDialog::PrefDialog (QWidget *parent)
                 ag = sc->availableGeometry().size();
         }
     }
-    if (ag.isEmpty()) ag = QSize (qMax (700, config.getStartSize().width()), qMax (500, config.getStartSize().height()));
+    if (ag.isEmpty()) ag = QSize (std::max (700, config.getStartSize().width()), std::max (500, config.getStartSize().height()));
     ui->spinX->setMaximum (ag.width());
     ui->spinY->setMaximum (ag.height());
     ui->spinX->setValue (config.getStartSize().width());
@@ -175,93 +183,93 @@ PrefDialog::PrefDialog (QWidget *parent)
     }
 
     ui->winPosBox->setChecked (config.getRemPos());
-    connect (ui->winPosBox, &QCheckBox::stateChanged, this, &PrefDialog::prefPos);
+    connect (ui->winPosBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefPos);
 
     ui->toolbarBox->setChecked (config.getNoToolbar());
-    connect (ui->toolbarBox, &QCheckBox::stateChanged, this, &PrefDialog::prefToolbar);
+    connect (ui->toolbarBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefToolbar);
     ui->menubarBox->setChecked (config.getNoMenubar());
-    connect (ui->menubarBox, &QCheckBox::stateChanged, this, &PrefDialog::prefMenubar);
+    connect (ui->menubarBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefMenubar);
 
     ui->menubarTitleBox->setChecked (config.getMenubarTitle());
-    connect (ui->menubarTitleBox, &QCheckBox::stateChanged, this, &PrefDialog::prefMenubarTitle);
+    connect (ui->menubarTitleBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefMenubarTitle);
 
     ui->searchbarBox->setChecked (config.getHideSearchbar());
-    connect (ui->searchbarBox, &QCheckBox::stateChanged, this, &PrefDialog::prefSearchbar);
+    connect (ui->searchbarBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefSearchbar);
 
     ui->searchHistoryBox->setChecked (sharedSearchHistory_);
-    connect (ui->searchHistoryBox, &QCheckBox::stateChanged, this, &PrefDialog::prefSearchHistory);
+    connect (ui->searchHistoryBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefSearchHistory);
 
     ui->statusBox->setChecked (config.getShowStatusbar());
-    connect (ui->statusBox, &QCheckBox::stateChanged, this, &PrefDialog::prefStatusbar);
+    connect (ui->statusBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefStatusbar);
 
     ui->statusCursorsBox->setChecked (config.getShowCursorPos());
-    connect (ui->statusCursorsBox, &QCheckBox::stateChanged, this, &PrefDialog::prefStatusCursor);
+    connect (ui->statusCursorsBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefStatusCursor);
 
     // no ccombo onnection because of mouse wheel; config is set at closeEvent() instead
     ui->tabCombo->setCurrentIndex (config.getTabPosition());
 
     ui->tabBox->setChecked (config.getTabWrapAround());
-    connect (ui->tabBox, &QCheckBox::stateChanged, this, &PrefDialog::prefTabWrapAround);
+    connect (ui->tabBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefTabWrapAround);
 
     ui->singleTabBox->setChecked (config.getHideSingleTab());
-    connect (ui->singleTabBox, &QCheckBox::stateChanged, this, &PrefDialog::prefHideSingleTab);
+    connect (ui->singleTabBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefHideSingleTab);
 
     ui->windowBox->setChecked (config.getOpenInWindows());
     ui->windowBox->setEnabled (!static_cast<FPsingleton*>(qApp)->isStandAlone());
-    connect (ui->windowBox, &QCheckBox::stateChanged, this, &PrefDialog::prefOpenInWindows);
+    connect (ui->windowBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefOpenInWindows);
 
     ui->nativeDialogBox->setChecked (config.getNativeDialog());
-    connect (ui->nativeDialogBox, &QCheckBox::stateChanged, this, &PrefDialog::prefNativeDialog);
+    connect (ui->nativeDialogBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefNativeDialog);
 
     ui->sidePaneBox->setChecked (config.getSidePaneMode());
     ui->sidePaneSizeBox->setChecked (config.getRemSplitterPos());
-    connect (ui->sidePaneBox, &QCheckBox::stateChanged, this, &PrefDialog::prefSidePaneMode);
-    connect (ui->sidePaneSizeBox, &QCheckBox::stateChanged, this, &PrefDialog::prefSplitterPos);
+    connect (ui->sidePaneBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefSidePaneMode);
+    connect (ui->sidePaneSizeBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefSplitterPos);
 
     ui->lastTabBox->setChecked (config.getCloseWithLastTab());
-    connect (ui->lastTabBox, &QCheckBox::stateChanged, this, &PrefDialog::prefCloseWithLastTab);
+    connect (ui->lastTabBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefCloseWithLastTab);
 
     ui->accelBox->setChecked (disableMenubarAccel_);
-    connect (ui->accelBox, &QCheckBox::stateChanged, this, &PrefDialog::disableMenubarAccel);
+    connect (ui->accelBox, &CHECKBOX_CHANGED, this, &PrefDialog::disableMenubarAccel);
 
     ui->iconBox->setChecked (sysIcons_);
-    connect (ui->iconBox, &QCheckBox::stateChanged, this, &PrefDialog::prefIcon);
+    connect (ui->iconBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefIcon);
 
     /************
      *** Text ***
      ************/
 
     ui->fontBox->setChecked (config.getRemFont());
-    connect (ui->fontBox, &QCheckBox::stateChanged, this, &PrefDialog::prefFont);
+    connect (ui->fontBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefFont);
 
     ui->wrapBox->setChecked (config.getWrapByDefault());
-    connect (ui->wrapBox, &QCheckBox::stateChanged, this, &PrefDialog::prefWrap);
+    connect (ui->wrapBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefWrap);
 
     ui->indentBox->setChecked (config.getIndentByDefault());
-    connect (ui->indentBox, &QCheckBox::stateChanged, this, &PrefDialog::prefIndent);
+    connect (ui->indentBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefIndent);
 
     ui->autoBracketBox->setChecked (config.getAutoBracket());
-    connect (ui->autoBracketBox, &QCheckBox::stateChanged, this, &PrefDialog::prefAutoBracket);
+    connect (ui->autoBracketBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefAutoBracket);
 
     ui->autoReplaceBox->setChecked (config.getAutoReplace());
-    connect (ui->autoReplaceBox, &QCheckBox::stateChanged, this, &PrefDialog::prefAutoReplace);
+    connect (ui->autoReplaceBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefAutoReplace);
 
     ui->lineBox->setChecked (config.getLineByDefault());
-    connect (ui->lineBox, &QCheckBox::stateChanged, this, &PrefDialog::prefLine);
+    connect (ui->lineBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefLine);
 
     ui->syntaxBox->setChecked (config.getSyntaxByDefault());
-    connect (ui->syntaxBox, &QCheckBox::stateChanged, this, &PrefDialog::prefSyntax);
+    connect (ui->syntaxBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefSyntax);
 
     ui->enforceSyntaxBox->setChecked (config.getShowLangSelector());
     ui->enforceSyntaxBox->setEnabled (config.getSyntaxByDefault());
 
     ui->whiteSpaceBox->setChecked (config.getShowWhiteSpace());
-    connect (ui->whiteSpaceBox, &QCheckBox::stateChanged, this, &PrefDialog::prefWhiteSpace);
+    connect (ui->whiteSpaceBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefWhiteSpace);
 
     ui->vLineBox->setChecked (vLineDistance_ >= 10);
-    connect (ui->vLineBox, &QCheckBox::stateChanged, this, &PrefDialog::prefVLine);
+    connect (ui->vLineBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefVLine);
     ui->vLineSpin->setEnabled (vLineDistance_ >= 10);
-    ui->vLineSpin->setValue (qAbs (vLineDistance_));
+    ui->vLineSpin->setValue (std::abs (vLineDistance_));
     connect (ui->vLineSpin, QOverload<int>::of(&QSpinBox::valueChanged), this, &PrefDialog::prefVLineDistance);
     if (auto le = ui->vLineSpin->findChild<QLineEdit*>())
     {
@@ -272,13 +280,13 @@ PrefDialog::PrefDialog (QWidget *parent)
     }
 
     ui->endingsBox->setChecked (config.getShowEndings());
-    connect (ui->endingsBox, &QCheckBox::stateChanged, this, &PrefDialog::prefEndings);
+    connect (ui->endingsBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefEndings);
 
     ui->marginBox->setChecked (config.getTextMargin());
-    connect (ui->marginBox, &QCheckBox::stateChanged, this, &PrefDialog::prefTextMargin);
+    connect (ui->marginBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefTextMargin);
 
     ui->colBox->setChecked (config.getDarkColScheme());
-    connect (ui->colBox, &QCheckBox::stateChanged, this, &PrefDialog::prefDarkColScheme);
+    connect (ui->colBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefDarkColScheme);
     if (!ui->colBox->isChecked())
     {
         ui->colorValueSpin->setMinimum (230);
@@ -300,13 +308,13 @@ PrefDialog::PrefDialog (QWidget *parent)
     ui->dateEdit->setText (config.getDateFormat());
 
     ui->lastLineBox->setChecked (config.getAppendEmptyLine());
-    connect (ui->lastLineBox, &QCheckBox::stateChanged, this, &PrefDialog::prefAppendEmptyLine);
+    connect (ui->lastLineBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefAppendEmptyLine);
 
     ui->trailingSpacesBox->setChecked (config.getRemoveTrailingSpaces());
-    connect (ui->trailingSpacesBox, &QCheckBox::stateChanged, this, &PrefDialog::prefRemoveTrailingSpaces);
+    connect (ui->trailingSpacesBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefRemoveTrailingSpaces);
 
     ui->skipNonTextBox->setChecked (config.getSkipNonText());
-    connect (ui->skipNonTextBox, &QCheckBox::stateChanged, this, &PrefDialog::prefSkipNontext);
+    connect (ui->skipNonTextBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefSkipNontext);
 
     ui->pastePathsBox->setChecked (pastePaths_);
 
@@ -321,7 +329,7 @@ PrefDialog::PrefDialog (QWidget *parent)
     }
 
     ui->inertiaBox->setChecked (config.getInertialScrolling());
-    connect (ui->inertiaBox, &QCheckBox::stateChanged, this, &PrefDialog::prefInertialScrolling);
+    connect (ui->inertiaBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefInertialScrolling);
 
     ui->textTabSpin->setValue (textTabSize_);
     connect (ui->textTabSpin, QOverload<int>::of(&QSpinBox::valueChanged), this, &PrefDialog::prefTextTabSize);
@@ -330,14 +338,14 @@ PrefDialog::PrefDialog (QWidget *parent)
     connect (ui->dictButton, &QAbstractButton::clicked, this, &PrefDialog::addDict);
     connect (ui->dictEdit, &QLineEdit::editingFinished, this, &PrefDialog::addDict);
     ui->spellBox->setChecked (!config.getSpellCheckFromStart());
-    connect (ui->spellBox, &QCheckBox::stateChanged, this, &PrefDialog::prefSpellCheck);
+    connect (ui->spellBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefSpellCheck);
 
     /*************
      *** Files ***
      *************/
 
     ui->exeBox->setChecked (config.getExecuteScripts());
-    connect (ui->exeBox, &QCheckBox::stateChanged, this, &PrefDialog::prefExecute);
+    connect (ui->exeBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefExecute);
     ui->commandEdit->setText (config.getExecuteCommand());
     ui->commandEdit->setEnabled (config.getExecuteScripts());
     ui->commandLabel->setEnabled (config.getExecuteScripts());
@@ -355,7 +363,7 @@ PrefDialog::PrefDialog (QWidget *parent)
     }
 
     ui->lastFilesBox->setChecked (config.getSaveLastFilesList());
-    connect (ui->lastFilesBox, &QCheckBox::stateChanged, this, &PrefDialog::prefSaveLastFilesList);
+    connect (ui->lastFilesBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefSaveLastFilesList);
 
     ui->openedButton->setChecked (config.getRecentOpened());
     // no QButtonGroup connection because we want to see if we should clear the recent list at the end
@@ -370,7 +378,7 @@ PrefDialog::PrefDialog (QWidget *parent)
                 ui->autoSaveSpin->setValue (ui->autoSaveSpin->minimum());
         });
     }
-    connect (ui->autoSaveBox, &QCheckBox::stateChanged, this, &PrefDialog::prefAutoSave);
+    connect (ui->autoSaveBox, &CHECKBOX_CHANGED, this, &PrefDialog::prefAutoSave);
 
     ui->unmodifiedSaveBox->setChecked (saveUnmodified_);
 
@@ -1147,7 +1155,7 @@ void PrefDialog::prefWhiteSpace (int checked)
 void PrefDialog::prefVLine (int checked)
 {
     Config& config = static_cast<FPsingleton*>(qApp)->getConfig();
-    int dsitance = qMax (qMin (ui->vLineSpin->value(), 999), 10);
+    int dsitance = std::clamp (ui->vLineSpin->value(), 10, 999);
     if (checked == Qt::Checked)
     {
         config.setVLineDistance (dsitance);
@@ -1165,7 +1173,7 @@ void PrefDialog::prefVLine (int checked)
 void PrefDialog::prefVLineDistance (int value)
 {
     Config& config = static_cast<FPsingleton*>(qApp)->getConfig();
-    int dsitance = qMax (qMin (value, 999), 10);
+    int dsitance = std::clamp (value, 10, 999);
     config.setVLineDistance (dsitance);
 
     showPrompt();

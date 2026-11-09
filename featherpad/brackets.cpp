@@ -57,7 +57,7 @@ void FPwin::matchBrackets()
     bool findNextBrace (!isAtLeft || !isAtRight);
     if (isAtLeft || isAtRight)
     {
-        QVector<ParenthesisInfo *> infos = data->parentheses();
+        QList<ParenthesisInfo *> infos = data->parentheses();
         for (int i = 0; i < infos.size(); ++i)
         {
             ParenthesisInfo *info = infos.at (i);
@@ -90,7 +90,7 @@ void FPwin::matchBrackets()
     findNextBrace = !isAtLeft || !isAtRight;
     if (isAtLeft || isAtRight)
     {
-        QVector<BraceInfo *> braceInfos = data->braces();
+        QList<BraceInfo *> braceInfos = data->braces();
         for (int i = 0; i < braceInfos.size(); ++i)
         {
             BraceInfo *info = braceInfos.at (i);
@@ -122,7 +122,7 @@ void FPwin::matchBrackets()
     isAtRight = (doc->characterAt (curPos - 1) == ']');
     if (isAtLeft || isAtRight)
     {
-        QVector<BracketInfo *> bracketInfos = data->brackets();
+        QList<BracketInfo *> bracketInfos = data->brackets();
         for (int i = 0; i < bracketInfos.size(); ++i)
         {
             BracketInfo *info = bracketInfos.at (i);
@@ -158,7 +158,7 @@ bool FPwin::matchLeftParenthesis (QTextBlock currentBlock, int i, int numLeftPar
 {
     TextBlockData *data = static_cast<TextBlockData *>(currentBlock.userData());
     if (!data) return false;
-    QVector<ParenthesisInfo *> infos = data->parentheses();
+    QList<ParenthesisInfo *> infos = data->parentheses();
     int docPos = currentBlock.position();
     for (; i < infos.size(); ++i)
     {
@@ -182,7 +182,7 @@ bool FPwin::matchLeftParenthesis (QTextBlock currentBlock, int i, int numLeftPar
     {
         data = static_cast<TextBlockData *>(currentBlock.userData());
         if (!data) return false;
-        QVector<ParenthesisInfo *> infos = data->parentheses();
+        QList<ParenthesisInfo *> infos = data->parentheses();
         i = 0;
         int docPos = currentBlock.position();
         for (; i < infos.size(); ++i)
@@ -211,7 +211,7 @@ bool FPwin::matchRightParenthesis (QTextBlock currentBlock, int i, int numRightP
 {
     TextBlockData *data = static_cast<TextBlockData *>(currentBlock.userData());
     if (!data) return false;
-    QVector<ParenthesisInfo *> infos = data->parentheses();
+    QList<ParenthesisInfo *> infos = data->parentheses();
     int docPos = currentBlock.position();
     for (; i < infos.size(); ++i)
     {
@@ -235,7 +235,7 @@ bool FPwin::matchRightParenthesis (QTextBlock currentBlock, int i, int numRightP
     {
         data = static_cast<TextBlockData *>(currentBlock.userData());
         if (!data) return false;
-        QVector<ParenthesisInfo *> infos = data->parentheses();
+        QList<ParenthesisInfo *> infos = data->parentheses();
         i = 0;
         int docPos = currentBlock.position();
         for (; i < infos.size(); ++i)
@@ -264,7 +264,7 @@ bool FPwin::matchLeftBrace (QTextBlock currentBlock, int i, int numRightBraces)
 {
     TextBlockData *data = static_cast<TextBlockData *>(currentBlock.userData());
     if (!data) return false;
-    QVector<BraceInfo *> infos = data->braces();
+    QList<BraceInfo *> infos = data->braces();
     int docPos = currentBlock.position();
     for (; i < infos.size(); ++i)
     {
@@ -288,7 +288,7 @@ bool FPwin::matchLeftBrace (QTextBlock currentBlock, int i, int numRightBraces)
     {
         data = static_cast<TextBlockData *>(currentBlock.userData());
         if (!data) return false;
-        QVector<BraceInfo *> infos = data->braces();
+        QList<BraceInfo *> infos = data->braces();
         i = 0;
         docPos = currentBlock.position();
         for (; i < infos.size(); ++i)
@@ -317,7 +317,7 @@ bool FPwin::matchRightBrace (QTextBlock currentBlock, int i, int numLeftBraces)
 {
     TextBlockData *data = static_cast<TextBlockData *>(currentBlock.userData());
     if (!data) return false;
-    QVector<BraceInfo *> infos = data->braces();
+    QList<BraceInfo *> infos = data->braces();
     int docPos = currentBlock.position();
     for (; i < infos.size(); ++i)
     {
@@ -341,7 +341,7 @@ bool FPwin::matchRightBrace (QTextBlock currentBlock, int i, int numLeftBraces)
     {
         data = static_cast<TextBlockData *>(currentBlock.userData());
         if (!data) return false;
-        QVector<BraceInfo *> infos = data->braces();
+        QList<BraceInfo *> infos = data->braces();
         i = 0;
         docPos = currentBlock.position();
         for (; i < infos.size(); ++i)
@@ -370,7 +370,7 @@ bool FPwin::matchLeftBracket (QTextBlock currentBlock, int i, int numRightBracke
 {
     TextBlockData *data = static_cast<TextBlockData *>(currentBlock.userData());
     if (!data) return false;
-    QVector<BracketInfo *> infos = data->brackets();
+    QList<BracketInfo *> infos = data->brackets();
     int docPos = currentBlock.position();
     for (; i < infos.size(); ++i)
     {
@@ -394,7 +394,7 @@ bool FPwin::matchLeftBracket (QTextBlock currentBlock, int i, int numRightBracke
     {
         data = static_cast<TextBlockData *>(currentBlock.userData());
         if (!data) return false;
-        QVector<BracketInfo *> infos = data->brackets();
+        QList<BracketInfo *> infos = data->brackets();
         i = 0;
         int docPos = currentBlock.position();
         for (; i < infos.size(); ++i)
@@ -423,7 +423,7 @@ bool FPwin::matchRightBracket (QTextBlock currentBlock, int i, int numLeftBracke
 {
     TextBlockData *data = static_cast<TextBlockData *>(currentBlock.userData());
     if (!data) return false;
-    QVector<BracketInfo *> infos = data->brackets();
+    QList<BracketInfo *> infos = data->brackets();
     int docPos = currentBlock.position();
     for (; i < infos.size(); ++i)
     {
@@ -447,7 +447,7 @@ bool FPwin::matchRightBracket (QTextBlock currentBlock, int i, int numLeftBracke
     {
         data = static_cast<TextBlockData *>(currentBlock.userData());
         if (!data) return false;
-        QVector<BracketInfo *> infos = data->brackets();
+        QList<BracketInfo *> infos = data->brackets();
         i = 0;
         int docPos = currentBlock.position();
         for (; i < infos.size(); ++i)

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2019-2021 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2019-2026 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -22,11 +22,8 @@
 
 #include <QString>
 #include <QHash>
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-#include <QTextCodec>
-#else
-#include <QStringEncoder>
-#endif
+#include <QStringConverter>
+#include <string>
 
 class Hunspell;
 
@@ -50,13 +47,12 @@ public:
     }
 
 private:
+    std::string encodedWord (const QString &word) const;
+    QString decodedWord (const std::string &word) const;
+
     Hunspell *hunspell_;
     QString userDictionary_;
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-    QTextCodec *codec_;
-#else
-    QStringEncoder encoder_;
-#endif
+    QStringConverter::Encoding encoding_;
     QHash<QString, QString> corrections_;
 };
 

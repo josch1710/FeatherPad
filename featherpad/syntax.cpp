@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2022 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2026 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -76,7 +76,7 @@ void FPwin::setProgLang (TextEdit *textEdit)
 
     QString progLan;
 
-    /* first check some endings */
+    /* first check some endings and names */
     static const QRegularExpression dotExp ("\\A(?:[^/]*\\.[^/\\.]+)\\z");
     QString baseName = fname.section ('/', -1);
     if (dotExp.match (baseName).hasMatch())
@@ -86,10 +86,10 @@ void FPwin::setProgLang (TextEdit *textEdit)
         else if (fname.endsWith (".c"))
             progLan = "c";
         else if (fname.endsWith (".sh") || fname.endsWith (".bashrc") || fname.endsWith (".rules")
-                 || fname.endsWith (".zsh")
-                 || baseName == ".bash_profile" || baseName == ".bash_functions"
-                 || baseName == ".xprofile" || baseName == ".profile"
-                 || baseName == ".bash_aliases" || baseName == ".mkshrc"
+                 || fname.endsWith (".zsh") || baseName == ".bash_profile"
+                 || baseName == ".bash_functions" || baseName == ".bash_logout"
+                 || baseName == ".bash_aliases" || baseName == ".xprofile"
+                 || baseName == ".profile" || baseName == ".mkshrc"
                  || baseName == ".zprofile" || baseName == ".zlogin"
                  || baseName == ".zshrc" || baseName == ".zshenv")
             progLan = "sh";
@@ -112,7 +112,7 @@ void FPwin::setProgLang (TextEdit *textEdit)
                  || fname.endsWith (".rdf") || fname.endsWith (".docbook") || fname.endsWith (".fnx")
                  || fname.endsWith (".ts") || fname.endsWith (".menu") || fname.endsWith (".kml", Qt::CaseInsensitive)
                  || fname.endsWith (".xspf", Qt::CaseInsensitive) || fname.endsWith (".asx", Qt::CaseInsensitive)
-                 || fname.endsWith (".nfo") || fname.endsWith (".dae") /* || fname.endsWith (".ui") || fname.endsWith (".xul")*/)
+                 /*|| fname.endsWith (".nfo") */|| fname.endsWith (".dae") /* || fname.endsWith (".ui") || fname.endsWith (".xul")*/)
             progLan = "xml";
         else if (fname.endsWith (".css") || fname.endsWith (".qss"))
             progLan = "css";
@@ -124,7 +124,7 @@ void FPwin::setProgLang (TextEdit *textEdit)
              progLan = "desktop";
         else if (fname.endsWith (".kvconfig")
                  || fname.endsWith (".service") || fname.endsWith (".mount") || fname.endsWith (".timer") // systemd related
-                 || baseName == "sources.list" || baseName == "sources.list.save"
+                 || baseName == "sources.list" || baseName == "sources.list.save" || baseName == "locale.gen"
                  || baseName == "mimeinfo.cache" || baseName == "defaults.list"
                  || baseName == "mimeapps.list" || baseName.endsWith ("-mimeapps.list")
                  || fname.endsWith (".pls", Qt::CaseInsensitive))
@@ -188,6 +188,8 @@ void FPwin::setProgLang (TextEdit *textEdit)
         progLan = "deb";
     else if (baseName == "mirrorlist")
         progLan = "config";
+    else if (baseName == "themerc")
+        progLan = "openbox";
 
     if (progLan.isEmpty()) // now, check the mime type
     {
@@ -229,7 +231,7 @@ void FPwin::setProgLang (TextEdit *textEdit)
             else if (mime == "text/html" || parentMime == "text/html" || mime == "application/xhtml+xml") // should come before xml check
                 progLan = "html";
             else if (mime == "application/xml" || parentMime == "application/xml"
-                     || mime == "text/feathernotes-fnx" || mime == "audio/x-ms-asx" || mime == "text/x-nfo" || mime == "application/xml-dtd")
+                     || mime == "text/feathernotes-fnx" || mime == "audio/x-ms-asx" /*|| mime == "text/x-nfo" */|| mime == "application/xml-dtd")
                 progLan = "xml";
             else if (mime == "text/css")
                 progLan = "css";
@@ -257,8 +259,8 @@ void FPwin::setProgLang (TextEdit *textEdit)
                 progLan = "php";
             else if (mime == "application/x-theme")
                 progLan = "theme";
-            else if (mime == "application/x-yaml")
-                progLan = "yaml";
+            /*else if (mime == "application/x-yaml" || mime == "application/yaml")
+                progLan = "yaml";*/
             else if (mime == "text/x-diff" || mime == "text/x-patch")
                 progLan = "diff";
             else if (mime == "text/markdown")
@@ -273,7 +275,7 @@ void FPwin::setProgLang (TextEdit *textEdit)
                 progLan = "tcl";
             else if (mime == "application/toml")
                 progLan = "toml";
-            else if (fname.endsWith (".conf") || fname.endsWith (".ini"))
+            else if (fname.endsWith (".conf") || fname.endsWith (".ini") || fname.endsWith (".cfg"))
                 progLan = "config"; // only if the mime type isn't found
             else // fall back to the default language
                 progLan = "url";
@@ -305,7 +307,7 @@ void FPwin::syntaxHighlighting (TextEdit *textEdit, bool highlight, const QStrin
         Config config = static_cast<FPsingleton*>(qApp)->getConfig();
         if (textEdit->getSize() > config.getMaxSHSize()*1024*1024)
         {
-            QTimer::singleShot (100, textEdit, [=]() {
+            QTimer::singleShot (100, textEdit, [=, this]() {
                 if (TabPage *tabPage = qobject_cast<TabPage*>(ui->tabWidget->currentWidget()))
                 {
                     if (tabPage->textEdit() == textEdit)

@@ -1,6 +1,10 @@
-cmake_minimum_required(VERSION 3.1.0)
+cmake_minimum_required(VERSION 3.10.0)
 project(featherpad)
-set(CMAKE_BUILD_TYPE Release)
+
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+
 add_definitions(-Wall)
 
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
@@ -15,7 +19,6 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   endif()
 endif()
 
-option(ENABLE_QT5 "Building Qt5 plugin." ON)
 option(WITHOUT_X11 "Compiling without X11..." OFF)
 # OS/2 never has X11
 if (OS2)

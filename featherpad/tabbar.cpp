@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2022 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2026 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -55,8 +55,8 @@ void TabBar::mousePressEvent (QMouseEvent *event)
     QTabBar::mousePressEvent (event);
 
     if (event->button() == Qt::LeftButton) {
-        if (tabAt (event->pos()) > -1)
-            dragStartPosition_ = event->pos();
+        if (tabAt (event->position().toPoint()) > -1)
+            dragStartPosition_ = event->position().toPoint();
         else if (event->type() == QEvent::MouseButtonDblClick && count() > 0)
             emit addEmptyTab();
     }
@@ -67,21 +67,31 @@ void TabBar::mouseReleaseEvent (QMouseEvent *event)
     dragStarted_ = false;
     dragStartPosition_ = QPoint();
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6,11,0))
+    /* WARNING: Qt 6.11 implemented closing on middle clicking in a backward-incompatible
+                way, such that the index is reported wrongly after "mouseReleaseEvent". */
+    int index = tabAt (event->position().toPoint());
+    QTabBar::mouseReleaseEvent (event);
+    if (event->button() == Qt::MiddleButton && index < 0)
+        emit hideTabBar();
+#else
     QTabBar::mouseReleaseEvent (event);
     if (event->button() == Qt::MiddleButton)
     {
-        int index = tabAt (event->pos());
+        int index = tabAt (event->position().toPoint());
         if (index > -1)
             emit tabCloseRequested (index);
         else
             emit hideTabBar();
     }
+#endif
 }
 /*************************/
 void TabBar::mouseMoveEvent (QMouseEvent *event)
 {
     if (!dragStarted_ && !dragStartPosition_.isNull()
-        && (event->pos() - dragStartPosition_).manhattanLength() >= QApplication::startDragDistance())
+        && (event->position().toPoint()
+            - dragStartPosition_).manhattanLength() >= QApplication::startDragDistance())
     {
       dragStarted_ = true;
     }
@@ -89,11 +99,7 @@ void TabBar::mouseMoveEvent (QMouseEvent *event)
     if (!noTabDND_
         && (event->buttons() & Qt::LeftButton)
         && dragStarted_
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        && !window()->geometry().contains (event->globalPos()))
-#else
         && !window()->geometry().contains (event->globalPosition().toPoint()))
-#endif
     {
         int index = currentIndex();
         if (index == -1)
@@ -149,20 +155,17 @@ void TabBar::mouseMoveEvent (QMouseEvent *event)
             }
         }
         event->accept();
-        drag->deleteLater();
+        if (drag) // checking for nullity is needed with Clang under certain circumstances
+            drag->deleteLater();
     }
     else
     { // "this" is for Wayland, when the window isn't active
         QTabBar::mouseMoveEvent (event);
-        int index = tabAt (event->pos());
+        int index = tabAt (event->position().toPoint());
         if (index > -1)
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-            QToolTip::showText (event->globalPos(), tabToolTip (index), this);
-#else
             /* WARNING: For tabbars, event->globalPosition() may return a totally
                         wrong position with Qt6. */
             QToolTip::showText (QCursor::pos(), tabToolTip (index), this);
-#endif
         else
             QToolTip::hideText();
     }
@@ -211,7 +214,7 @@ void TabBar::finishMouseMoveEvent()
     dragStarted_ = false;
     dragStartPosition_ = QPoint();
 
-    QMouseEvent finishingEvent (QEvent::MouseMove, QPoint(),
+    QMouseEvent finishingEvent (QEvent::MouseMove, QPointF(),
 #if (QT_VERSION >= QT_VERSION_CHECK(6,4,0))
                                 QCursor::pos(),
 #endif
@@ -221,7 +224,7 @@ void TabBar::finishMouseMoveEvent()
 /*************************/
 void TabBar::releaseMouse()
 {
-    QMouseEvent releasingEvent (QEvent::MouseButtonRelease, QPoint(),
+    QMouseEvent releasingEvent (QEvent::MouseButtonRelease, QPointF(),
 #if (QT_VERSION >= QT_VERSION_CHECK(6,4,0))
                                 QCursor::pos(),
 #endif

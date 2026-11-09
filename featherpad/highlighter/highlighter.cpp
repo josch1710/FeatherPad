@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2023 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2026 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -19,6 +19,8 @@
 
 #include "highlighter.h"
 #include <QTextDocument>
+
+#include <algorithm>
 
 Q_DECLARE_METATYPE(QTextBlock)
 
@@ -50,17 +52,17 @@ TextBlockData::~TextBlockData()
     }
 }
 /*************************/
-QVector<ParenthesisInfo *> TextBlockData::parentheses() const
+QList<ParenthesisInfo *> TextBlockData::parentheses() const
 {
     return allParentheses;
 }
 /*************************/
-QVector<BraceInfo *> TextBlockData::braces() const
+QList<BraceInfo *> TextBlockData::braces() const
 {
     return allBraces;
 }
 /*************************/
-QVector<BracketInfo *> TextBlockData::brackets() const
+QList<BracketInfo *> TextBlockData::brackets() const
 {
     return allBrackets;
 }
@@ -215,7 +217,7 @@ Highlighter::Highlighter (QTextDocument *parent, const QString& lang,
     maxBlockSize_ = progLan == "html" ? 5000 : 10000;
 
     hasQuotes_ = (progLan != "diff" && progLan != "log"
-                  && progLan != "desktop" && progLan != "config" && progLan != "theme"
+                  && progLan != "desktop" && progLan != "config" && progLan != "theme" && progLan != "openbox"
                   && progLan != "changelog" && progLan != "url"
                   && progLan != "deb" && progLan != "m3u"
                   && progLan != "LaTeX" && progLan != "troff");
@@ -392,6 +394,37 @@ Highlighter::Highlighter (QTextDocument *parent, const QString& lang,
     {
         QTextCharFormat ft;
 
+        /* POSIX signals */
+        ft.setForeground (DarkYellow);
+        rule.pattern.setPattern ("\\b(SIGABRT|SIGIOT|SIGALRM|SIGVTALRM|SIGPROF|SIGBUS|SIGCHLD|SIGCONT|SIGFPE|SIGHUP|SIGILL|SIGINT|SIGKILL|SIGPIPE|SIGPOLL|SIGRTMIN|SIGRTMAX|SIGQUIT|SIGSEGV|SIGSTOP|SIGSYS|SIGTERM|SIGTSTP|SIGTTIN|SIGTTOU|SIGTRAP|SIGURG|SIGUSR1|SIGUSR2|SIGXCPU|SIGXFSZ|SIGWINCH)(?!(\\.|-|@|#|\\$))\\b");
+        rule.format = ft;
+        highlightingRules.append (rule);
+
+        ft.setFontItalic (true);
+        ft.setForeground (Blue);
+        /* before parentheses (function names)... */
+        rule.pattern.setPattern ("\\b(?![0-9])[A-Za-z0-9_]+(?=\\s*\\()");
+        rule.format = ft;
+        highlightingRules.append (rule);
+        /* ... but make exception for what comes after "#define" */
+        if (progLan == "c" || progLan == "cpp")
+        {
+            rule.pattern.setPattern ("^\\s*#\\s*define\\s+[^\"\']+" // may contain slash but no quote
+                                     "(?=\\s*\\()");
+            rule.format = neutralFormat;
+            highlightingRules.append (rule);
+        }
+        else if (progLan == "python")
+        { // built-in functions
+            ft.setFontWeight (QFont::Bold);
+            ft.setForeground (Magenta);
+            rule.pattern.setPattern ("\\b(abs|add|aiter|all|append|anext|any|apply|as_integer_ratio|ascii|basestring|bin|bit_length|bool|breakpoint|buffer|bytearray|bytes|callable|c\\.conjugate|capitalize|center|chr|classmethod|clear|close|cmp|coerce|compile|complex|copy|count|critical|debug|decode|delattr|dict|difference|difference_update|dir|discard|detach|divmod|encode|endswith|enumerate|error|eval|expandtabs|exception|exec|execfile|extend|file|fileno|filter|find|float|flush|format|fromhex|fromkeys|frozenset|get|getattr|globals|hasattr|hash|has_key|help|hex|id|index|info|input|insert|int|intern|intersection|intersection_update|isalnum|isalpha|isatty|isdecimal|isdigit|isdisjoint|isinstance|islower|isnumeric|isspace|issubclass|issubset|istitle|issuperset|items|iter|iteritems|iterkeys|itervalues|isupper|is_integer|join|keys|len|list|ljust|locals|log|long|lower|lstrip|map|max|memoryview|min|next|object|oct|open|ord|partition|pop|popitem|pow|print|property|range|raw_input|read|readable|readline|readlines|reduce|reload|remove|replace|repr|reverse|reversed|rfind|rindex|rjust|rpartition|round|rsplit|rstrip|run|seek|seekable|set|setattr|slice|sort|sorted|split|splitlines|staticmethod|startswith|str|strip|sum|super|symmetric_difference|symmetric_difference_update|swapcase|tell|title|translate|truncate|tuple|type|unichr|unicode|union|update|upper|values|vars|viewitems|viewkeys|viewvalues|warning|writable|write|writelines|xrange|zip|zfill|(__(abs|add|aenter|aiter|aexit|and|anext|await|bytes|call|cmp|coerce|complex|contains|del|delattr|delete|delitem|delslice|dir|div|divmod|enter|eq|exit|float|floordiv|format|ge|get|getattr|getattribute|getitem|getslice|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|invert|imod|import|imul|init|instancecheck|index|int|ior|ipow|irshift|isub|iter|itruediv|ixor|le|len|long|lshift|lt|missing|mod|mul|ne|neg|next|new|nonzero|oct|or|pos|pow|radd|rand|rcmp|rdiv|rdivmod|repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|rpow|rshift|rsub|rrshift|rtruediv|rxor|set|setattr|setitem|setslice|str|sub|subclasses|subclasscheck|truediv|unicode|xor)__))(?=\\s*\\()");
+            rule.format = ft;
+            highlightingRules.append (rule);
+            ft.setFontWeight (QFont::Normal);
+        }
+        ft.setFontItalic (false);
+
         /* numbers (including the exponential notation, binary, octal and hexadecimal literals) */
         ft.setForeground (Brown);
         if (progLan == "python")
@@ -436,35 +469,6 @@ Highlighter::Highlighter (QTextDocument *parent, const QString& lang,
                                      ")(?=[^\\w\\d\\.]|$)");
         rule.format = ft;
         highlightingRules.append (rule);
-
-        /* POSIX signals */
-        ft.setForeground (DarkYellow);
-        rule.pattern.setPattern ("\\b(SIGABRT|SIGIOT|SIGALRM|SIGVTALRM|SIGPROF|SIGBUS|SIGCHLD|SIGCONT|SIGFPE|SIGHUP|SIGILL|SIGINT|SIGKILL|SIGPIPE|SIGPOLL|SIGRTMIN|SIGRTMAX|SIGQUIT|SIGSEGV|SIGSTOP|SIGSYS|SIGTERM|SIGTSTP|SIGTTIN|SIGTTOU|SIGTRAP|SIGURG|SIGUSR1|SIGUSR2|SIGXCPU|SIGXFSZ|SIGWINCH)(?!(\\.|-|@|#|\\$))\\b");
-        rule.format = ft;
-        highlightingRules.append (rule);
-
-        ft.setFontItalic (true);
-        ft.setForeground (Blue);
-        /* before parentheses... */
-        rule.pattern.setPattern ("\\b[A-Za-z0-9_]+(?=\\s*\\()");
-        rule.format = ft;
-        highlightingRules.append (rule);
-        /* ... but make exception for what comes after "#define" */
-        if (progLan == "c" || progLan == "cpp")
-        {
-            rule.pattern.setPattern ("^\\s*#\\s*define\\s+[^\"\']+" // may contain slash but no quote
-                                     "(?=\\s*\\()");
-            rule.format = neutralFormat;
-            highlightingRules.append (rule);
-        }
-        else if (progLan == "python")
-        { // built-in functions
-            ft.setFontWeight (QFont::Bold);
-            ft.setForeground (Magenta);
-            rule.pattern.setPattern ("\\b(abs|add|aiter|all|append|anext|any|apply|as_integer_ratio|ascii|basestring|bin|bit_length|bool|breakpoint|buffer|bytearray|bytes|callable|c\\.conjugate|capitalize|center|chr|classmethod|clear|close|cmp|coerce|compile|complex|copy|count|critical|debug|decode|delattr|dict|difference|difference_update|dir|discard|detach|divmod|encode|endswith|enumerate|error|eval|expandtabs|exception|exec|execfile|extend|file|fileno|filter|find|float|flush|format|fromhex|fromkeys|frozenset|get|getattr|globals|hasattr|hash|has_key|help|hex|id|index|info|input|insert|int|intern|intersection|intersection_update|isalnum|isalpha|isatty|isdecimal|isdigit|isdisjoint|isinstance|islower|isnumeric|isspace|issubclass|issubset|istitle|issuperset|items|iter|iteritems|iterkeys|itervalues|isupper|is_integer|join|keys|len|list|ljust|locals|log|long|lower|lstrip|map|max|memoryview|min|next|object|oct|open|ord|partition|pop|popitem|pow|print|property|range|raw_input|read|readable|readline|readlines|reduce|reload|remove|replace|repr|reverse|reversed|rfind|rindex|rjust|rpartition|round|rsplit|rstrip|run|seek|seekable|set|setattr|slice|sort|sorted|split|splitlines|staticmethod|startswith|str|strip|sum|super|symmetric_difference|symmetric_difference_update|swapcase|tell|title|translate|truncate|tuple|type|unichr|unicode|union|update|upper|values|vars|viewitems|viewkeys|viewvalues|warning|writable|write|writelines|xrange|zip|zfill|(__(abs|add|aenter|aiter|aexit|and|anext|await|bytes|call|cmp|coerce|complex|contains|del|delattr|delete|delitem|delslice|dir|div|divmod|enter|eq|exit|float|floordiv|format|ge|get|getattr|getattribute|getitem|getslice|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|invert|imod|import|imul|init|instancecheck|index|int|ior|ipow|irshift|isub|iter|itruediv|ixor|le|len|long|lshift|lt|missing|mod|mul|ne|neg|next|new|nonzero|oct|or|pos|pow|radd|rand|rcmp|rdiv|rdivmod|repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|rpow|rshift|rsub|rrshift|rtruediv|rxor|set|setattr|setitem|setslice|str|sub|subclasses|subclasscheck|truediv|unicode|xor)__))(?=\\s*\\()");
-            rule.format = ft;
-            highlightingRules.append (rule);
-        }
     }
     else if (Lang == "javascript" || progLan == "qml")
     {
@@ -684,7 +688,7 @@ Highlighter::Highlighter (QTextDocument *parent, const QString& lang,
         rule.format = cFormat;
         highlightingRules.append (rule);
 
-        /* Qt's global functions, enums and global colors */
+        /* C++ std methods and Qt's global functions, enums and global colors */
         if (progLan == "cpp")
         {
             /*
@@ -696,7 +700,7 @@ Highlighter::Highlighter (QTextDocument *parent, const QString& lang,
             rawLiteralFormat.setFontWeight (QFont::Bold);
 
             cFormat.setFontItalic (true);
-            rule.pattern.setPattern ("\\bq(App)(?!(\\@|#|\\$))\\b|\\bq(Abs|Bound|Critical|Debug|Fatal|FuzzyCompare|InstallMsgHandler|MacVersion|Max|Min|Round64|Round|Version|Warning|getenv|putenv|rand|srand|tTrId|unsetenv|_check_ptr|t_set_sequence_auto_mnemonic|t_symbian_exception2Error|t_symbian_exception2LeaveL|t_symbian_throwIfError)(?!(\\.|-|@|#|\\$))\\b");
+            rule.pattern.setPattern ("std::[A-Za-z0-9_]+(?=\\s*\\()|\\bq(App|GuiApp)(?!(\\@|#|\\$))\\b|\\bq(Abs|Bound|Critical|Debug|Fatal|FuzzyCompare|InstallMsgHandler|MacVersion|Max|Min|Round64|Round|Version|Warning|getenv|putenv|rand|srand|tTrId|unsetenv|_check_ptr|t_set_sequence_auto_mnemonic|t_symbian_exception2Error|t_symbian_exception2LeaveL|t_symbian_throwIfError)(?!(\\.|-|@|#|\\$))\\b");
             rule.format = cFormat;
             highlightingRules.append (rule);
 
@@ -715,7 +719,7 @@ Highlighter::Highlighter (QTextDocument *parent, const QString& lang,
 
         /* preprocess */
         cFormat.setForeground (Blue);
-        rule.pattern.setPattern ("^\\s*#\\s*include\\s|^\\s*#\\s*ifdef\\s|^\\s*#\\s*elif\\s|^\\s*#\\s*ifndef\\s|^\\s*#\\s*endif\\b|^\\s*#\\s*define\\s|^\\s*#\\s*undef\\s|^\\s*#\\s*error\\s|^\\s*#\\s*if\\s|^\\s*#\\s*else(?!(\\.|-|@|#|\\$))\\b");
+        rule.pattern.setPattern ("^\\s*#\\s*(define|elif|error|if|ifdef|ifndef|include|pragma|undef)\\s|^\\s*#\\s*endif\\b|^\\s*#\\s*else(?!(\\.|-|@|#|\\$))\\b");
         rule.format = cFormat;
         highlightingRules.append (rule);
     }
@@ -1164,6 +1168,28 @@ Highlighter::Highlighter (QTextDocument *parent, const QString& lang,
             rule.pattern.setPattern ("^[^\\=\\[]+(?=(\\[.*\\])*\\s*\\=)");
         }
         rule.format = desktopFormat;
+        highlightingRules.append (rule);
+    }
+    else if (progLan == "openbox")
+    {
+        QTextCharFormat obpFormat = neutralFormat;
+        obpFormat.setFontWeight (QFont::Bold);
+        obpFormat.setFontItalic (true);
+        /* color values */
+        rule.pattern.setPattern ("#([A-Fa-f0-9]{3}){1,2}(?![A-Za-z0-9_]+)|#([A-Fa-f0-9]{3}){2}[A-Fa-f0-9]{2}(?![A-Za-z0-9_]+)");
+        rule.format = obpFormat;
+        highlightingRules.append (rule);
+        obpFormat.setFontItalic (false);
+
+        obpFormat.setForeground (DarkMagenta);
+        rule.pattern.setPattern ("^[^\\s:]+\\:");
+        rule.format = obpFormat;
+        highlightingRules.append (rule);
+
+        obpFormat.setForeground (DarkGreenAlt);
+        /* before : */
+        rule.pattern.setPattern ("^[^\\s:]+(?=\\s*\\:)");
+        rule.format = obpFormat;
         highlightingRules.append (rule);
     }
     else if (progLan == "yaml")
@@ -1757,9 +1783,18 @@ Highlighter::Highlighter (QTextDocument *parent, const QString& lang,
     }
     else if (progLan == "json")
     {
+        /* with Json, errorFormat is used everywhere
+           and overrided only if the syntax is correct */
         quoteFormat.setFontWeight (QFont::Bold);
         errorFormat.setForeground (Red);
         errorFormat.setFontUnderline (true);
+        if (!showWhiteSpace)
+        {
+            whiteSpaceFormat.setForeground (TextColor);
+            rule.pattern.setPattern ("\\s+");
+            rule.format = whiteSpaceFormat;
+            highlightingRules.append (rule);
+        }
     }
 
     if (showWhiteSpace)
@@ -1797,6 +1832,10 @@ Highlighter::Highlighter (QTextDocument *parent, const QString& lang,
     else if (progLan == "desktop" || progLan == "config" || progLan == "theme")
     {
         rule.pattern.setPattern ("^\\s*#.*"); // only at start
+    }
+    else if (progLan == "openbox")
+    {
+        rule.pattern.setPattern ("^\\s*(#|\\!).*"); // only at start
     }
     /*else if (progLan == "deb")
     {
@@ -2088,10 +2127,13 @@ bool Highlighter::isEscapedQuote (const QString &text, const int pos, bool isSta
             }
             return false; // no other case of escaping at the start
         }
-        else if (progLan == "c" || progLan == "cpp")
-        {
+        else if (progLan == "c")
+            return false;
+        else if (progLan == "cpp")
+        { // handled separately because of ' as separator
             if (text.at (pos) == '\''
-                && pos > 0 && text.at (pos - 1).isLetterOrNumber())
+                && pos > 0 && text.at (pos - 1).isNumber()
+                && pos < text.length() - 1 && text.at (pos + 1).isNumber())
             {
                 return true;
             }
@@ -2349,7 +2391,7 @@ bool Highlighter::isPerlQuoted (const QString &text, const int index)
         {
             if (res)
             { // -> isEscapedRegex()
-                pos = qMax (pos, 0);
+                pos = std::max (pos, 0);
                 if (text.at (nxtPos) == quoteMark.pattern().at (0))
                     setFormat (pos, nxtPos - pos + 1, quoteFormat);
                 else
@@ -2364,7 +2406,7 @@ bool Highlighter::isPerlQuoted (const QString &text, const int index)
         { // -> isEscapedRegex()
             if (TextBlockData *data = static_cast<TextBlockData *>(currentBlock().userData()))
                 data->insertLastFormattedQuote (nxtPos + 1);
-            pos = qMax (pos, 0);
+            pos = std::max (pos, 0);
             if (text.at (nxtPos) == quoteMark.pattern().at (0))
                 setFormat (pos, nxtPos - pos + 1, quoteFormat);
             else
@@ -2464,7 +2506,7 @@ bool Highlighter::isJSQuoted (const QString &text, const int index)
         {
             if (res)
             { // -> isEscapedRegex()
-                pos = qMax (pos, 0);
+                pos = std::max (pos, 0);
                 if (text.at (nxtPos) == quoteMark.pattern().at (0))
                     setFormat (pos, nxtPos - pos + 1, quoteFormat);
                 else
@@ -2479,7 +2521,7 @@ bool Highlighter::isJSQuoted (const QString &text, const int index)
         { // -> isEscapedRegex()
             if (TextBlockData *data = static_cast<TextBlockData *>(currentBlock().userData()))
                 data->insertLastFormattedQuote (nxtPos + 1);
-            pos = qMax (pos, 0);
+            pos = std::max (pos, 0);
             if (text.at (nxtPos) == quoteMark.pattern().at (0))
                 setFormat (pos, nxtPos - pos + 1, quoteFormat);
             else
@@ -2716,11 +2758,7 @@ void Highlighter::pythonMLComment (const QString &text, const int indx)
         setFormat (index, quoteLength, commentFormat);
 
         /* format urls and email addresses inside the comment */
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        QString str = text.mid (index, quoteLength);
-#else
         QString str = text.sliced (index, quoteLength);
-#endif
         int pIndex = 0;
         QRegularExpressionMatch urlMatch;
         while ((pIndex = str.indexOf (urlPattern, pIndex, &urlMatch)) > -1)
@@ -2755,11 +2793,15 @@ void Highlighter::pythonMLComment (const QString &text, const int indx)
 /*************************/
 void Highlighter::singleLineComment (const QString &text, const int start)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+    for (const HighlightingRule &rule : std::as_const (highlightingRules))
+#else
     for (const HighlightingRule &rule : qAsConst (highlightingRules))
+#endif
     {
         if (rule.format == commentFormat)
         {
-            int startIndex = qMax (start, 0);
+            int startIndex = std::max (start, 0);
             if (previousBlockState() == nextLineCommentState)
                 startIndex = 0;
             else
@@ -2772,13 +2814,13 @@ void Highlighter::singleLineComment (const QString &text, const int start)
                            || format (startIndex) == altQuoteFormat
                            || format (startIndex) == urlInsideQuoteFormat
                            // check whether the comment sign is quoted or inside regex
-                           || isQuoted (text, startIndex, false, qMax (start, 0)) || isInsideRegex (text, startIndex)
+                           || isQuoted (text, startIndex, false, std::max (start, 0)) || isInsideRegex (text, startIndex)
                            // with troff and LaTeX, the comment sign may be escaped
                            || ((progLan == "troff" || progLan == "LaTeX")
                                && isEscapedChar (text, startIndex))
                            || (progLan == "tcl"
                                && text.at (startIndex) == ';'
-                               && insideTclBracedVariable (text, startIndex, qMax (start, 0)))))
+                               && insideTclBracedVariable (text, startIndex, std::max (start, 0)))))
                 {
                     startIndex = text.indexOf (rule.pattern, startIndex + 1);
                 }
@@ -2789,11 +2831,7 @@ void Highlighter::singleLineComment (const QString &text, const int start)
                 setFormat (startIndex, l - startIndex, commentFormat);
 
                 /* also format urls and email addresses inside the comment */
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-                QString str = text.mid (startIndex, l - startIndex);
-#else
                 QString str = text.sliced (startIndex, l - startIndex);
-#endif
                 int pIndex = 0;
                 QRegularExpressionMatch urlMatch;
                 while ((pIndex = str.indexOf (urlPattern, pIndex, &urlMatch)) > -1)
@@ -2939,11 +2977,7 @@ bool Highlighter::multiLineComment (const QString &text,
         setFormat (startIndex, commentLength, comFormat);
 
         /* format urls and email addresses inside the comment */
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        QString str = text.mid (startIndex, commentLength);
-#else
         QString str = text.sliced (startIndex, commentLength);
-#endif
         int pIndex = 0;
         QRegularExpressionMatch urlMatch;
         while ((pIndex = str.indexOf (urlPattern, pIndex, &urlMatch)) > -1)
@@ -3218,11 +3252,7 @@ bool Highlighter::multiLineQuote (const QString &text, const int start, int comS
         /* URLs should be formatted in a different way inside quotes because,
            otherwise, there would be no difference between URLs inside quotes and
            those inside comments and so, they couldn't be escaped correctly when needed. */
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        QString str = text.mid (index, quoteLength);
-#else
         QString str = text.sliced (index, quoteLength);
-#endif
         int urlIndex = 0;
         QRegularExpressionMatch urlMatch;
         while ((urlIndex = str.indexOf (urlPattern, urlIndex, &urlMatch)) > -1)
@@ -3367,11 +3397,7 @@ void Highlighter::multiLinePerlQuote (const QString &text)
                           + quoteMatch.capturedLength(); // 1
         setFormat (index, quoteLength, quoteExpression == quoteMark ? quoteFormat
                                                                     : altQuoteFormat);
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        QString str = text.mid (index, quoteLength);
-#else
         QString str = text.sliced (index, quoteLength);
-#endif
         int urlIndex = 0;
         QRegularExpressionMatch urlMatch;
         while ((urlIndex = str.indexOf (urlPattern, urlIndex, &urlMatch)) > -1)
@@ -3514,11 +3540,7 @@ void Highlighter::multiLineJSQuote (const QString &text, const int start, int co
         setFormat (index, quoteLength, quoteExpression == quoteMark ? quoteFormat
                                                                     : altQuoteFormat);
 
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        QString str = text.mid (index, quoteLength);
-#else
         QString str = text.sliced (index, quoteLength);
-#endif
         int urlIndex = 0;
         QRegularExpressionMatch urlMatch;
         while ((urlIndex = str.indexOf (urlPattern, urlIndex, &urlMatch)) > -1)
@@ -3662,12 +3684,28 @@ bool Highlighter::isHereDocument (const QString &text)
                                delimStr.length(),
                                delimFormat);
 
-                    if (progLan == "sh"
-                        && text.length() > pos + 2 && text.at (pos + 2) == '-')
+                    if (progLan == "sh")
                     {
-                        /* "<<-" causes all leading tab characters to be ignored at
-                           the end of the here-doc. So, it should be distinguished. */
-                        delimStr = "-" + delimStr;
+                        /* skip double-parenthesis constructs */
+                        static const QRegularExpression dpc ("(^\\s*|\\$|[\\);&`\\|]\\s*)\\(\\(.+\\)\\)");
+                        int index = text.lastIndexOf (dpc , pos, &match);
+                        if (index > -1 && index < pos && index + match.capturedLength() > pos)
+                        {
+                            return false;
+                        }
+
+                        int pos1 = pos;
+                        while (pos1 > 0 && text.at (pos1 - 1) == '<')
+                            -- pos1;
+                        if ((pos - pos1) % 3 != 0)
+                            return false; // a here-string, not a here-doc
+
+                        if (text.length() > pos + 2 && text.at (pos + 2) == '-')
+                        {
+                            /* "<<-" causes all leading tab characters to be ignored at
+                               the end of the here-doc. So, it should be distinguished. */
+                            delimStr = "-" + delimStr;
+                        }
                     }
                     int n = static_cast<int>(qHash (delimStr));
                     int state = 2 * (n + (n >= 0 ? endState/2 + 1 : 0)); // always an even number but maybe negative
@@ -3721,11 +3759,7 @@ bool Highlighter::isHereDocument (const QString &text)
             }
             else if (delimStr.length() > 1)
             { // the here-doc started with "<<-"
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-                QString tmp = delimStr.mid (1);
-#else
                 QString tmp = delimStr.sliced (1);
-#endif
                 QRegularExpression r ("^\\t*" + tmp + "$");
                 QRegularExpressionMatch rMatch;
                 if (text.indexOf (r, 0, &rMatch) == 0)
@@ -3765,7 +3799,11 @@ bool Highlighter::isHereDocument (const QString &text)
             setFormat (0, text.length(), blockFormat);
 
             /* also, format whitespaces */
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+            for (const HighlightingRule &rule : std::as_const (highlightingRules))
+#else
             for (const HighlightingRule &rule : qAsConst (highlightingRules))
+#endif
             {
                 if (rule.format == whiteSpaceFormat)
                 {
@@ -4216,7 +4254,11 @@ void Highlighter::highlightBlock (const QString &text)
                     dataFormat.setFontWeight (QFont::Bold);
                     setFormat (0, match.capturedLength(), dataFormat);
                 }
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+                for (const HighlightingRule &rule : std::as_const (highlightingRules))
+#else
                 for (const HighlightingRule &rule : qAsConst (highlightingRules))
+#endif
                 {
                     if (rule.format == whiteSpaceFormat)
                     {
@@ -4361,7 +4403,11 @@ void Highlighter::highlightBlock (const QString &text)
     {
         data->setHighlighted(); // completely highlighted
         QRegularExpressionMatch match;
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+        for (const HighlightingRule &rule : std::as_const (highlightingRules))
+#else
         for (const HighlightingRule &rule : qAsConst (highlightingRules))
+#endif
         {
             /* single-line comments are already formatted */
             if (rule.format == commentFormat)

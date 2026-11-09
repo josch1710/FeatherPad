@@ -654,7 +654,7 @@ when the syntax is highlighted.</string>
               <item>
                <widget class="QCheckBox" name="endingsBox">
                 <property name="text">
-                 <string>Also show line and document ends</string>
+                 <string>Show line and document ends</string>
                 </property>
                </widget>
               </item>
@@ -793,11 +793,9 @@ Needs window reopening to take effect.</string>
                  <widget class="QLabel" name="dateLabel">
                   <property name="toolTip">
                    <string>Used for pasting the date and time.
+Leave empty for the system default.
 
-Takes effect after closing this dialog.
-
-Leave empty for:
-MMM dd, yyyy, hh:mm:ss</string>
+Takes effect after closing this dialog.</string>
                   </property>
                   <property name="text">
                    <string>Date and time format:</string>
@@ -808,11 +806,9 @@ MMM dd, yyyy, hh:mm:ss</string>
                  <widget class="QLineEdit" name="dateEdit">
                   <property name="toolTip">
                    <string>Used for pasting the date and time.
+Leave empty for the system default.
 
-Takes effect after closing this dialog.
-
-Leave empty for:
-MMM dd, yyyy, hh:mm:ss</string>
+Takes effect after closing this dialog.</string>
                   </property>
                   <property name="placeholderText">
                    <string notr="true">MMM dd, yyyy, hh:mm:ss</string>

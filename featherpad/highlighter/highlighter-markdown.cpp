@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2021 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2021-2024 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -181,11 +181,7 @@ void Highlighter::markdownComment (const QString &text)
                             + endMatch.capturedLength();
         setFormat (startIndex, commentLength, commentFormat);
 
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        QString str = text.mid (startIndex, commentLength);
-#else
         QString str = text.sliced (startIndex, commentLength);
-#endif
         int pIndex = 0;
         QRegularExpressionMatch urlMatch;
         while ((pIndex = str.indexOf (urlPattern, pIndex, &urlMatch)) > -1)
@@ -442,11 +438,7 @@ void Highlighter::highlightMarkdownBlock (const QString &text)
         else
         {
             QRegularExpressionMatch spacesMatch;
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-            text.indexOf (startSpace, 0, &spacesMatch);
-#else
             (void)text.indexOf (startSpace, 0, &spacesMatch);
-#endif
             if (spacesMatch.capturedLength() == text.length()
                 || spacesMatch.capturedLength() >= extraBlockIndentation)
             {
@@ -516,7 +508,11 @@ void Highlighter::highlightMarkdownBlock (const QString &text)
     {
         data->setHighlighted(); // completely highlighted
         QRegularExpressionMatch match;
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+        for (const HighlightingRule &rule : std::as_const (highlightingRules))
+#else
         for (const HighlightingRule &rule : qAsConst (highlightingRules))
+#endif
         {
             index = text.indexOf (rule.pattern, 0, &match);
             if (rule.format != whiteSpaceFormat)

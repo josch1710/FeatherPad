@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2021 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2021-2024 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -18,6 +18,8 @@
  */
 
 #include "highlighter.h"
+
+#include <algorithm>
 
 namespace FeatherPad {
 
@@ -96,7 +98,7 @@ bool Highlighter::isXmlQuoted (const QString &text, const int index)
         {
             if (data)
                 data->insertLastFormattedQuote (nxtPos + 1);
-            pos = qMax (pos, 0);
+            pos = std::max (pos, 0);
             setFormat (pos, nxtPos - pos + 1,
                        text.at (nxtPos) == '\"' ? quoteFormat : altQuoteFormat);
         }
@@ -135,7 +137,7 @@ bool Highlighter::isXmlQuoted (const QString &text, const int index)
                 fi = (prevState == doubleQuoteState ? quoteFormat : altQuoteFormat);
             else // the open quote started in this line
                 fi = (text.at (pos) == '\"' ? quoteFormat : altQuoteFormat);
-            pos = qMax (pos, 0);
+            pos = std::max (pos, 0);
             setFormat (pos, text.length() - pos, fi);
         }
     }
@@ -197,7 +199,7 @@ bool Highlighter::isXxmlComment (const QString &text, const int index, const int
         {
             if (data)
                 data->insertLastFormattedRegex (nxtPos + match.capturedLength());
-            pos = qMax (pos, 0);
+            pos = std::max (pos, 0);
             setFormat (pos, nxtPos - pos + match.capturedLength(), commentFormat);
         }
 
@@ -227,7 +229,7 @@ bool Highlighter::isXxmlComment (const QString &text, const int index, const int
             data->insertLastFormattedRegex (text.length());
         if (N % 2 != 0)
         { // open comment
-            pos = qMax (pos, 0);
+            pos = std::max (pos, 0);
             setFormat (pos, text.length() - pos, commentFormat);
         }
     }
@@ -295,7 +297,7 @@ bool Highlighter::isXmlValue (const QString &text, const int index, const int st
 
         if (N % 2 == 0)
         {
-            pos = qMax (pos, 0);
+            pos = std::max (pos, 0);
             setFormatWithoutOverwrite (pos, nxtPos - pos + match.capturedLength(), neutralFormat, commentFormat);
         }
 
@@ -443,11 +445,7 @@ void Highlighter::xmlQuotes (const QString &text)
 
         /* format valid ampersand strings and errors inside quotes (with
            "regexFormat" and "errorFormat" respectively, to prevent overrides) */
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        QString str = text.mid (index, quoteLength);
-#else
         QString str = text.sliced (index, quoteLength);
-#endif
         int indx = 0;
         QRegularExpressionMatch match;
         while ((indx = str.indexOf (xmlQuoteError, indx)) > -1)
@@ -730,7 +728,11 @@ void Highlighter::highlightXmlBlock (const QString &text)
     {
         data->setHighlighted(); // completely highlighted
         QRegularExpressionMatch match;
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+        for (const HighlightingRule &rule : std::as_const (highlightingRules))
+#else
         for (const HighlightingRule &rule : qAsConst (highlightingRules))
+#endif
         {
             index = text.indexOf (rule.pattern, 0, &match);
             fi = format (index);

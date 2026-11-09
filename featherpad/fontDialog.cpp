@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2019-2021 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2019-2024 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -19,6 +19,12 @@
 
 #include "fontDialog.h"
 #include "ui_fontDialog.h"
+
+#if (QT_VERSION >= QT_VERSION_CHECK(6,7,0))
+#define CHECKBOX_CHANGED QCheckBox::checkStateChanged
+#else
+#define CHECKBOX_CHANGED QCheckBox::stateChanged
+#endif
 
 namespace FeatherPad {
 
@@ -98,11 +104,7 @@ FontDialog::FontDialog (const QFont &font, QWidget *parent)
 
     connect (ui->fontComboBox, &QFontComboBox::currentFontChanged, [this] (const QFont &curFont) {
         int fontSize = font_.pointSize();
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        int weight = font_.weight();
-#else
         QFont::Weight weight = font_.weight();
-#endif
         bool italic = font_.italic();
         font_ = curFont;
         font_.setPointSize (fontSize);
@@ -122,7 +124,7 @@ FontDialog::FontDialog (const QFont &font, QWidget *parent)
         ui->lineEdit->setFont (font_);
     });
 
-    connect (ui->codingFontBox, &QCheckBox::stateChanged, [this] (int checked) {
+    connect (ui->codingFontBox, &CHECKBOX_CHANGED, [this] (int checked) {
         int fontSize = font_.pointSize();
 
         if (checked == Qt::Checked)
@@ -157,7 +159,7 @@ FontDialog::FontDialog (const QFont &font, QWidget *parent)
         ui->lineEdit->setFont (font_);
     });
 
-    connect (ui->italicBox, &QCheckBox::stateChanged, [this] (int checked) {
+    connect (ui->italicBox, &CHECKBOX_CHANGED, [this] (int checked) {
         if (checked == Qt::Checked)
             font_.setItalic (true);
         else if (checked == Qt::Unchecked)

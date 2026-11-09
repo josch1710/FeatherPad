@@ -222,49 +222,9 @@
      <property name="title">
       <string>&amp;Encoding</string>
      </property>
-     <widget class="QMenu" name="menuUnicode">
-      <property name="title">
-       <string>&amp;Unicode</string>
-      </property>
-      <addaction name="actionUTF_8"/>
-      <addaction name="actionUTF_16"/>
-     </widget>
-     <widget class="QMenu" name="menuWestern_European">
-      <property name="title">
-       <string>&amp;Western European</string>
-      </property>
-      <addaction name="actionISO_8859_1"/>
-      <addaction name="actionISO_8859_15"/>
-      <addaction name="actionWindows_1252"/>
-     </widget>
-     <widget class="QMenu" name="menuEast_European">
-      <property name="title">
-       <string>&amp;East European</string>
-      </property>
-      <addaction name="actionCyrillic_CP1251"/>
-      <addaction name="actionCyrillic_KOI8_U"/>
-      <addaction name="actionCyrillic_ISO_8859_5"/>
-     </widget>
-     <widget class="QMenu" name="menuEast_Asian">
-      <property name="title">
-       <string>Ea&amp;st Asian</string>
-      </property>
-      <addaction name="actionChinese_BIG5"/>
-      <addaction name="actionChinese_GB18030"/>
-      <addaction name="actionJapanese_ISO_2022_JP"/>
-      <addaction name="actionJapanese_ISO_2022_JP_2"/>
-      <addaction name="actionJapanese_ISO_2022_KR"/>
-      <addaction name="actionJapanese_CP932"/>
-      <addaction name="actionJapanese_EUC_JP"/>
-      <addaction name="actionKorean_CP949"/>
-      <addaction name="actionKorean_CP1361"/>
-      <addaction name="actionKorean_EUC_KR"/>
-     </widget>
-     <addaction name="menuUnicode"/>
-     <addaction name="menuWestern_European"/>
-     <addaction name="actionWindows_Arabic"/>
-     <addaction name="menuEast_European"/>
-     <addaction name="menuEast_Asian"/>
+     <addaction name="actionUTF_8"/>
+     <addaction name="actionUTF_16"/>
+     <addaction name="actionISO_8859_1"/>
      <addaction name="actionOther"/>
     </widget>
     <addaction name="actionLineNumbers"/>
@@ -757,17 +717,6 @@
     <string>&amp;About</string>
    </property>
   </action>
-  <action name="actionWindows_Arabic">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Windows Arabic (&amp;CP1256)</string>
-   </property>
-  </action>
   <action name="actionOther">
    <property name="checkable">
     <bool>true</bool>
@@ -817,151 +766,6 @@
     <string>&amp;ISO-8859-1</string>
    </property>
   </action>
-  <action name="actionWindows_1252">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Windows-1252</string>
-   </property>
-  </action>
-  <action name="actionCyrillic_CP1251">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Cyrillic (CP1251)</string>
-   </property>
-  </action>
-  <action name="actionCyrillic_KOI8_U">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Cyrillic (&amp;KOI8-U)</string>
-   </property>
-  </action>
-  <action name="actionCyrillic_ISO_8859_5">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Cyrillic (&amp;ISO-8859-5)</string>
-   </property>
-  </action>
-  <action name="actionChinese_BIG5">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Chinese (BIG5)</string>
-   </property>
-  </action>
-  <action name="actionChinese_GB18030">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Chinese (&amp;GB18030)</string>
-   </property>
-  </action>
-  <action name="actionJapanese_ISO_2022_JP">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Japanese (ISO-2022-JP)</string>
-   </property>
-  </action>
-  <action name="actionJapanese_ISO_2022_JP_2">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Japanese (&amp;ISO-2022-JP-2)</string>
-   </property>
-  </action>
-  <action name="actionJapanese_ISO_2022_KR">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Japanese (ISO-&amp;2022-KR)</string>
-   </property>
-  </action>
-  <action name="actionJapanese_CP932">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Ja&amp;panese (CP932)</string>
-   </property>
-  </action>
-  <action name="actionJapanese_EUC_JP">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Japa&amp;nese (EUC-JP)</string>
-   </property>
-  </action>
-  <action name="actionKorean_CP949">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Korean (CP949)</string>
-   </property>
-  </action>
-  <action name="actionKorean_CP1361">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>K&amp;orean (CP1361)</string>
-   </property>
-  </action>
-  <action name="actionKorean_EUC_KR">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Korean (&amp;EUC-KR)</string>
-   </property>
-  </action>
   <action name="actionSaveCodec">
    <property name="text">
     <string>Save with &amp;Encoding</string>
@@ -998,14 +802,6 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+T</string>
-   </property>
-  </action>
-  <action name="actionISO_8859_15">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>ISO-&amp;8859-15</string>
    </property>
   </action>
   <action name="actionCloseRight">

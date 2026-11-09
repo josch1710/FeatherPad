@@ -1,6 +1,79 @@
-V1.4.2
+V1.6.5
 ---------
+ * Try to support workspace awareness on Wayland by relying on how Qt windows are exposed. Unfortunately, this isn't reliable under all Wayland compositors.
+ * Read config and load translations only for the primary instance (no redundant computation).
+ * Insert/remove characters with a column selection only for the first selected segments of wrapped lines. (In this way, commenting out and uncommenting can be done with wrapped lines of code too.)
+ * Scroll the (focused) view with Meta+Home such that the text cursor is put at its top.
+
+V1.6.4
+---------
+ * Fixed JSON's highlighting when whitespaces are not shown.
+ * Activate the session dialog under Wayland too when it is called by another window.
+ * Fixed tab middle clicking for Qt ≥ 6.11 (it stopped working correctly after a backward-incompatible change in Qt).
+ * When running executable scripts, covered a case where a process failed to start.
+ * Fixed side-pane tooltips with tab DND.
+ * Bumped the minimum version of Qt to 6.5.
+ * Fixed using of dictionary encoding with Hunspell.
+ * Fixed macOS help bundle resource.
+ * Silenced new compilation warnings about implicit capturing of 'this'.
+
+V1.6.3
+---------
+ * Check for nullity before calling `deleteLater()` — they say that's needed with Clang's optimizations enabled.
+ * Fixed an asymmetry between the forward and backward searches/replacements if some text was selected.
+ * Made replacing after searching easier (without needing to clear the selection first).
+ * Fixed showing of ampersand in the recent files menus.
+ * Fixed highlighting of C++ numbers with single quote as separator.
+ * Added more explanation on searching and replacing to Help.
+
+V1.6.2
+---------
+ * Show the print bar ("Printing in progress...") before printing because the print dialog may be shown with a delay.
+ * A small change in highlighting the numbers.
+ * Removed an old workaround about translations, which prevented some languages from being loaded due to a recent change in Qt.
+
+V1.6.1
+---------
+ * Allow typing double-quote or left parenthesis, brace or square bracket before a selected column.
+ * More intuitive column selection with wrapped lines (although it isn't useful with them).
+ * Special highlighting for standard C++ methods.
+ * Used standard C++ methods instead of `qMax`, `qMin`, `qRound`, …. Also, used `double` instead of `qreal`.
+
+V1.6.0
+---------
+ * Support column selection.
+ * Dropped the support for translating the Help file because it was not practical. An online translation service can be used instead.
+ * Fixed a rare case of finding/highlighting whole words.
+ * Replaced the deprecated method QMouseEvent::pos().
+ * Used localized string for position on the statusbar.
+
+V1.5.2
+---------
+ * Fixed the printing thread. (Previously, it created many instances of the warning message "QBasicTimer::start: Timers cannot be started from another thread" because the document wasn't inside the printing thread.)
+ * Fixed an old issue in replacement highlighting of multiple tabs.
+ * Demand attention under Wayland when a window needs activation, although window managers may ignore it.
+ * Don't escape a start single quote in C/C++ when it follows a letter or number.
+ * Skip double-parenthesis constructs with bash here-docs.
+ * Don't try to save as root when the parent directory doesn't exist.
+ * Respect the enforced syntax of an unsaved document when removing its trailing spaces on saving it.
+ * Check the existence of "gio" before using it for opening URLs.
+ * Fixed the localization of date and time with Qt6.
+
+V1.5.1
+---------
+ * Added a safe and simple workaround for KWin6 under X11 (by calling QWidget::hide instead of QWidget::close for the dummy widget).
+ * Under X11, if there is a minimized window on the current desktop, open files as new tabs in it and unminimize it.
+
+V1.5.0
+---------
+ * Removed Qt5 support.
  * Prevent the cursor position from being changed when files are dropped into the text view.
+ * Support regex replacement with capturing groups. The credit goes to Marco Holmer for suggesting not only this feature but also the way of implementing it.
+ * Enhanced the conversion to start case by including 100,000 characters and also finding the first letter of each word.
+ * Scroll horizontally with mouse wheel inside text view if Alt is pressed and horizontal scrollbar is visible.
+ * Highlight Openbox's "themerc" files (revived by LabWC).
+ * Fixed a rare issue in the geometry of a warning bar animated during window resizing.
+ * Covered a case of here-strings in bash.
 
 V1.4.1
 ---------

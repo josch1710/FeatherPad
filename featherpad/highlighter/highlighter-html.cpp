@@ -296,7 +296,11 @@ void Highlighter::htmlBrackets (const QString &text, const int start)
     if (mainFormatting)
     {
         static_cast<TextBlockData *>(currentBlock().userData())->setHighlighted(); // completely highlighted
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+        for (const HighlightingRule &rule : std::as_const (highlightingRules))
+#else
         for (const HighlightingRule &rule : qAsConst (highlightingRules))
+#endif
         {
             if (rule.format == whiteSpaceFormat)
             {
@@ -443,7 +447,11 @@ void Highlighter::htmlCSSHighlighter (const QString &text, const int start)
                           commentFormat);
         if (mainFormatting)
         {
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+            for (const HighlightingRule &rule : std::as_const (highlightingRules))
+#else
             for (const HighlightingRule &rule : qAsConst (highlightingRules))
+#endif
             { // CSS doesn't have any main formatting except for witesapces
                 if (rule.format == whiteSpaceFormat)
                 {
@@ -616,7 +624,11 @@ void Highlighter::htmlJavascript (const QString &text)
         }
         if (mainFormatting)
         {
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+            for (const HighlightingRule &rule : std::as_const (highlightingRules))
+#else
             for (const HighlightingRule &rule : qAsConst (highlightingRules))
+#endif
             {
                 if (rule.format == commentFormat)
                     continue;

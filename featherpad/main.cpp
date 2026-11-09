@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2023 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2026 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -32,15 +32,11 @@
 int main (int argc, char **argv)
 {
     const QString name = "FeatherPad";
-    const QString version = "1.4.2";
+    const QString version = "1.6.5";
 
     FeatherPad::FPsingleton singleton (argc, argv);
     singleton.setApplicationName (name);
     singleton.setApplicationVersion (version);
-
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-    singleton.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
-#endif
 
     QStringList args = singleton.arguments();
     if (!args.isEmpty())
@@ -83,46 +79,6 @@ int main (int argc, char **argv)
 
     singleton.init (firstArg == "--standalone" || firstArg == "-s");
 
-    // with QLocale::system().name(), X and X_Y may be the same in tests
-    QStringList langs (QLocale::system().uiLanguages());
-    QString lang;
-    if (!langs.isEmpty())
-        lang = langs.first().replace ('-', '_');
-
-    QTranslator qtTranslator;
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-    if (qtTranslator.load ("qt_" + lang, QLibraryInfo::location (QLibraryInfo::TranslationsPath)))
-#else
-    if (qtTranslator.load ("qt_" + lang, QLibraryInfo::path (QLibraryInfo::TranslationsPath)))
-#endif
-    {
-        singleton.installTranslator (&qtTranslator);
-    }
-    else if (!langs.isEmpty())
-    { // shouldn't be needed
-        lang = langs.first().split (QLatin1Char ('_')).first();
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        if (qtTranslator.load ("qt_" + lang, QLibraryInfo::location (QLibraryInfo::TranslationsPath)))
-#else
-        if (qtTranslator.load ("qt_" + lang, QLibraryInfo::path (QLibraryInfo::TranslationsPath)))
-#endif
-        {
-            singleton.installTranslator (&qtTranslator);
-        }
-    }
-
-    QTranslator FPTranslator;
-#if defined(Q_OS_HAIKU)
-    if (FPTranslator.load ("featherpad_" + lang, QStringLiteral (DATADIR) + "/../translations"))
-#elif defined(Q_OS_MAC)
-    if (FPTranslator.load ("featherpad_" + lang, singleton.applicationDirPath() + QStringLiteral ("/../Resources/translations/")))
-#else
-    if (FPTranslator.load ("featherpad_" + lang, QStringLiteral (DATADIR) + "/featherpad/translations"))
-#endif
-    {
-        singleton.installTranslator (&FPTranslator);
-    }
-
     QStringList info;
 #ifdef HAS_X11
     int d = singleton.isX11() ? static_cast<int>(FeatherPad::fromDesktop()) : -1;
@@ -137,6 +93,24 @@ int main (int argc, char **argv)
     {
         singleton.sendInfo (info); // is sent to the primary instance
         return 0;
+    }
+
+    singleton.readConfig();
+
+    QTranslator qtTranslator;
+    if (qtTranslator.load ("qt_" + QLocale::system().name(), QLibraryInfo::path (QLibraryInfo::TranslationsPath)))
+        singleton.installTranslator (&qtTranslator);
+
+    QTranslator FPTranslator;
+#if defined(Q_OS_HAIKU)
+    if (FPTranslator.load ("featherpad_" + QLocale::system().name(), QStringLiteral (DATADIR) + "/../translations"))
+#elif defined(Q_OS_MAC)
+    if (FPTranslator.load ("featherpad_" + QLocale::system().name(), singleton.applicationDirPath() + QStringLiteral ("/../Resources/translations/")))
+#else
+    if (FPTranslator.load ("featherpad_" + QLocale::system().name(), QStringLiteral (DATADIR) + "/featherpad/translations"))
+#endif
+    {
+        singleton.installTranslator (&FPTranslator);
     }
 
     // Handle SIGQUIT, SIGINT, SIGTERM and SIGHUP (-> https://en.wikipedia.org/wiki/Unix_signal).

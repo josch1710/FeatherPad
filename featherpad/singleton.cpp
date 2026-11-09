@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2020 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2014-2026 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -20,6 +20,7 @@
 #include <QDir>
 #include <QScreen>
 #include <QDialog>
+#include <QWindow>
 #include <QDBusConnection>
 #include <QDBusInterface>
 
@@ -56,12 +57,7 @@ FPsingleton::FPsingleton (int &argc, char **argv) : QApplication (argc, argv)
     standalone_ = false;
     quitSignalReceived_ = false;
     isRoot_ = false;
-    config_.readConfig();
-    lastFiles_ = config_.getLastFiles();
-    if (config_.getSharedSearchHistory())
-        searchModel_ = new QStandardItemModel (0, 1, this);
-    else
-        searchModel_ = nullptr;
+    searchModel_ = nullptr;
 }
 /*************************/
 FPsingleton::~FPsingleton()
@@ -88,6 +84,14 @@ void FPsingleton::init (bool standalone)
             dbus.registerObject (QStringLiteral ("/Application"), this);
         }
     }
+}
+/*************************/
+void FPsingleton::readConfig()
+{
+    config_.readConfig();
+    lastFiles_ = config_.getLastFiles();
+    if (config_.getSharedSearchHistory())
+        searchModel_ = new QStandardItemModel (0, 1, this);
 }
 /*************************/
 void FPsingleton::quitting()
@@ -226,7 +230,11 @@ QStringList FPsingleton::processInfo (const QStringList &info,
 
     /* always return absolute clean paths (works around KDE's double slash bug too) */
     QStringList filesList;
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+    for (const auto &path : std::as_const (sl))
+#else
     for (const auto &path : qAsConst (sl))
+#endif
     {
         if (!path.isEmpty()) // no empty path/name
         {
@@ -324,8 +332,8 @@ void FPsingleton::handleInfo (const QStringList &info)
         for (int i = 0; i < Wins.count(); ++i)
         {
             FPwin *thisWin = Wins.at (i);
-#ifdef HAS_X11
             WId id = thisWin->winId();
+#ifdef HAS_X11
             long whichDesktop = -1;
             if (isX11_)
                 whichDesktop = onWhichDesktop (id);
@@ -339,7 +347,7 @@ void FPsingleton::handleInfo (const QStringList &info)
                      /* if a window is created a moment ago, it should be
                         on the current desktop but may not report that yet */
                      || whichDesktop == -1)
-                    && (!thisWin->isMinimized() || isWindowShaded (id)))
+                    /*&& (!thisWin->isMinimized() || isWindowShaded (id))*/)
 #endif
                )
             {
@@ -366,8 +374,10 @@ void FPsingleton::handleInfo (const QStringList &info)
                         /* first, because of an old bug, pretend to KDE that a new window is created
                            (without this, the next new window would open on a wrong desktop) */
                         thisWin->dummyWidget->showMinimized();
-                        QTimer::singleShot (0, thisWin->dummyWidget, &QWidget::close);
+                        QTimer::singleShot (0, thisWin->dummyWidget, &QWidget::hide);
                     }
+                    else if (isWayland_ && !thisWin->windowHandle()->isExposed())
+                        continue; // rely on how the Wayland compositor exposes the window
 
                     /* and then, open tab(s) in the current FeatherPad window... */
                     if (filesList.isEmpty())

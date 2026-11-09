@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2021 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2021-2024 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -18,6 +18,8 @@
  */
 
 #include "highlighter.h"
+
+#include <algorithm>
 
 namespace FeatherPad {
 
@@ -208,11 +210,7 @@ void Highlighter::JavaQuote (const QString &text, const int start)
         setFormat (index, quoteLength, quoteFormat);
 
         /* also format urls inside the quotation */
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        QString str = text.mid (index, quoteLength);
-#else
         QString str = text.sliced (index, quoteLength);
-#endif
         int urlIndex = 0;
         QRegularExpressionMatch urlMatch;
         while ((urlIndex = str.indexOf (urlPattern, urlIndex, &urlMatch)) > -1)
@@ -234,19 +232,23 @@ void Highlighter::JavaQuote (const QString &text, const int start)
 /*************************/
 void Highlighter::singleLineJavaComment (const QString &text, const int start)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+    for (const HighlightingRule &rule : std::as_const (highlightingRules))
+#else
     for (const HighlightingRule &rule : qAsConst (highlightingRules))
+#endif
     {
         if (rule.format == commentFormat)
         {
-            int startIndex = qMax (start, 0);
+            int startIndex = std::max (start, 0);
             startIndex = text.indexOf (rule.pattern, startIndex);
-            /* skip quoted comments (and, automatically, those inside multiline python comments) */
+            /* skip quoted comments */
             while (startIndex > -1
                        /* check quote formats (only for multiLineJavaComment()) */
                    && (format (startIndex) == quoteFormat
                        || format (startIndex) == urlInsideQuoteFormat
                        /* check whether the comment sign is quoted or inside regex */
-                       || isJavaSingleCommentQuoted (text, startIndex, qMax (start, 0))))
+                       || isJavaSingleCommentQuoted (text, startIndex, std::max (start, 0))))
             {
                 startIndex = text.indexOf (rule.pattern, startIndex + 1);
             }
@@ -256,11 +258,7 @@ void Highlighter::singleLineJavaComment (const QString &text, const int start)
                 setFormat (startIndex, l - startIndex, commentFormat);
 
                 /* also format urls and email addresses inside the comment */
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-                QString str = text.mid (startIndex, l - startIndex);
-#else
                 QString str = text.sliced (startIndex, l - startIndex);
-#endif
                 int pIndex = 0;
                 QRegularExpressionMatch urlMatch;
                 while ((pIndex = str.indexOf (urlPattern, pIndex, &urlMatch)) > -1)
@@ -427,11 +425,7 @@ void Highlighter::multiLineJavaComment (const QString &text)
         }
 
         /* format urls and email addresses inside the comment */
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        QString str = text.mid (startIndex, commentLength);
-#else
         QString str = text.sliced (startIndex, commentLength);
-#endif
         int pIndex = 0;
         QRegularExpressionMatch urlMatch;
         while ((pIndex = str.indexOf (urlPattern, pIndex, &urlMatch)) > -1)
@@ -474,7 +468,11 @@ void Highlighter::javaMainFormatting (const QString &text)
     int index;
     QTextCharFormat fi;
     data->setHighlighted(); // completely highlighted
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+    for (const HighlightingRule &rule : std::as_const (highlightingRules))
+#else
     for (const HighlightingRule &rule : qAsConst (highlightingRules))
+#endif
     {
         /* single-line comments are already formatted */
         if (rule.format == commentFormat)

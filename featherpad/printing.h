@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2020 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2020-2024 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -24,6 +24,7 @@
 #include <QColor>
 #include <QTextDocument>
 #include <QPrinter>
+#include <QPointer>
 
 namespace FeatherPad {
 
@@ -33,7 +34,7 @@ class Printing : public QThread {
 public:
     Printing (QTextDocument *document, const QString &fileName,
               const QColor &textColor, int darkValue,
-              qreal sourceDpiX, qreal sourceDpiY);
+              double sourceDpiX, double sourceDpiY);
     ~Printing();
 
     QPrinter* printer() const {
@@ -43,12 +44,14 @@ public:
 private:
     void run();
 
-    QTextDocument *document_;
+    QPointer<QTextDocument> origDoc_;
+    QTextDocument *clonedDoc_;
     QPrinter *printer_;
     QColor textColor_;
     QColor darkColor_;
-    qreal sourceDpiX_;
-    qreal sourceDpiY_;
+    double sourceDpiX_;
+    double sourceDpiY_;
+    int darkValue_;
 };
 
 }

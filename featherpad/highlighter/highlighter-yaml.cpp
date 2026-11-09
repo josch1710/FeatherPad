@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Pedram Pourang (aka Tsu Jan) 2021 <tsujan2000@gmail.com>
+ * Copyright (C) Pedram Pourang (aka Tsu Jan) 2021-2024 <tsujan2000@gmail.com>
  *
  * FeatherPad is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -18,6 +18,8 @@
  */
 
 #include "highlighter.h"
+
+#include <algorithm>
 
 namespace FeatherPad {
 
@@ -96,7 +98,7 @@ bool Highlighter::yamlOpenBraces (const QString &text,
                 -- openNests;
                 if (openNests == 0)
                     setFormat (startIndx, indx + match.capturedLength() - startIndx, neutralFormat);
-                openNests = qMax (openNests, 0);
+                openNests = std::max (openNests, 0);
             }
         }
         else
@@ -144,11 +146,7 @@ void Highlighter::yamlLiteralBlock (const QString &text)
     QRegularExpressionMatch match;
     if (previousBlockState() == codeBlockState) // the literal block may continue
     {
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-        text.indexOf (QRegularExpression ("^\\s*"), 0, &match);
-#else
         (void)text.indexOf (QRegularExpression ("^\\s*"), 0, &match);
-#endif
         QString startingSpaces = "i" + match.captured();
         if (text == match.captured() // only whitespaces...
             /* ... or the indentation is wider than that of the literal block */
@@ -171,21 +169,13 @@ void Highlighter::yamlLiteralBlock (const QString &text)
     {
         if (text.contains (yamlKey))
         { // consider the list sign as a space if the block is a value
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-            text.indexOf (QRegularExpression ("^\\s*(-\\s)?\\s*"), 0, &match);
-#else
             (void)text.indexOf (QRegularExpression ("^\\s*(-\\s)?\\s*"), 0, &match);
-#endif
         }
         else
         {
             if (text.indexOf (QRegularExpression ("^\\s*-\\s")) == -1)
                 return; // if the block isn't a value, it should be a list
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
-            text.indexOf (QRegularExpression ("^\\s*"), 0, &match);
-#else
             (void)text.indexOf (QRegularExpression ("^\\s*"), 0, &match);
-#endif
         }
         setCurrentBlockState (codeBlockState);
         data->insertInfo ("i" + match.captured().replace ("-", " "));
@@ -284,7 +274,11 @@ void Highlighter::highlightYamlBlock (const QString &text)
     {
         data->setHighlighted();
         QRegularExpressionMatch match;
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+        for (const HighlightingRule &rule : std::as_const (highlightingRules))
+#else
         for (const HighlightingRule &rule : qAsConst (highlightingRules))
+#endif
         {
             if (rule.format != whiteSpaceFormat
                 && format (0) == codeBlockFormat) // a literal block
@@ -389,7 +383,7 @@ void Highlighter::highlightYamlBlock (const QString &text)
                     }
                     setFormat (index, length, fi);
                 }
-                index = text.indexOf (rule.pattern, index + qMax (length, 1), &match);
+                index = text.indexOf (rule.pattern, index + std::max (length, 1), &match);
 
                 if (rule.format != whiteSpaceFormat)
                 {

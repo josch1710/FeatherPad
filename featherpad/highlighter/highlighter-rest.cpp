@@ -30,7 +30,11 @@ void Highlighter::reSTMainFormatting (int start, const QString &text)
     data->setHighlighted(); // completely highlighted
     QTextCharFormat fi;
     QRegularExpressionMatch match;
+#if (QT_VERSION >= QT_VERSION_CHECK(6,6,0))
+    for (const HighlightingRule &rule : std::as_const (highlightingRules))
+#else
     for (const HighlightingRule &rule : qAsConst (highlightingRules))
+#endif
     {
         int index = text.indexOf (rule.pattern, start, &match);
         if (rule.format != whiteSpaceFormat)
